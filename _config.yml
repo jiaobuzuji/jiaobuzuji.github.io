@@ -5,7 +5,7 @@
 # Site
 title: Jiaobuzuji's Pages
 subtitle: Zeal for you
-description: This is my personal website.
+description: 工作与生活分不清楚的 ASIC 数字前端程序猿。可搜索博文《关于我》得到更多了解。
 author: Jiaobuzuji
 language: _en
 timezone:
@@ -37,10 +37,11 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
+auto_spacing: true # Auto insert space between Chinese and English
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
   
 # Home page setting
