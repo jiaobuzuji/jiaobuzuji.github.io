@@ -1,2 +1,3 @@
-# jiaobuzuji.github.io
-My Pages.
+> 业精于勤荒于嬉；行成于思毁于随。韩愈
+
+My Pages
