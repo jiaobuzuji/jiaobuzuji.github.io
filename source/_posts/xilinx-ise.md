@@ -1,6 +1,14 @@
-Xilinx与ISE / 2012年11月21日
-
-
+---
+title: Xilinx与ISE
+date: 2012-11-21 22:46:15
+comments: true
+categories:
+    - ASIC
+    - FPGA
+tags:
+    - xilinx
+    - ise
+---
 
 前言
 --------------

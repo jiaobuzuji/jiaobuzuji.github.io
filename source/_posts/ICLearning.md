@@ -1,5 +1,10 @@
-IC 学习记录 / 2015年7月18日
-
+---
+title: IC 学习记录
+date: 2015-07-18 22:46:15
+comments: true
+categories:
+    - ASIC
+---
 
 
 设计流程

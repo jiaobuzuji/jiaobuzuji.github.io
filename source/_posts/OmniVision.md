@@ -1,6 +1,14 @@
-OmniVision Sensor 芯片 / 2015年5月28日
-
-
+---
+title: OmniVision Sensor 芯片
+date: 2015-05-28 22:46:15
+comments: true
+categories:
+    - 数字图像
+tags:
+    - OmniVision
+    - OV
+    - sensor
+---
 
 OmniVision
 ==============
@@ -19,7 +27,7 @@ Sensor架构
 --------------
 OV9715与OV9712是同一系列的芯片，架构、寄存器地址也都基本一致。要对芯片配置，还是有必要清楚其芯片的架构，知道reg作用于架构中哪一个部分，也就可以比较清晰地知道会reg会产生哪些作用。
 
-![OV9715、OV9712 架构图](../images/ov9715-block-diagram.png)
+![OV9715、OV9712 架构图](http://wx1.sinaimg.cn/large/00738gZoly1fnv6fbm1vsj30mq0eet9q.jpg)
 
 架构主要被分为四大部分。每个模块各司其职
 
@@ -33,7 +41,7 @@ OV9715与OV9712是同一系列的芯片，架构、寄存器地址也都基本�
 ### image sensor core
 这是一个模数混合的部分。包括了Sensor、模拟gain、ADC、BLC、AEC、AGC、Colorbar、数字gain等等。多是挺多的，只是不是我研究方向。我目前只研究里面的分辨率、Colorbar。
 
-![Sensor Array](../images/ov9715-sensor-array-region.png)
+![Sensor Array](http://wx2.sinaimg.cn/large/00738gZoly1fnwpoydg8yj30hc0ebabi.jpg)
 
 #### Resolution
 芯片第一个模块Sensor Array，[DS][DS]中reg说明如果有指明作用于Sensor，一般就都是指作用此模块。这个模块使用的是SYSCLK。最大可支持1280x800的分辨率，此模块的输出分辨率是可以进行修改的。
@@ -71,7 +79,7 @@ OV9715与OV9712是同一系列的芯片，架构、寄存器地址也都基本�
 ### image output interface
 上图，不解释
 
-![DVP Timing](../images/ov9715-dvp-timing.png)
+![DVP Timing](http://wx3.sinaimg.cn/large/00738gZoly1fnwpoxh4k9j30ni09jjrw.jpg)
 
 这部分与fps关系密切，[DS][DS]只是隐晦地说那些(1) (2) ...可以由reg进行配置，留下巨坑让你跳。其实我还没从这坑爬出来呢。
 
