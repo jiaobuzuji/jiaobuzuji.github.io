@@ -1,0 +1,31 @@
+language: node_js
+node_js: node
+
+# Travis-CI Caching
+cache:
+  directories:
+    - node_modules
+
+branches:
+  only:
+  - source                # 只监测 source 分支上的 commit
+
+# before_install:
+# - npm install -g hexo-cli # 安装 hexo
+
+# install hexo dependencies
+install:
+- npm install
+
+script:
+- git submodule update --init --recursive
+
+after_success:
+- git config user.name "Jiaobuzuji"
+- git config user.email "jiaobuzuji@163.com"
+- sed -i'' "/^ *repo/s~github\.com~${GH_TOKEN}@github.com~" _config.yml
+- hexo deploy
+
+# env:
+#  global:
+# - secure: "Ja74i="

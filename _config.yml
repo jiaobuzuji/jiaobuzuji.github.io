@@ -26,6 +26,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+    - baidu_verify_mqmJJKSQr0.html
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -80,7 +81,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:jiaobuzuji/jiaobuzuji.github.io
+  repo: https://github.com/jiaobuzuji/jiaobuzuji.github.io
   branch: master
 
 # Search Engine
@@ -89,3 +90,14 @@ search:
   field: post
   format: html
   limit: 10000
+
+archive_generator:
+    per_page: 20 ##归档页面默认10篇文章标题
+    yearly: true  ##生成年视图
+    monthly: true ##生成月视图
+
+tag_generator:
+    per_page: 20 ##标签分类页面默认10篇文章
+
+category_generator:
+    per_page: 20 ###分类页面默认10篇文章
