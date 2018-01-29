@@ -19,12 +19,16 @@ install:
 
 script:
 - git submodule update --init --recursive
-
-after_success:
 - git config user.name "Jiaobuzuji"
 - git config user.email "jiaobuzuji@163.com"
 - sed -i'' "/^ *repo/s~github\.com~${GH_TOKEN}@github.com~" _config.yml
 - hexo deploy
+
+# after_success:
+# - git config user.name "Jiaobuzuji"
+# - git config user.email "jiaobuzuji@163.com"
+# - sed -i'' "/^ *repo/s~github\.com~${GH_TOKEN}@github.com~" _config.yml
+# - hexo deploy
 
 # env:
 #  global:
