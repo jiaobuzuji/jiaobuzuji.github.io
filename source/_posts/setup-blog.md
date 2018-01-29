@@ -21,6 +21,9 @@ tags:
 
 https://daringfireball.net/projects/markdown/syntax
 
-gem 是 ruby 下的，CentOS 安装 sudo yum install rubygems
+gem 是 ruby 下的，所以要安装 ruby
 
-travis-ci 可以设置env，而且它还会帮你保密。所以可以不用安装命令行的 travis。
+sudo apt-get instal -y ruby ruby-dev
+sudo gem install travis
+
+
