@@ -22,8 +22,7 @@ tags:
 https://daringfireball.net/projects/markdown/syntax
 
 gem 是 ruby 下的，所以要安装 ruby
-
 sudo apt-get instal -y ruby ruby-dev
 sudo gem install travis
 
-
+其实现在 travis-ci.org 已经提示了 env 的设置了，而且还自动帮你加密了，可以不用自己加密了。

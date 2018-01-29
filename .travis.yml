@@ -13,6 +13,3 @@ script:
 - git config user.email "jiaobuzuji@163.com"
 - sed -i'' "/^ *repo/s~github\.com~${GH_TOKEN}@github.com~" _config.yml
 - hexo deploy
-env:
-  global:
-    secure: iTP25LwLy4f4GKs/f5f/oosO6AmZmT99StzLsUTSRq0eObPEozDAsEzdz6PPBNc4qvm8MYgUAieTvrcmR3KksXRXUFs9LQbpZQGOliIjw/ImrASBBVTRrHe1aoGlpRT5a/AKzoUa3huSjtHw7LJf7AEkkQiqN8nWARvWHyghVN5ukgkSA7lKjl1wDlGXIltsCKu7uo7kxhZrh+MUhpSmTcbzBjfgypUrLVKbXEVN9+r1jSR28/Vq+lxsrCMo72gRWTocs7VjnogCBlVfyH/oz0DTCX3A1K2yEc7FIWJea5YY5pAAc0ZR9S3Sxxj6kiAi4SuSMgsFcF+zkqfYffGc5WQPkIa2IerLGV0LgHkZ/ZiiJOLAAuUGUK8p6AaQsAGAzhN2rw7PHbPYZGxm9Nqh7F3UvVVl3nr4eoe6iSDRtx+KJJzy0KNp5BmYERofgUD6hzeJAYoaBTRusTpPJQs9n0ruy8CUCjESnUQQHsF7b5gfLxYAcurDMr4pcbP1WR4b7+uIAs1typtQikNSQNudN9ZTVamOVGiqg2xIE9Tu0dfinNhmp+VFL82hfeYTulAzia9JCdENOcdvups9gqmTdpbeTMj/HZKdx3xBALyszlYyT/+0Es7hMUk2YeZ+R9K7dRC/P+Ys/bEMP5JwFsp7R8NYzmM9Ba+5TSmc/BKHcqs=
