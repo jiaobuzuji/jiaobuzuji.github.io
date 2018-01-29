@@ -26,3 +26,9 @@ sudo apt-get instal -y ruby ruby-dev
 sudo gem install travis
 
 其实现在 travis-ci.org 已经提示了 env 的设置了，而且还自动帮你加密了，可以不用自己加密了。
+在使用 github 生成 token 时，有两个地方要注意：
+1，生成时， token 只会出现一次，下次打开时，就不可见了。所以要及时保存可以用掉
+2，要使用 token 来部署网站，所以此 token 必须拥有一些功能。例如：repo，gist。这两个选项得及时勾上。
+
+
+github 禁止百度的 spider，所以百度无法自动检索到个人建的 blog 。

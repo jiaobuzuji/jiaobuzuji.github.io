@@ -4,8 +4,8 @@
 
 # Site
 title: Jiaobuzuji's Pages
-subtitle: Zeal for you
-description: 工作与生活分不清楚的 ASIC 数字前端程序猿。《关于 Jiaobuzuji 这个人》
+subtitle: 《关于 Jiaobuzuji 这个人》
+description: 工作与生活分不清楚的 ASIC 数字前端程序猿
 author: Jiaobuzuji
 language: _en
 timezone:
@@ -90,6 +90,31 @@ search:
   field: post
   format: html
   limit: 10000
+
+# A hexo plugin that optimize the pages loading speed.
+# npm install hexo-filter-optimize --save
+filter_optimize:
+  enable: true
+  # remove static resource query string
+  #   - like `?v=1.0.0`
+  remove_query_string: true
+  # remove the surrounding comments in each of the bundled files
+  remove_comments: true
+  css:
+    enable: true
+    # bundle loaded css file into the one
+    bundle: true
+    # use a script block to load css elements dynamically
+    delivery: true
+    # make specific css content inline into the html page
+    #   - only support the full path
+    #   - default is ['css/main.css']
+    inlines:
+    excludes:
+  js:
+    # bundle loaded js file into the one
+    bundle: true
+    excludes:
 
 archive_generator:
     per_page: 20 ##归档页面默认10篇文章标题

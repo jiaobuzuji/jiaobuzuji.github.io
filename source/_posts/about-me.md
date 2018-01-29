@@ -15,7 +15,7 @@ date: 2018-01-27 23:28:05
 
 ## 简历
 2012-07-01 至 2014-05-01 ： 在深圳一家小规模的上市通信公司做 FPGA 通信直放站相关开发。
-2014-05-01 至 xxxxxxxxxx ： 在广州一家IC公司工作
+2014-05-01 至 xxxxxxxxxx ： 在广州一家小公司做ASIC数字前端工程师。
 
 ## 技术标签
 RTL Verilog SystemVerilog Tcl FPGA DC SVN Git Vim C DSP Codec Serdes SoC
