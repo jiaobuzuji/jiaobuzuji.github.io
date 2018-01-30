@@ -8,7 +8,6 @@ branches:
   - source
 install:
 - npm install
-- npm install hexo-generator-baidu-sitemap
 script:
 - git config user.name "Jiaobuzuji"
 - git config user.email "jiaobuzuji@163.com"
