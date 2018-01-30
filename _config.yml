@@ -7,7 +7,7 @@ title: Jiaobuzuji's Pages
 subtitle: 现在就是未来
 description: 工作与生活分不清楚的 ASIC 数字前端程序猿
 author: Jiaobuzuji
-language: _en
+language: zh-CN
 timezone:
 
 # URL
@@ -78,12 +78,6 @@ pagination_dir: page
 # theme: landscape
 theme: next
 
-baidu_url_submit:
-  count: 1 ## 提交最新的 1 个链接
-  host: www.jiaobuzuji.com ## 在百度站长平台中注册的域名
-  token: ${BAIDU_TOKEN} ## 请注意这是您的秘钥， 所以请不要把博客源代码发布在公众仓库里!
-  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
-
 # Local Search Engine
 search:
   path: search.xml
@@ -119,23 +113,22 @@ filter_optimize:
   # lower means it will be executed first, default is 10
   priority: 12
 
-archive_generator:
-    per_page: 20 ##归档页面默认10篇文章标题
-    yearly: true  ##生成年视图
-    monthly: true ##生成月视图
+# archive_generator:
+#     per_page: 20 ##归档页面默认10篇文章标题
+#     yearly: true  ##生成年视图
+#     monthly: true ##生成月视图
 
-tag_generator:
-    per_page: 20 ##标签分类页面默认10篇文章
+# tag_generator:
+#     per_page: 20 ##标签分类页面默认10篇文章
 
-category_generator:
-    per_page: 20 ###分类页面默认10篇文章
+# category_generator:
+#     per_page: 20 ###分类页面默认10篇文章
 
 # =========================================================
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  - type: git
-    repo: https://github.com/jiaobuzuji/jiaobuzuji.github.io
-    branch: master
-  - type: baidu_url_submitter
+  type: git
+  repo: https://github.com/jiaobuzuji/jiaobuzuji.github.io
+  branch: master
 
