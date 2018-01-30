@@ -31,7 +31,7 @@ sudo gem install travis
 2，要使用 token 来部署网站，所以此 token 必须拥有一些功能。例如：repo，gist。这两个选项得及时勾上。
 
 
-github 禁止百度的 spider，所以百度无法自动检索到个人建的 blog 。
+github 禁止百度的 spider，所以百度无法自动检索到个人建的 blog 。这里采用自制提交。
 
 hexo new page tags
 在 /source/tags/index.md 中，修改一下，添加 type，如下所示：
@@ -41,3 +41,5 @@ title: Tags
 date: xxxxxxxx
 type: "tags"
 ---
+
+https://www.bing.com/webmaster
