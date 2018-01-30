@@ -140,7 +140,7 @@ scheme: Gemini
 # ---------------------------------------------------------------
 
 # Posts / Categories / Tags in sidebar.
-site_state: true
+site_state: false
 
 # Social Links.
 # Usage: `Key: permalink || icon`
@@ -465,8 +465,8 @@ gitment:
   language: # Force language, or auto switch by theme
   github_user: jiaobuzuji # MUST HAVE, Your Github Username
   github_repo: jiaobuzuji.github.io # MUST HAVE, The name of the repo you use to store Gitment comments
-  client_id: # MUST HAVE, Github client id for the Gitment
-  client_secret: # EITHER this or proxy_gateway, Github access secret token for the Gitment
+  client_id: 88356b2aee69a045e9b5 # MUST HAVE, Github client id for the Gitment
+  client_secret: 25b560ce32536bcd13aa222118ffdfc70c8e1cc6 # EITHER this or proxy_gateway, Github access secret token for the Gitment
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
 

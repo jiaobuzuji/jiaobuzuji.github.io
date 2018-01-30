@@ -32,6 +32,8 @@ sudo gem install travis
 
 
 github 禁止百度的 spider，所以百度无法自动检索到个人建的 blog 。这里采用自制提交。
+https://www.bing.com/webmaster
+https://ziyuan.baidu.com
 
 hexo new page tags
 在 /source/tags/index.md 中，修改一下，添加 type，如下所示：
@@ -42,4 +44,5 @@ date: xxxxxxxx
 type: "tags"
 ---
 
-https://www.bing.com/webmaster
+使用 github 的 issue 来作为评论区。有一个更好的，叫： gitalk
+
