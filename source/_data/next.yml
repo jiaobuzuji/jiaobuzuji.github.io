@@ -271,9 +271,9 @@ symbols_count_time:
   #description: ex. subscribe to my blog by scanning my public wechat account
 
 # Reward
-# reward_comment: Click here, Thanks!
-# wechatpay: /images/wechatpay.jpg
-# alipay: /images/alipay.jpg
+#reward_comment: Donate comment here
+#wechatpay: /images/wechatpay.jpg
+#alipay: /images/alipay.jpg
 #bitcoin: /images/bitcoin.png
 
 # Declare license on posts
@@ -655,6 +655,8 @@ local_search:
   trigger: auto
   # show top n results per article, show all results by setting to -1
   top_n_per_article: 1
+  # unescape html strings to the readable one
+  unescape: false
 
 # Bookmark Support
 # Dependencies: https://github.com/theme-next/theme-next-bookmark
@@ -889,5 +891,5 @@ css: css
 js: js
 images: images
 
-# Theme versio
-version: 6.0.2
+# Theme version
+version: 6.0.3

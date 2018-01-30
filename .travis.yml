@@ -8,15 +8,15 @@ branches:
   - source
 install:
 - npm install
-- npm install hexo-baidu-url-submit
-- npm install hexo-generator-baidu-sitemap
+# - npm install hexo-baidu-url-submit
+# - npm install hexo-generator-baidu-sitemap
 script:
 - git config user.name "Jiaobuzuji"
 - git config user.email "jiaobuzuji@163.com"
 - sed -i'' "/^ *repo/s~github\.com~${GH_TOKEN}@github.com~" _config.yml
-- echo -e 'baidu_url_submit:\n  count: 1\n  path: baidu_urls.txt' >> _config.yml
+# - echo -e 'baidu_url_submit:\n  count: 1\n  path: baidu_urls.txt' >> _config.yml
 - hexo deploy
-- curl -H 'Content-Type:text/plain' --data-binary @public/baidu_urls.txt "http://data.zz.baidu.com/urls?site=www.jiaobuzuji.com&token=${BAIDU_TOKEN}"
+# - curl -H 'Content-Type:text/plain' --data-binary @public/baidu_urls.txt "http://data.zz.baidu.com/urls?site=www.jiaobuzuji.com&token=${BAIDU_TOKEN}"
 
 # env:
 #   global:
