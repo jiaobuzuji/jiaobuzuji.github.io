@@ -32,3 +32,12 @@ sudo gem install travis
 
 
 github 禁止百度的 spider，所以百度无法自动检索到个人建的 blog 。
+
+hexo new page tags
+在 /source/tags/index.md 中，修改一下，添加 type，如下所示：
+
+---
+title: Tags
+date: xxxxxxxx
+type: "tags"
+---

@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "hexo": "^3.5.0",
+    "hexo-baidu-url-submit": "0.0.5",
     "hexo-deployer-git": "^0.3.1",
     "hexo-filter-optimize": "^0.2.5",
     "hexo-generator-archive": "^0.1.4",
@@ -16,7 +17,7 @@
     "hexo-generator-searchdb": "^1.0.8",
     "hexo-generator-sitemap": "^1.2.0",
     "hexo-generator-tag": "^0.2.0",
-    "hexo-renderer-ejs": "^0.3.0",
+    "hexo-renderer-ejs": "^2.5.5",
     "hexo-renderer-marked": "^0.3.0",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0"

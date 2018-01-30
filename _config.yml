@@ -4,7 +4,7 @@
 
 # Site
 title: Jiaobuzuji's Pages
-subtitle: 《关于 Jiaobuzuji 这个人》
+subtitle: 现在就是未来
 description: 工作与生活分不清楚的 ASIC 数字前端程序猿
 author: Jiaobuzuji
 language: _en
@@ -26,7 +26,8 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
-    - baidu_verify_mqmJJKSQr0.html
+  - baidu_verify_mqmJJKSQr0.html
+  - BingSiteAuth.xml
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -77,14 +78,13 @@ pagination_dir: page
 # theme: landscape
 theme: next
 
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: https://github.com/jiaobuzuji/jiaobuzuji.github.io
-  branch: master
+baidu_url_submit:
+  count: 3 ## 提交最新的 3 个链接
+  host: www.jiaobuzuji.com ## 在百度站长平台中注册的域名
+  token: ${BAIDU_TOKEN} ## 请注意这是您的秘钥， 所以请不要把博客源代码发布在公众仓库里!
+  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
 
-# Search Engine
+# Local Search Engine
 search:
   path: search.xml
   field: post
@@ -100,8 +100,8 @@ filter_optimize:
   remove_query_string: true
   # remove the surrounding comments in each of the bundled files
   remove_comments: true
-  css:
-    enable: true
+  css: # NOTE Jiaobuzubji : it will block icons
+    enable: false
     # bundle loaded css file into the one
     bundle: true
     # use a script block to load css elements dynamically
@@ -115,6 +115,9 @@ filter_optimize:
     # bundle loaded js file into the one
     bundle: true
     excludes:
+  # set the priority of this plugin,
+  # lower means it will be executed first, default is 10
+  priority: 12
 
 archive_generator:
     per_page: 20 ##归档页面默认10篇文章标题
@@ -126,3 +129,13 @@ tag_generator:
 
 category_generator:
     per_page: 20 ###分类页面默认10篇文章
+
+# =========================================================
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  - type: git
+    repo: https://github.com/jiaobuzuji/jiaobuzuji.github.io
+    branch: master
+  - type: baidu_url_submitter
+
