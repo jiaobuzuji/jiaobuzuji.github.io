@@ -1,6 +1,7 @@
 ---
 title: OmniVision Sensor 芯片
 date: 2015-05-28 22:46:15
+updated: 2015-05-28 22:46:15
 comments: true
 categories:
     - 数字图像

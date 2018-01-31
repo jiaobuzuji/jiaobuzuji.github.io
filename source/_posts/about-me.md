@@ -1,6 +1,7 @@
 ---
 title: 关于 Jiaobuzuji 这个人
-date: 2018-01-27 23:28:05
+date: 2018-01-27 21:28:05
+updated: 2018-01-27 21:28:05
 ---
 
 ## Jiaobuzuji

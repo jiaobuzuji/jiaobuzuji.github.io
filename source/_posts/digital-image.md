@@ -1,6 +1,7 @@
 ---
 title: 图像处理基础知识点
 date: 2015-06-11 22:46:15
+updated: 2015-06-11 22:46:15
 comments: true
 categories:
     - 数字图像

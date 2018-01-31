@@ -1,6 +1,7 @@
 ---
 title: 音视频接口标准（二）
 date: 2014-12-18 22:46:15
+updated: 2014-12-18 22:46:15
 comments: true
 categories:
     - 数字图像

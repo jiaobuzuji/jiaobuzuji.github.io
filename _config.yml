@@ -136,6 +136,6 @@ filter_optimize:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/jiaobuzuji/jiaobuzuji.github.io
+  repo: git@github.com:jiaobuzuji/jiaobuzuji.github.io
   branch: master
  # - type: baidu_url_submitter

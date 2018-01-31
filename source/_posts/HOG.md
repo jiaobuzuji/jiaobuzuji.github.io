@@ -1,6 +1,7 @@
 ---
 title: 人体检测算法 HOG
 date: 2014-12-07 22:46:15
+updated: 2014-12-07 22:46:15
 comments: true
 categories:
     - 数字图像
