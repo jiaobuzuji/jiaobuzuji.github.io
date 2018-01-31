@@ -1,3 +1,12 @@
 [submodule "themes/next"]
 	path = themes/next
 	url = https://github.com/theme-next/hexo-theme-next
+[submodule "themes/next-fancybox3"]
+	path = themes/next-fancybox3
+	url = https://github.com/theme-next/theme-next-fancybox3
+[submodule "themes/next-fastclick"]
+	path = themes/next-fastclick
+	url = https://github.com/theme-next/theme-next-fastclick
+[submodule "themes/next-jquery-lazyload"]
+	path = themes/next-jquery-lazyload
+	url = https://github.com/theme-next/theme-next-jquery-lazyload

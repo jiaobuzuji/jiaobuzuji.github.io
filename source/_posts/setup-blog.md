@@ -46,4 +46,10 @@ type: "tags"
 ---
 
 使用 github 的 issue 来作为评论区。有一个更好的，叫： gitalk
+但是因为是使用 github 的资源，而且每一个 pages 都要手动去初始化。不是很方便，还是放弃了。
+换成无后台的 valine
 
+windows 下创建 link 的正确方法。
+mklink /j themes\next\source\lib\fancybox themes\next-fancybox3
+mklink /j themes\next\source\lib\fastclick themes\next-fastclick
+mklink /j themes\next\source\lib\jquery_lazyload themes\next-jquery-lazyload
