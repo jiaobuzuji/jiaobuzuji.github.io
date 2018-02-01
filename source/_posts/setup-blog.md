@@ -1,7 +1,7 @@
 ---
 title: HEXO 零基础搭建个人 Blog
 date: 2018-01-27 22:46:15
-updated: 2018-01-27 22:46:15
+updated: 2018-01-31 22:46:15
 comments: true
 categories:
     - 杂记
@@ -20,7 +20,7 @@ tags:
 [pandoc]: http://pandoc.org/
 
 https://daringfireball.net/projects/markdown/syntax
-https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown
+https://guides.github.com/features/mastering-markdown
 
 
 gem 是 ruby 下的，所以要安装 ruby
