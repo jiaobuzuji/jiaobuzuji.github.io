@@ -5,10 +5,7 @@ updated: 2015-05-28 22:46:15
 comments: true
 categories:
     - 数字图像
-tags:
-    - OmniVision
-    - OV
-    - sensor
+tags: [OmniVision, OV, sensor]
 ---
 
 OmniVision

@@ -5,8 +5,7 @@ updated: 2014-12-07 22:46:15
 comments: true
 categories:
     - 数字图像
-tags:
-    - 识别
+tags: [识别]
 ---
 
 人体检测

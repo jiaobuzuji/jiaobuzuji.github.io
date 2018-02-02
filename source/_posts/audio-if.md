@@ -5,9 +5,7 @@ updated: 2015-05-18 22:46:15
 comments: true
 categories:
     - 数字图像
-tags:
-    - IIS
-    - audio
+tags: [IIS,audio]
 ---
 
 一些基本概念

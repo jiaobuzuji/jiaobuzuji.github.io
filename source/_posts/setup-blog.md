@@ -5,9 +5,8 @@ updated: 2018-01-31 22:46:15
 comments: true
 categories:
     - 杂记
-tags:
-    - hexo
-    - blog
+tags: [hexo,blog]
+
 ---
 
 ## 前言

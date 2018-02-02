@@ -4,11 +4,9 @@ date: 2012-11-21 22:46:15
 updated: 2012-11-21 22:46:15
 comments: true
 categories:
-    - ASIC
+  - ASIC
     - FPGA
-tags:
-    - xilinx
-    - ise
+tags: [xilinx, ise]
 ---
 
 前言

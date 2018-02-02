@@ -5,10 +5,7 @@ updated: 2014-12-18 22:46:15
 comments: true
 categories:
     - 数字图像
-tags:
-    - bt656
-    - bt1120
-    - HDMI
+tags: [bt656, bt1120, HDMI]
 ---
 
 
