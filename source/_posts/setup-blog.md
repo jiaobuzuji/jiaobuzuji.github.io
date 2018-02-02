@@ -31,6 +31,7 @@ http://pandoc.org/
 1. 使用 Valine 作为评论区，需要注册 LearnCloud.cn
 1. 使用微博作为图床
 
+---
 
 ## 免费搭建个人博客
 重点当然在于免费啦～
@@ -45,7 +46,7 @@ http://pandoc.org/
 1. 创建 Github Page
 1. 安装 Nodejs, Hexo，[Github Desktop](https://desktop.github.com/) 或者 git
 1. 认真阅读一下 Next 的帮助文件，然后使用 npm 安装好插件
-  × 利用 `--save` 可以将插件保存在 package.json 中，如： `npm install --save hexo-generator-sitemap`
+  - 利用 `--save` 可以将插件保存在 package.json 中，如： `npm install --save hexo-generator-sitemap`
 1. 域名加密 https，可能还需要了解 [let's encrypt](https://letsencrypt.org/)
 1. ~~安装 gem，travis。gem 是 ruby 下的东西，所以要安装 ruby。Ubuntu 下可以使用下面命令行安装~~
   ```bash
