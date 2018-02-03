@@ -5,7 +5,7 @@ updated: 2012-11-21 22:46:15
 comments: true
 categories:
   - ASIC
-    - FPGA
+  - FPGA
 tags: [xilinx, ise]
 ---
 
@@ -13,7 +13,8 @@ tags: [xilinx, ise]
 --------------
 内容可能比较简单与基础。这其实是写给我自己看的，做一些简单的记录，方便以后使用时的查找。
 
-> 我所知道的不多。 ~Jiaobuzuji~
+> 我所知道的不多。
+> ——*某名人言*
 
 
 简介
