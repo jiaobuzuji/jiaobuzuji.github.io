@@ -11,7 +11,7 @@ updated: 2018-01-27 21:28:05
 
 用一句话来与君共勉：
 > 业精于勤荒于嬉；行成于思毁于随。
-> ——**韩愈**
+> ——*韩愈*
 
 ### Follow me
 Github : https://github.com/jiaobuzuji
