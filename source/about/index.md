@@ -10,13 +10,16 @@ updated: 2018-01-27 21:28:05
 身上的标签贴：技术宅，工作狂，强迫症患者，程序猿
 
 用一句话来与君共勉：
-{% blockquote 韩愈 %}
-业精于勤荒于嬉；行成于思毁于随。
-{% endblockquote %}
+> 业精于勤荒于嬉；行成于思毁于随。
+> ——**韩愈**
+
+### Follow me
+Github : https://github.com/jiaobuzuji
+EETOP : http://www.eetop.cn/blog/?jiaobuzuji
 
 ## 简历
 2012-07-01 至 2014-05-01 ： 在深圳一家小规模的上市通信公司做 FPGA 通信直放站相关开发。
 2014-05-01 至 xxxxxxxxxx ： 在广州一家小公司做ASIC数字前端工程师。
 
 ## 技术标签
-RTL Verilog SystemVerilog Tcl FPGA DC SVN Git Vim C DSP Codec Serdes SoC
+RTL Verilog SystemVerilog Tcl FPGA DC SVN Git Vim C DSP Codec Serdes SoC 
