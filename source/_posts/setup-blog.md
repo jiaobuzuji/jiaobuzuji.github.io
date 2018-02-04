@@ -180,7 +180,7 @@ https://www.google.com/webmasters
 > 后来工作忙没去
 
 狂妄地以为自己可以制作心中的 [Hexo][] 主题，所以受一些东西折磨：
-1. swig, ejs，都是 JavaScript 模板，可以快速生成 js 代码。还去 [w3school](http://www.w3school.com.cn/) 瞎逛自觉了有一阵。
+1. swig, ejs，都是 JavaScript 模板，可以快速生成 js 代码。还去 [w3school](http://www.w3school.com.cn/) 瞎逛自学了有一阵。
 1. scss 与 css
 1. cdn, avatar, FontAwesome
 1. 各种 Brower 之间的不兼容
