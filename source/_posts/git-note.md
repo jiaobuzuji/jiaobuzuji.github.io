@@ -5,7 +5,7 @@ comments: true
 date: 2018-02-04 21:56:02
 updated: 2018-02-04 21:56:02
 categories:
-    - 版本控制
+    - Tools
     - git
 tags: [git]
 

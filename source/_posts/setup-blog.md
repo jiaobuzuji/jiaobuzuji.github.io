@@ -4,7 +4,7 @@ date: 2018-01-27 22:46:15
 updated: 2018-01-31 22:46:15
 comments: true
 categories:
-    - 杂记
+    - Misc
 tags: [hexo,blog]
 
 ---
@@ -171,8 +171,8 @@ https://www.google.com/webmasters
 
 ## Meta
 ### Tip
-1. windows 下创建 link 的正确方法。`mklink`
 1. windows 下，markdow-preview.vim 得先安装好 python3，并添加环境变量。
+1. `hexo clean` 可以简写为 `hexo cl`
 1. `hexo s` 之后，只要博文一保存，就可以刷新浏览器看效果。
 
 ### 曾想仗剑走天涯
