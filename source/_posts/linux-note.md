@@ -4,6 +4,7 @@ mathjax: true
 comments: true
 date: 2018-02-06 16:57:33
 updated: 2018-02-06 16:57:33
+categories:
     - System
     - linux
 tags: [linux,ubuntu,shell]
