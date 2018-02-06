@@ -144,6 +144,7 @@ $ hexo new "My New Post"
 #### 相关连接
 * https://xuanwo.org/2015/03/26/hexo-intor/
 * https://zhuanlan.zhihu.com/p/26625249
+* <http://ibruce.info/2013/11/22/hexo-your-blog/>
 
 ### 自动部署
 使用 `hexo d` 可以实现部署，但每次 `git push` 后，必须在次手动部署一下，实在是比较麻烦，此时可以利用 [Github][] 与 Travis-CI 来实现 push 时自动部署功能。
@@ -171,9 +172,14 @@ https://www.google.com/webmasters
 
 ## Meta
 ### Tip
-1. windows 下，markdow-preview.vim 得先安装好 python3，并添加环境变量。
 1. `hexo clean` 可以简写为 `hexo cl`
-1. `hexo s` 之后，只要博文一保存，就可以刷新浏览器看效果。
+1. `hexo s` 之后，hexo 会监视文件更改，只要博文一保存，就可以刷新浏览器看效果。使用 `hexo s -s`
+1. ~~windows 下，markdow-preview.vim 得先安装好 python3，并添加环境变量。~~
+1. 使用 npm 更新 package.json 中的版本
+  ```nodejs
+  npm update -S
+  npm update –D
+  ```
 
 ### 曾想仗剑走天涯
 > 曾想仗剑走天涯

@@ -17,5 +17,6 @@ ln -s ../../../next-jquery-lazyload themes/next/source/lib/jquery_lazyload # NOT
 ## 警示自己
 
 > 业精于勤荒于嬉；行成于思毁于随。
-> --*韩愈*
+
+> ——*韩愈*
 
