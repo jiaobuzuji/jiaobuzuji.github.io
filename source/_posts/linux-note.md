@@ -32,3 +32,4 @@ boot 空间不够：
 dpkg --get-selections|grep linux  查看有哪些多余的 kernal 
 sudo apt-get remove linux-image-(版本号)（就是上面带image的版本）
 有卸载不完全的（有提示），可以用 sudo apt-get autoremove来删除。
+sudo dpkg -P linux-image-xxx 清除出现 `deinstall` 的 list
