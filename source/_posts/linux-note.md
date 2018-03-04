@@ -15,6 +15,8 @@ tags: [linux,ubuntu,centos,shell]
 
 ## ssh
 
+https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/
+
 linux ssh_config和sshd_config配置文件
  
 ssh_config和sshd_config都是ssh服务器的配置文件，二者区别在于，前者是针对客户端的配置文件，后者则是针对服务端的配置文件。两个配置文件都允许你通过设置不同的选项来改变客户端程序的运行方式。下面列出来的是两个配置文件中最重要的一些关键词，每一行为“关键词&值”的形式，其中“关键词”是忽略大小写的。
@@ -166,7 +168,301 @@ GSSAPIAuthentication no
 /etc/init.d/sshd restart
 
 ## VNC
+VNC概述
 
+   VNC (Virtual Network Computing)是虚拟网络计算机的缩写。VNC 是一款优秀的远程控制工具软件，由著名的 AT&T 的欧洲研究实验室开发的。VNC 是在基于 UNIX 和 Linux操作系统的免费的开源软件，远程控制能力强大，高效实用，其性能可以和 Windows 或 MAC 中的任何远程控制软件媲美。在 Linux 中，VNC 包括以下四个命令：vncserver，vncviewer，vncpasswd，和 vncconnect。大多数情况下只需要其中的两个命令：vncserver 和 vncviewer。目前，原来的AT&T版本已经不再使用，因为更多有重大改善的分支版本已经出现， 像是RealVNC， VNC tight 和UltraVNC。 Real VNC 是当前最活跃和强大的主流应用。
+
+ RealVNC官方网址  :  http://www.realvnc.com/
+
+ Tight VNC官方网址:  http://www.tightvnc.com/
+
+ UltraVNC官方网址 ： http://www.uvnc.com/
+
+ 
+
+VNC原理
+
+VNC系统由客户端，服务端和一个协议组成。VNC的服务端目的是分享其所运行机器的屏幕， 服务端被动的允许客户端控制它。 VNC客户端（或Viewer） 观察控制服务端，与服务端交互。 VNC 协议 Protocol (RFB)是一个简单的协议，传送服务端的原始图像到客户端（一个X,Y 位置上的正方形的点阵数据）， 客户端传送事件消息到服务端。
+
+服务器发送小方块的帧缓存给客户端，在最简单的情况，VNC协议使用大量的带宽，因此各种各样的方法被发明出来减少通讯的开支，举例来说，有各种各样的编码方法来决定最有效率的方法来传送这些点阵方块）
+
+协议允许客户端和服务端去协议哪种编码会被使用，最简单的编码，被大多数客户端和服务端所支持的是， 从左到右的像素扫描数据的原始编码， 当原始的满屏被发送后，只发送变化的方块区域。这种编码在幁间只有小部分屏幕变化的情况下工作的非常好（像是鼠标键在桌面移动的情况，或在光标处敲击文字），不过如果大量的像素同时变化带宽将会增加的非常高，像是拖动一个窗口或观看全屏录像。
+
+VNC默认使用TCP端口5900至5906，而JAVA的VNC客户端使用5800至5806。一个服务端可以在5500口用“监听模式”连接一个客户端，使用监听模式的一个好处是服务端不需要设置防火墙。
+
+UNIX上的VNC称为xvnc，同时扮演两种角色，对X窗口系统的应用程序来说它是X server，对于VNC客户端来说它是VNC服务器程序。
+
+ 
+
+实验环境
+
+     VNC服务端：
+
+             操作系统：Red Hat Enterprise Linux Server release 5.7 (Tikanga)
+
+     VNC客户端：
+
+             操作系统：Windows 7专业版  64位操作系统
+
+ 
+
+VNC安装配置
+
+1、安装VNC包
+
+[root@localhost /]# cd  /depot/os/mnt/cdrom/Server
+
+[root@localhost /]# rpm -ivh vnc-server-4.1.2-14.el5_6.6.x86_64.rpm
+
+[root@localhost /]# rpm -ivh vnc-4.1.2-14.el5_6.6.x86_64.rpm
+
+验证vnc-server包是否安装成功：
+
+[root@localhost /]# rpm -qa vnc-server
+
+vnc-server-4.1.2-14.el5_6.6
+
+2、配置vncservers文件
+
+修改/etc/sysconfig/vncservers文件，未经修改的vncservers文件如下所示：
+
+[root@localhost ~]# more /etc/sysconfig/vncservers
+
+# The VNCSERVERS variable is a list of display:user pairs.
+
+#
+
+# Uncomment the lines below to start a VNC server on display :2
+
+# as my 'myusername' (adjust this to your own).  You will also
+
+# need to set a VNC password; run 'man vncpasswd' to see how
+
+# to do that. 
+
+#
+
+# DO NOT RUN THIS SERVICE if your local area network is
+
+# untrusted!  For a secure way of using VNC, see
+
+# <URL:http://www.uk.research.att.com/archive/vnc/sshvnc.html>.
+
+# Use "-nolisten tcp" to prevent X connections to your VNC server via TCP.
+
+# Use "-nohttpd" to prevent web-based VNC clients connecting.
+
+# Use "-localhost" to prevent remote VNC clients connecting except when
+
+# doing so through a secure tunnel.  See the "-via" option in the
+
+# `man vncviewer' manual page.
+
+# VNCSERVERS="2:myusername"
+
+# VNCSERVERARGS[2]="-geometry 800x600 -nolisten tcp -nohttpd -localhost"
+
+clip_image002
+
+将最后两行配置信息取消注释，添加系统账号
+
+VNCSERVERS="1:root 2：etl"
+
+VNCSERVERARGS[1]="-geometry 1024x768 -nolisten tcp -nohttpd "
+
+VNCSERVERARGS[2]="-geometry 1024x768 -nolisten tcp -nohttpd "
+
+VNCSERVERS 是用来设定可以使用VNC的服务器账号，可以设定多个，例如上面root、etl，但是中间要用空格隔开。使用VNCVIEWER登录时，192.168.48.128:1表示是以root账号登录，以此类推。
+
+关于参数配置说明：
+
+1：-geometry 表示桌面分辨率，默认为1024x768，所以上面的1024x768也可以不写。
+
+2：-nohttpd  表示不监听HTTP端口（58xx）。
+
+3：-nolisten tcp 表示不监听TCP端口（60xx）
+
+4：-localhost 只运行从本机访问。
+
+5：AlwaysShared 默认只允许一个VNCVIEWER连接，此参数表示同一个显示端口允许多用户同时登录.
+
+6：-depth  表示色深，参数有8,16,24,32.
+
+7: SecurityTypes None 登录不需要密码认证VncAuth默认值,要密码认证。
+
+3、设置VNC用户密码
+
+如果此时不设置VNC用户密码，启动vncserver服务，则会报如下错误：
+
+[root@localhost ~]# service vncserver start
+
+Starting VNC server: 1:root [FAILED]
+
+[root@localhost /]# vncpasswd
+
+Password:
+
+Verify:
+
+[root@localhost /]# su - etl
+
+[etl@localhost ~]$ vncpasswd
+
+Password:
+
+Verify:
+
+[etl@localhost ~]$
+
+4、启动vncserver服务
+
+[root@localhost ~]# service vncserver start
+
+Starting VNC server: 1:root
+
+New 'localhost.localdomain:1 (root)' desktop is localhost.localdomain:1
+
+Creating default startup script /root/.vnc/xstartup
+
+Starting applications specified in /root/.vnc/xstartup
+
+Log file is /root/.vnc/localhost.localdomain:1.log
+
+2:etl
+
+New 'localhost.localdomain:2 (etl)' desktop is localhost.localdomain:2
+
+Creating default startup script /home/etl/.vnc/xstartup
+
+Starting applications specified in /home/etl/.vnc/xstartup
+
+Log file is /home/etl/.vnc/localhost.localdomain:2.log
+
+[  OK  ]
+
+VNC会在用户根目录($HOME)下的".vnc"文件夹下生成一系列文件。其中passwd为vnc用户密码文件，由vncpasswd生成。其他的都由vnc初次启动时生成，xstartup为VNC客户端连接时启动的脚本
+
+5、配置xstartup文件
+
+如下所示，将下面紫红色的部分注释取消。
+
+clip_image004
+
+#!/bin/sh
+
+# Uncomment the following two lines for normal desktop:
+
+unset SESSION_MANAGER
+
+exec /etc/X11/xinit/xinitrc
+
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+
+xsetroot -solid grey
+
+vncconfig -iconic &
+
+xterm -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+
+twm &
+
+切换到etl账号，依法炮制
+
+[root@localhost ~]# su - etl
+
+[etl@localhost ~]$ vi /home/etl/.vnc/xstartup
+
+clip_image006
+
+[root@localhost ~]# service vncserver restart
+
+Shutting down VNC server: 1:root 2:etl [  OK  ]
+
+Starting VNC server: 1:root
+
+New 'localhost.localdomain:1 (root)' desktop is localhost.localdomain:1
+
+Starting applications specified in /root/.vnc/xstartup
+
+Log file is /root/.vnc/localhost.localdomain:1.log
+
+2:etl
+
+New 'localhost.localdomain:2 (etl)' desktop is localhost.localdomain:2
+
+Starting applications specified in /home/etl/.vnc/xstartup
+
+Log file is /home/etl/.vnc/localhost.localdomain:2.log
+
+[  OK  ]
+
+6、配置防火墙
+
+如果你不配置防火墙，此时用VNC Viewer连接的话，一般会报："connect：Connection timed out(10060)"错误,如下所示：
+
+clip_image008
+
+clip_image010
+
+一般这种情况要么关闭防火墙，要么需要配置防火墙。
+
+[root@localhost ~]# service iptables stop
+
+Flushing firewall rules: [  OK  ]
+
+Setting chains to policy ACCEPT: filter [  OK  ]
+
+Unloading iptables modules: [  OK  ]
+
+关闭防火墙后，用VNCView连接服务器没有问题，但是一般不建议关闭防火墙，
+
+[root@localhost ~]# service iptables restart
+
+Flushing firewall rules: [  OK  ]
+
+Setting chains to policy ACCEPT: filter [  OK  ]
+
+Unloading iptables modules: [  OK  ]
+
+Applying iptables firewall rules: [  OK  ]
+
+Loading additional iptables modules: ip_conntrack_netbios_ns [  OK  ]
+
+[root@localhost ~]# iptables -I INPUT -p tcp --dport 5901 -j ACCEPT
+
+[root@localhost ~]# iptables -I INPUT -p tcp --dport 5902 -j ACCEPT
+
+clip_image012
+
+OK，可以通过VNC连接到服务器了
+
+ 
+
+关于VNC服务使用的端口号与桌面号相关，VNC使用TCP端口从5900开始，对应关系如下
+桌面号为“1” ---- 端口号为5901
+桌面号为“2” ---- 端口号为5902
+桌面号为“3” ---- 端口号为5903
+……
+基于Java的VNC客户程序Web服务TCP端口从5800开始，也是与桌面号相关，对应关系如下
+桌面号为“1” ---- 端口号为5801
+桌面号为“2” ---- 端口号为5802
+桌面号为“3” ---- 端口号为5803
+基于上面的介绍，如果Linux开启了防火墙功能，就需要手工开启相应的端口，以开启桌面号为“1”相应的端口为例，命令如下
+
+开机自启动vncserver服务
+# chkconfig vncserver on
+
+[参考资料]：
+
+http://zh.wikipedia.org/wiki/VNC
+
+http://www.ha97.com/4634.html
+
+http://blog.sina.com.cn/s/blog_48f9c0840100x2qh.html
+
+ 
 
 ## Meta
 ### Tip
