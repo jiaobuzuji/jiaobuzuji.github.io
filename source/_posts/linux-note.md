@@ -33,3 +33,10 @@ dpkg --get-selections|grep linux  查看有哪些多余的 kernal
 sudo apt-get remove linux-image-(版本号)（就是上面带image的版本）
 有卸载不完全的（有提示），可以用 sudo apt-get autoremove来删除。
 sudo dpkg -P linux-image-xxx 清除出现 `deinstall` 的 list
+
+
+tmux使用C/S模型构建，主要包括以下单元模块：
+* server服务器。输入tmux命令时就开启了一个服务器。
+* session会话。一个服务器可以包含多个会话
+* window窗口。一个会话可以包含多个窗口。
+* pane面板。一个窗口可以包含多个面板。
