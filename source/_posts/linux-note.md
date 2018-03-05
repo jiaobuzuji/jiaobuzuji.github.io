@@ -509,6 +509,11 @@ $ sudo rm /var/cache/apt/archives/lock
 $ sudo rm /var/lib/dpkg/lock
 ```
 
+快速复制到剪贴板
+
+```bash
+$ clip < file.txt
+```
 ## 前言
 安装字体
  1. 下载 Consolas 字体，然后
