@@ -167,6 +167,38 @@ GSSAPIAuthentication no
 重启 OpenSSH服务器 
 /etc/init.d/sshd restart
 
+Putty server refused our key的三种原因和解决方法 
+1、.ssh文件夹权限错
+.ssh 以及其父文件夹（root为/root，普通用户为Home目录）都应该设置为只有该用户可写（比如700）。
+
+以下为原因：
+
+ssh服务器的key方式登录对权限要求严格。对于客户端: 私钥必须为600权限或者更严格权限(400), 一旦其他用户可读, 私钥就不起作用(如640), 表现为系统认为不存在私钥
+对于服务器端: 要求必须公钥其他用户不可写, 一旦其他用户可写(如660), 就无法用key登录, 表现为:Permission denied (publickey).
+同时要求.ssh目录其他用户不可写,一旦其他用户可写(如770), 就无法使用key登录, 表现为:Permission denied (publickey).
+```
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+```
+
+2、SElinux导致
+
+密钥文件不能通过SElinux认证，解决方法如下：
+1
+	
+# restorecon -R -v /home #root用户为/root
+
+我遇到的就是这种情况，找了好久还找到是这个原因，因为是新装的虚拟机，SElinux还没关闭。
+
+这篇博文详细得说明了原因：http://www.toxingwang.com/linux-unix/linux-basic/846.html
+
+
+3、sshd配置不正确
+
+正确配置方法如下：
+
+/etc/ssh/sshd_config 1、找到 #StrictModes yes 改成 StrictModes no （去掉注释后改成 no） 2、找到 #PubkeyAuthentication yes 改成 PubkeyAuthentication yes （去掉注释） 3、找到 #AuthorizedKeysFile .ssh/authorized_keys 改成 AuthorizedKeysFile .ssh/authorized_keys （去掉注释） 4、保存 5、/etc/rc.d/init.d/sshd reload 重新加载
+
 ## VNC
 VNC概述
 
