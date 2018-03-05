@@ -27,6 +27,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  - LICENSE
   - baidu_verify_mqmJJKSQr0.html
   - BingSiteAuth.xml
   - google28748ef813fd3960.html
