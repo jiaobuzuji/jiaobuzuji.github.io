@@ -15,6 +15,10 @@ tags: [linux,ubuntu,centos,shell]
 
 ## ssh
 
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
 https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/
 
 linux ssh_config和sshd_config配置文件
