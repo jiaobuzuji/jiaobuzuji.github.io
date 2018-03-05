@@ -670,3 +670,15 @@ Ctrl+b ? (Ctrl+b :list-keys)
 
 tmux内置命令帮助
 Ctrl+b :list-commands
+
+### tmux如何查看历史输出
+在tmux里面，因为每个窗口(tmux window)的历史内容已经被tmux接管了，所以原来console/terminal提供的Shift+PgUp/PgDn所显示的内容并不是当前窗口的历史内容，那么应该怎么办呢?
+
+改用C-b [进入copy mode，然后就可以用PgUp/PgDn/光标来浏览历史输出了，按q退出。C-b PgUp也可以直接进入coy mode. 参见:How do I scroll in tmux? - Super User
+
+copy mode其实比较类似于vi/emacs里面一个只读buffer，可以移动光标，可以搜索，用C-SPC开始选择，选择完后用M-w拷贝(拷贝后自动退 出copy mode)，然后可以C-b ]粘贴(可在其它窗口粘贴), C-b =可以从剪贴板历史中选择。
+
+gnu screen里面呢
+gnu screen进入copy mode的方式跟tmux类似(C-a [)，但进入后它是vi style keybindings。
+
+对于拷贝文字，第一次空格设置开始标记，然后用hjklw之类移动光标，第二次空格完成拷贝。粘贴也是用C-a ]
