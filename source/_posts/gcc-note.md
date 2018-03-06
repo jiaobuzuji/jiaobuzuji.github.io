@@ -19,7 +19,7 @@ yum install svn texinfo-tex flex zip libgcc.i686 glibc-devel.i686
 
 在 source 文件中，使用`ldconfig`命令，可以检查 dll 的配置。
 
-俄罗斯的 mirror 会快许多
+俄罗斯的 mirror 会快许多，linux 下可以使用 md5sum 对下载下来的文件进行校验！
 ```
 http://gcc.gnu.org/install/
 http://mirror.linux-ia64.org/gnu/gcc/infrastructure/
