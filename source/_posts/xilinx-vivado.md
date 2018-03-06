@@ -15,6 +15,9 @@ tags: [xilinx, vivado]
 > 我所知道的不多。
 > ——*某名人言*
 
+## Install vivado
 
-vivado 在下板调试时，使用下面的命令，可以将波开数据导出来。
-write_hw_ila_data -force -csv_file -verbose dump.csv
+## Meta
+### Tip
+1. vivado 在下板调试时，使用下面的命令，可以将波开数据导出来。
+  `write_hw_ila_data -force -csv_file -verbose dump.csv`
