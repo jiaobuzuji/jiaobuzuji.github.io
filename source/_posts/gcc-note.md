@@ -11,7 +11,19 @@ tags: [gcc,compiler]
 ---
 
 ## 源码编译 gcc
+https://www.vultr.com/docs/how-to-install-gcc-on-centos-6
+https://www.dwhd.org/20170517_083340.html
+
+yum install libmpc-devel mpfr-devel gmp-devel zlib-devel cmake
+yum install svn texinfo-tex flex zip libgcc.i686 glibc-devel.i686
+
+在 source 文件中，使用`ldconfig`命令，可以检查 dll 的配置。
+
+俄罗斯的 mirror 会快许多
+```
 http://gcc.gnu.org/install/
+http://mirror.linux-ia64.org/gnu/gcc/infrastructure/
+```
 
 3.1. 解压 gcc-4.9.0.tar.gz
 得到目录 gcc-4.9.0,进入目录
@@ -43,16 +55,18 @@ mkdir ../gcc-build-4.9.0
 cd ../gcc-build-4.9.0
 ../gcc-4.9.0/configure --prefix=/usr/local/gcc-4.9.0 --enable-stage1-checking=release --enable-stage1-languages=c,c++
 ```
-or
+or (建议使用下面的配置)
 ```
-../gcc-4.9.0/configure --prefix=/usr/local/gcc-4.9.0 --disable-multilib --enable-stage1-checking=release --enable-stage1-languages=c,c++
+../gcc-4.9.0/configure --prefix=/usr/local/gcc-4.9.0 --with-system-zlib --disable-multilib --enable-languages=c,c++,java
 ```
+**一定要检查一下 config.log 是否有出错！！！**
 
 ```
 yum install -y flex texinfo
 make -j4
 make install
 ```
+make -j$(getconf _NPROCESSORS_ONLN) && make install
 
 编译后安装到  /usr/local/gcc-4.9.0
 
