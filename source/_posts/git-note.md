@@ -27,9 +27,11 @@ tags: [git,revision]
 https://segmentfault.com/a/1190000003076028#articleHeader2
 
 ## tag
+$ git tag -a v1.4 -m "my version 1.4"
+
 `git tag`
 
-下载指定 tag 的源码: 'git clone --depth 1 https:xxx/xxx.git -b <yourtags>'
+下载指定 tag 的源码: 'git clone --depth 1 -b <yourtags> https:xxx/xxx.git'
 
 ## stage
 
