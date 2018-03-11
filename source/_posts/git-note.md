@@ -33,6 +33,19 @@ $ git tag -a v1.4 -m "my version 1.4"
 
 下载指定 tag 的源码: 'git clone --depth 1 -b <yourtags> https:xxx/xxx.git'
 
+git describe --- 显示当前离当前提交最近的tag
+
+如果符合条件的tag指向最新提交则只是显示tag的名字，否则会有相关的后缀来描述该tag之后有多少次提交以及最新的提交commit id。不加任何参数的情况下，git describe 只会列出带有注释的tag
+
+获取最新的 tags
+```
+git describe --exact-match --tags HEAD 2>&1
+```
+另外一个方案
+```
+git describe --tags `git rev-list --tags --max-count=1`
+```
+
 ## stage
 
 ## remote
@@ -78,3 +91,4 @@ $ git tag -a v1.4 -m "my version 1.4"
 方法四 通过第三方git客户端修改。
 
 以SourceTree为例，点击 仓库 -> 仓库配置 -> 远程仓库 即可管理此项目中配置的所有远程仓库， 而且这个界面最下方还可以点击编辑配置文件，同样可以完成方法三。
+

@@ -22,6 +22,18 @@ LD_LIBRARY_PATH
 C_INCLUDE_PATH
 LIBRARY_PATH
 ```
+
+## 关于login/interactive/no-interactive shell和profile/bash_profile/bashrc
+
+login shell：第一次登录进系统时的shell，一般是指本机启动时的控制台shell或者ssh远程登录时的shell。
+
+interactive shell：登录以后，再打开控制台时运行的shell。
+
+none interactive shell：只是用来执行脚本的shell，执行完就结束进程了，没有用户交互过程。
+
+mac有个特殊地方：每次打开一个终端都是一个login shell。
+
+
 ## umask
 在linux中，常常都要提示设置： 
      umask 022
