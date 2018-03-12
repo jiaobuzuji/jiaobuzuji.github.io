@@ -25,6 +25,12 @@ source Xilinx/vivado/201x.x/setting.sh
 ### Uninstall
 直接 `rm -rf`
 
+## synthesis
+使用 vivado 综合代码时，（只是 run systhesis，还没有开始 run implementation）
+在 Utilization 的报告中：LUT LUTRAM FF IO DSP 这些初步报告都基本准确，但 BRAM
+就十分不准确。BRAM 的报告需要在 run implementation 后才准确些。
+
+
 ## Meta
 ### Tip
 1. vivado 在下板调试时，使用下面的命令，可以将波开数据导出来。

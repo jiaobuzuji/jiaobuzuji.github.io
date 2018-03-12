@@ -12,6 +12,56 @@ tags: [git,revision]
 
 ## 前言
 
+## build source
+为什么要 build git 呢？因为在 CentOS 6 中，git 的版本很旧，只有 git 1.7.x
+版本。些版本的 git 似乎没有 cache 的样子，每次的 git status 都要整个 git 查找
+从而导致很卡，而 oh-my-zsh，每次都会去查看一下 git 目录下的状态，进而十分影响
+用户体验
+
+$ git clone https://github.com/git/git
+$ cd git
+$ make
+or
+$ make prefix=/usr all doc info ;# as yourself
+or
+$ make prefix=/usr install install-doc install-html install-info ;# as root
+上面的语句，可以安装 manual。安装完后，就可以使用 man git 来查看最新的 git 了。
+
+...
+http-push.c:920: error: ‘xml_cdata’ undeclared (first use in this function)
+http-push.c:921: warning: implicit declaration of function ‘XML_Parse’
+http-push.c:926: warning: implicit declaration of function ‘XML_ErrorString’
+http-push.c:927: warning: implicit declaration of function ‘XML_GetErrorCode’
+http-push.c:930: warning: implicit declaration of function ‘XML_ParserFree’
+http-push.c: In function ‘remote_ls’:
+http-push.c:1154: error: ‘XML_Parser’ undeclared (first use in this function)
+http-push.c:1154: error: expected ‘;’ before ‘parser’
+http-push.c:1161: error: ‘parser’ undeclared (first use in this function)
+http-push.c:1164: error: ‘xml_cdata’ undeclared (first use in this function)
+http-push.c: In function ‘locking_available’:
+http-push.c:1228: error: ‘XML_Parser’ undeclared (first use in this function)
+http-push.c:1228: error: expected ‘;’ before ‘parser’
+http-push.c:1235: error: ‘parser’ undeclared (first use in this function)
+
+Oh man, compile errors. Bad.
+
+The key seemed to be:
+expat.h: No such file or directory
+
+A bit o Googling: missing library headers.
+$ sudo yum install expat-devel
+
+Restart the build. Works.
+
+$ make install
+
+Whee!
+$ git --version
+git version 1.8.3.2.768.g911011a
+
+ps. Dont forget the
+export PATH=~/bin:$PATH
+
 ## submodule
 
 ### 删除 submodule
