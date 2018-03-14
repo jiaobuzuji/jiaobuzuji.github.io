@@ -13,6 +13,8 @@ tags: [linux,ubuntu,centos,shell]
 ## 前言
 目前使用到的 Linux 系统主要是 ubuntu 与 centos 系统。
 
+## Perl 相关
+
 ## 安装到 local
 要设置以下几个环境变量
 ```
