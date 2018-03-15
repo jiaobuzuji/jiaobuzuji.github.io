@@ -81,7 +81,7 @@ $ git tag -a v1.4 -m "my version 1.4"
 
 `git tag`
 
-下载指定 tag 的源码: 'git clone --depth 1 -b <yourtags> https:xxx/xxx.git'
+下载指定 tag 的源码: `git clone --depth 1 -b <yourtags> https:xxx/xxx.git`
 
 git describe --- 显示当前离当前提交最近的tag
 
@@ -95,6 +95,7 @@ git describe --exact-match --tags HEAD 2>&1
 ```
 git describe --tags `git rev-list --tags --max-count=1`
 ```
+然后使用 `git checkout <tags>`
 
 ## stage
 

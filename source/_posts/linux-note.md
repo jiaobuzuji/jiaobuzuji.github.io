@@ -581,6 +581,8 @@ sudo apt-get remove linux-image-(版本号)（就是上面带image的版本）
 有卸载不完全的（有提示），可以用 sudo apt-get autoremove来删除。
 sudo dpkg -P linux-image-xxx 清除出现 `deinstall` 的 list
 
+## tmux
+高版本的 tmux 。可以支持 vim 的 termguicolor 这一点比较好。
 
 tmux使用C/S模型构建，主要包括以下单元模块：
 * server服务器。输入tmux命令时就开启了一个服务器。
@@ -730,3 +732,199 @@ gnu screen里面呢
 gnu screen进入copy mode的方式跟tmux类似(C-a [)，但进入后它是vi style keybindings。
 
 对于拷贝文字，第一次空格设置开始标记，然后用hjklw之类移动光标，第二次空格完成拷贝。粘贴也是用C-a ]
+
+
+### update-alternatives命令详解
+
+说明：
+如我系统已安装有java 1.6，还想要安装java 1.7，但我不想卸载java 1.6。就可以通过update-alternatives –config在多个java版本间进程切换。update-alternatives是用于在多个同类型命令中进行切换的一个脚本，在debian中可以通过apt-get install dpkg来进行安装。
+
+在说明update-alternatives的详细用法之前，先让我们看看系统中已有的例子。打开终端，执行下面的命令：
+# ls -l /usr/bin/java
+lrwxrwxrwx 1 root root 22 2011-03-12 15:20 /usr/bin/java -> /etc/alternatives/java
+
+# ls -l /etc/alternatives/java
+lrwxrwxrwx 1 root root 40 2011-03-12 15:20 /etc/alternatives/java -> /usr/lib/jvm/java-6-openjdk/jre/bin/java
+java这个可执行命令实际是一个链接，指向了/etc/alternatives/java。而这个也是一个链接，指向了/usr/lib/jvm/java-6-openjdk/jre/bin/java，这才是最终的可执行文件。之所以建立这样两个链接，是为了方便脚本程序的编写和系统的管理。
+
+语法：
+暂空！！！
+
+实例：
+1. display参数列出一个命令的所有可选命令
+
+# update-alternatives --display java
+
+ 
+2. config参数用于给某个命令选择一个link值，相当于在可用值之中进行切换吧。
+
+# update-alternatives --config java  //有 3 个候选项可用于替换 java (提供 /usr/bin/java)  
+ 选择       路径                                       优先级  状态  
+------------------------------------------------------------  
+  0            /usr/lib/jvm/java-6-openjdk/jre/bin/java      1061      自动模式  
+* 1            /home/wuekzhu/download/jdk1.6.0_23/bin/java   1         手动模式  
+  2            /usr/lib/jvm/java-6-openjdk/jre/bin/java      1061      手动模式  
+
+ 
+3. install参数用于添加一个命令的link值，相当于添加一个可用值，其中slave非常有用。
+
+# update-alternatives –install /usr/bin/java java /usr/local/jre1.6.0_20/bin/javac 100  
+# update-alternatives –install /usr/bin/java java /usr/local/jre1.6.0_20/bin/javac 100 –slave /usr/bin/javac javac /usr/local/jre1.6.0_20/bin/javac  
+
+ 
+4. remove参数用于删除一个命令的link值，其附带的slave也将一起删除。
+
+# update-alternatives –remove java /usr/local/jre1.6.0_20/bin/java  
+
+ 
+当然如果想让java能使用，还是得把java按照如下添加到环境变量去。
+# vim /etc/profile //在最后添加以下内容
+JAVA_HOME=/usr/local/jdk1.5.0_22
+CLASSPATH=.:$JAVA_HOME/lib/tools.jar
+PATH=$PATH: $JAVA_HOME/bin
+export PATH=$PATH:$JAVA_HOME/bin
+export JAVA_HOME CLASSPATH PATH
+如果想通过update-alternatives在多个版本的java间切换，只需简单地用update-alternatives –config java，选择我们想要的java版本即可！
+
+
+## perl模块安装
+
+转自：http://www.mike.org.cn/blog/index.php?load=read&id=643
+ 
+
+Perl 到了第五版增加了模块的概念，用来提供面向对象编程的能力。这是 Perl 语言发展史上的一个里程碑。此后，广大自由软件爱好者开发了大量功能强大、构思精巧的 Perl 模块，极大地扩展了 Perl 语言的功能。CPAN(Comprehensive Perl Archive Network)是Perl模块最大的集散地，包含了现今公布的几乎所有的perl模块。
+
+安装方法
+
+我在这里介绍一下各种平台下 perl 模块的安装方法。以安装Net-Server模块为例。
+
+一 Linux/Unix下安装Perl模块有两种方法：手工安装和自动安装。
+
+第一种方法是从CPAN上下载您需要的模块，手工编译、安装。第二种方法是使用CPAN模块自动完成下载、编译、安装的全过程。
+
+A、手工安装的步骤：
+
+　　从 CPAN(http://search.cpan.org/)下载了Net-Server模块0.97版的压缩文件Net-Server-0.97.tar.gz，假设放在/usr/local/src/下。
+
+　　cd /usr/local/src
+
+　　解压缩这个文件,这时会新建一个Net-Server-0.97的目录。
+
+　　tar xvzf Net-Server-0.97.tar.gz
+
+　　换到解压后的目录：
+
+　　cd Net-Server-0.97
+
+　　生成 makefile：
+
+　　perl Makefile.PL
+
+　　生成模块：make
+
+　　测试模块(这步可有可无)：
+
+　　make test
+　　
+　　如果测试结果报告“all test ok”，您就可以放心地安装编译好的模块了。
+
+　　安装模块前，先要确保您对 perl5 安装目录有可写权限(通常以 su 命令获得)，执行：
+
+　　make install
+
+　　现在，试试 DBI 模块吧。如果下面的命令没有给出任何输出，那就没问题。
+
+　　$>perl -MNet::Server -e1
+
+　　上述步骤适合于 Linux/Unix下绝大多数的Perl模块。可能还有少数模块的安装方法略有差别，所以最好先看看安装目录里的 README 或 INSTALL。
+
+ 
+
+有的时候如果是build.pl的需要以下安装步骤：（需要Module::Build模块支持）
+
+  perl Build.PL
+ ./Build
+ ./Build test
+ ./Build install 
+
+ 
+
+B、使用CPAN模块自动安装方法一：
+
+　　安装前需要先联上网，并且您需要取得root权限。
+
+　　perl -MCPAN -e shell
+
+　　初次运行CPAN时需要做一些设置，如果您的机器是直接与因特网相联(拨号上网、专线，etc.)，那么一路回车就行了，只需要在最后一步选一个离您最近的 CPAN 镜像站点。例如我选的是位于国内的http://www.cnblogs.com/itech/admin/ftp://www.perl87.cn/CPAN/ 。否则，如果您的机器位于防火墙之后，还需要设置ftp代理或http代理。下面是常用 cpan 命令。
+
+　　获得帮助
+　　cpan>help
+
+　　列出CPAN上所有模块的列表
+　　cpan>m
+
+　　安装模块，自动完成Net::Server模块从下载到安装的全过程。
+　　cpan>install Net::Server
+
+　　退出
+　　cpan>quit
+
+C、使用CPAN模块自动安装方法二：
+
+　　cpan -i 模块名
+
+　　例如：cpan -i Net::Server
+
+ 
+
+二 windows上perl模块安装　
+
+A 手动（跟Linux类似） [解压后 perl makefile.pl nmake/dmake nmake/dmake install]
+
+nmake需要cd C:\Program Files\Microsoft Visual Studio X\VC\bin and execute vcvars32.bat;然后执行nmake；
+
+dmake 貌似是cpan环境配置好就有了在C:\Perl\site\bin下。
+B Cpan （安装前需要对cpan配置，cpan需要安装其他的模块dmake和MinGw gcc compiler） （跟Linux类似）
+
+ 
+
+C 如果使用ActivePerl，可以使用PPM来安装，使用PPM GUI或PPM Commandline，PPM commandline实例如下：
+
+a) add correct repositories..
+
+c:\perl\bin\ppm repo add http://theoryx5.uwinnipeg.ca/ppms/package.lst
+
+c:\perl\bin\ppm repo add http://www.roth.net/perl/packages/
+
+ b) add the packages
+
+c:\perl\bin\ppm install Carp-Assert
+
+c:\perl\bin\ppm install Log-Log4perl
+
+c:\perl\bin\ppm install YAML-Syck
+
+ 
+
+三 几个主要的CPAN站点有：
+
+　　国内：
+
+　　最新更新请查阅 http://cpan.org/SITES.html
+
+　　http://www.perl87.cn/CPAN/  网页镜像
+　　http://www.cnblogs.com/itech/admin/ftp://www.perl87.cn/CPAN/   模块镜像
+　　
+　　国外：http://www.cpan.org/
+
+四 使用cpan和ppm安装时要注意模块名字的大小写
+
+完！
+
+#### @INC 错误时
+cpan > install Config::IniFiles
+
+## centos
+CentOS 6.x 版本的，yum 使用了 python2 。所以不可以卸载 python2。同时安装
+pythone3 后，python 命令还是指向 python2 的。此处不宜使用暴力修改（网络上许多人都说，修改 /usr/bin/yum 来实现 python3）。
+
