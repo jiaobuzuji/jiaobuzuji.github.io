@@ -66,6 +66,10 @@ or (建议使用下面的配置)
 ../gcc-4.9.0/configure --prefix=/usr/local/gcc-4.9.0 --with-system-zlib --disable-multilib --enable-languages=c,c++,java
 ```
 **一定要检查一下 config.log 是否有出错！！！**
+通过检查 config.log。可以看到上一个 gcc 采用的 config 配置
+```
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-languages=c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt=gtk --disable-dssi --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0/jre --enable-libgcj-multifile --enable-java-maintainer-mode --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --disable-libjava-multilib --with-ppl --with-cloog --with-tune=generic --with-arch_32=i686 --build=x86_64-redhat-linux
+```
 
 ```
 yum install -y flex texinfo
