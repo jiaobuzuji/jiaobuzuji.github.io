@@ -593,6 +593,8 @@ sudo apt-get remove linux-image-(版本号)（就是上面带image的版本）
 sudo dpkg -P linux-image-xxx 清除出现 `deinstall` 的 list
 
 ## tmux
+https://wiki.archlinux.org/index.php/tmux
+
 高版本的 tmux 。可以支持 vim 的 termguicolor 这一点比较好。
 
 复制的时候，如果直接用鼠标复制的时候，是又vim处理的，需要按住shift才是xterm处理的，
@@ -1079,4 +1081,8 @@ sed 的动作为 '2,5d' ，那个 d 就是删除！因为 2-5 行给他删除了
 nl /etc/passwd | sed '2d' 
 
  
+## ripgrep
 
+https://github.com/BurntSushi/ripgrep
+
+这个就是 rg 查找 命令了。
