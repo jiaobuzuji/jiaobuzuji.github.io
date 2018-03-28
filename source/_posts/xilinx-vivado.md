@@ -36,3 +36,4 @@ source Xilinx/vivado/201x.x/setting.sh
 1. vivado 在下板调试时，使用下面的命令，可以将波开数据导出来。
   `write_hw_ila_data -force -csv_file -verbose dump.csv`
 1. add_files 可以用来添加 filelist。但不是很灵活。
+1. 完成Implementation后，在Vivado IDE的Flow Navigator点击Open Implemented Design，然后选择report_utilization。在生成的结果中选中某一类资源，会看到按模块排列的资源占用情况。或者使用命令：`report_utilization -hierarchical`
