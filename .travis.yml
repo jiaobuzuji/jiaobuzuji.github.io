@@ -16,7 +16,6 @@ deploy:
   skip-cleanup: true
   github-token: $GH_TOKEN  # Set in travis-ci.org dashboard, marked secure
   keep-history: false
-  message: "Hello World!"
   local-dir: public
   target-branch: master
   on:
