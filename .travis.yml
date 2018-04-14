@@ -1,23 +1,33 @@
 language: node_js
 node_js: node
-cache:
-  directories:
-  - node_modules
 branches:
   only:
   - source
-install:
-- npm install
-- npm install hexo-baidu-url-submit
+
+install: npm install
 script:
-- git config user.name "Jiaobuzuji"
-- git config user.email "jiaobuzuji@163.com"
 - ln -s ../../../next-fancybox3       themes/next/source/lib/fancybox
 - ln -s ../../../next-fastclick       themes/next/source/lib/fastclick
 - ln -s ../../../next-jquery-lazyload themes/next/source/lib/jquery_lazyload # NOTE Jiaobuzuji : It's jquery_lazyload !! Not jquery-lazyload
-- sed -i "/^ *repo/s~git@github\.com:~https://${GH_TOKEN}@github.com/~" _config.yml
-- hexo deploy
-- curl -H 'Content-Type:text/plain' --data-binary @public/baidu_urls.txt "http://data.zz.baidu.com/urls?site=www.jiaobuzuji.com&token=${BAIDU_TOKEN}"
+- hexo g
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GH_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: false
+  message: "Hello World!"
+  local-dir: public
+  target-branch: master
+  on:
+    branch: source          
+
+#cache:
+#  directories:
+#  - node_modules
+#- sed -i "/^ *repo/s~git@github\.com:~https://${GH_TOKEN}@github.com/~" _config.yml
+#- npm install hexo-baidu-url-submit
+#- curl -H 'Content-Type:text/plain' --data-binary @public/baidu_urls.txt "http://data.zz.baidu.com/urls?site=www.jiaobuzuji.com&token=${BAIDU_TOKEN}"
 
 # after_success:
 # - hexo deploy
