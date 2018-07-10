@@ -1086,3 +1086,7 @@ nl /etc/passwd | sed '2d'
 https://github.com/BurntSushi/ripgrep
 
 这个就是 rg 查找 命令了。
+
+## 查找 lib
+locate libgcc
+
