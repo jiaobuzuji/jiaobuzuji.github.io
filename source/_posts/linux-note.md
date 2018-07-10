@@ -1089,4 +1089,5 @@ https://github.com/BurntSushi/ripgrep
 
 ## 查找 lib
 locate libgcc
-
+或者
+dpkg -l | grep -i lua
