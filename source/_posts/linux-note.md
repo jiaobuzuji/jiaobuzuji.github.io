@@ -1091,3 +1091,35 @@ https://github.com/BurntSushi/ripgrep
 locate libgcc
 或者
 dpkg -l | grep -i lua
+
+当安装了相应的 lib 文件之后（如 liblua5.2-dev） 之后，无法 locate lib
+到相应的库，则可以使用 ldconfg 对动态连接库的 list 进行更新。
+
+## configure lib not found
+apt install libxxx-dev
+ldconfg
+PKG_CONFIG_LIBDIR=$PKG_CONFIG_LIBDIR:/usr/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig
+
+## 安装 build-dep
+当使用
+sudo apt-get build-dep 【软件安装包】
+安装软件时出现如下错误
+
+E: You must put some 'source' URIs in your sources.list
+
+在搜索中找到 'Software & Updates', 然后在 "Ubuntu Software" 菜单中将 "Source code"框勾选上。如下图位置：
+这是用来添加一些 ‘deb-src’ 在 '/etc/apt/sources.list'文件中，然后你就可以运行之前的命令安装软件了：
+
+sudo apt-get build-dep 【软件安装包】
+
+### add-apt-repository
+添加 ppa 时，可以使用命令行
+sudo add-apt-repository 'URL'
+删除 ppa，通过修改源文件。
+ sudo gedit  /etc/apt/sources.list
+ cd /etc/apt/sources.list.d && sudo gedit 'xxxxx'
+或者
+sudo add-apt-repository --remove ppa:whatever/ppa
+
+添加或者删除了 ppa 之后，还需要 sudo apt-get update
+
