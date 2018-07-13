@@ -1093,11 +1093,16 @@ locate libgcc
 dpkg -l | grep -i lua
 
 当安装了相应的 lib 文件之后（如 liblua5.2-dev） 之后，无法 locate lib
-到相应的库，则可以使用 ldconfg 对动态连接库的 list 进行更新。
+到相应的库，则可以使用 ldconfig( 或者 updatedb 吧) 对动态连接库的 list 进行更新。
 
 ## configure lib not found
+PKG_CONFIG_PATH
+PKG_CONFIG_LIBDIR
+上面这两个环境变量，一般是使用在 configure 的，用于 package 的查找。当提示某些
+pkg 或者 pkg 的 lib 找不着时，可以适当修改一下
+
 apt install libxxx-dev
-ldconfg
+ldconfig
 PKG_CONFIG_LIBDIR=$PKG_CONFIG_LIBDIR:/usr/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig
 
 ## 安装 build-dep

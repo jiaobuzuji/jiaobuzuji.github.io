@@ -5,7 +5,7 @@ updated: 2018-01-31 22:46:15
 comments: true
 categories:
     - Misc
-tags: [hexo,blog]
+tags: [hexo,blog,markdown]
 
 ---
 
@@ -13,7 +13,7 @@ tags: [hexo,blog]
 本人不是网页前端设计专业，一切技术对于我来说都是新的，所以有必要将之前折腾的东西记录下。
 
 ### 最初的做法
-一开始折腾 [Github Page][] 的时候是在 2015 年，那里 [Hexo][] 刚兴起不久，只有耳闻，却没有涉及，而是选择了一个更加冷门的方法：同样使用 [Markdown][] 书写博客，再由[pandoc][]转成 html ，页面布局直接模(chao)仿(xi)大神的[template](https://github.com/tzengyuxio/pages/blob/gh-pages/pandoc/pm-template.html5)。在此感谢这些鬼东西一直在折磨我，留言以纪念。
+一开始折腾 [Github Page][] 的时候是在 2015 年，那里 [Hexo] 刚兴起不久，只有耳闻，却没有涉及，而是选择了一个更加冷门的方法：同样使用 [Markdown][] 书写博客，再由[pandoc][]转成 html ，页面布局直接模(chao)仿(xi)大神的[template](https://github.com/tzengyuxio/pages/blob/gh-pages/pandoc/pm-template.html5)。在此感谢这些鬼东西一直在折磨我，留言以纪念。
 
 > 一直在模仿，从未有超越
 > ——*某名人言*
@@ -25,8 +25,8 @@ tags: [hexo,blog]
 [pandoc]: http://pandoc.org/
 
 ### 关于本博客
-而今，[Hexo][] 已经十分成熟，在国人的群策群力之下，[Hexo][] 已经开始赶超 [Jekyll][] 。作为中国人，当然得支持国货啦（重点是中文！中文！！中文！！）
-1. 以 [Hexo][] 为 Blog framework
+而今，[Hexo] 已经十分成熟，在国人的群策群力之下，[Hexo] 已经开始赶超 [Jekyll][] 。作为中国人，当然得支持国货啦（重点是中文！中文！！中文！！）
+1. 以 [Hexo] 为 Blog framework
 1. 以 [Next][] 为主题
 1. 部署在 [Github Page][] 上
 1. 在 [namesilo][] 购买个人域名，支持支付宝。
@@ -46,7 +46,7 @@ tags: [hexo,blog]
 
 
 1. 创建 [Github Page][]
-1. 安装 Nodejs, [Hexo][]，[Github Desktop](https://desktop.github.com/) 或者 git
+1. 安装 Nodejs, [Hexo]，[Github Desktop](https://desktop.github.com/) 或者 git
 1. 认真阅读一下 [Next][] 的帮助文件，然后使用 npm 安装好插件
   * 利用 `--save` 可以将插件保存在 package.json 中，如： `npm install --save hexo-generator-sitemap`
 1. 域名加密 https，可能还需要了解 [let's encrypt](https://letsencrypt.org/)
@@ -59,7 +59,7 @@ tags: [hexo,blog]
 **NOTE 2** : 官网的教程一般最详细有效的，但合理的借助他人的总结，也有助于快速入门
 
 ### 规划
-规划是指合理安排文件的位置，这里就简单说明一下我的规划。[Github Page][] 里面规定，`username.github.io` 这个 repos 必须以 master 这个 branch 作为 [Github Page][]。为了保证 Page 与源码同一个 repo，所以我新建了一个叫 `source` 的 branch ，然后让 [Hexo][] 自动部署在这个 repo 的 master 上面。当然你也可以 'Page' 与 'source' 放在两个不同的 repo 中，你钟意咯。
+规划是指合理安排文件的位置，这里就简单说明一下我的规划。[Github Page][] 里面规定，`username.github.io` 这个 repos 必须以 master 这个 branch 作为 [Github Page][]。为了保证 Page 与源码同一个 repo，所以我新建了一个叫 `source` 的 branch ，然后让 [Hexo] 自动部署在这个 repo 的 master 上面。当然你也可以 'Page' 与 'source' 放在两个不同的 repo 中，你钟意咯。
 
 **[Github Page][] 可以不止一个！！**[Github Page][] 有两种： *User/Organization Pages and Project Pages* ，User Page（username.github.io）只能一个，但 Project Page（普通的 repo）可以多个，Project Page 可以利用 CNAME 来创建个人域名中的 subdomain。
 
@@ -69,7 +69,7 @@ tags: [hexo,blog]
 https://help.github.com/articles/user-organization-and-project-pages/
 
 ### 搭建
-[Hexo][] 中非常多好看的主题，本着少折腾的基本原则，选择大众所爱，且有一个大团队在维护的 [Next][] 主题。开始之前，一定要先好好阅读 [Hexo][] 的文档，使用 [Next][] 也要好好先阅读一下使用文档，通读两三遍也算是正常的。然后开工。
+[Hexo] 中非常多好看的主题，本着少折腾的基本原则，选择大众所爱，且有一个大团队在维护的 [Next][] 主题。开始之前，一定要先好好阅读 [Hexo] 的文档，使用 [Next][] 也要好好先阅读一下使用文档，通读两三遍也算是正常的。然后开工。
 
 #### 初始化 Blog
 ``` bash
@@ -185,7 +185,7 @@ https://www.google.com/webmasters
 > 曾想仗剑走天涯
 > 后来工作忙没去
 
-狂妄地以为自己可以制作心中的 [Hexo][] 主题，所以受一些东西折磨：
+狂妄地以为自己可以制作心中的 [Hexo] 主题，所以受一些东西折磨：
 1. swig, ejs，都是 JavaScript 模板，可以快速生成 js 代码。还去 [w3school](http://www.w3school.com.cn/) 瞎逛自学了有一阵。
 1. scss 与 css
 1. cdn, avatar, FontAwesome
@@ -196,13 +196,13 @@ https://www.google.com/webmasters
 * http://www.w3school.com.cn/
 * http://node-swig.github.io/swig-templates/docs/#variables
 
-[MkdWiki]: https://en.wikipedia.org/wiki/Markdown
+[MkdWiki]: https://en.wikipedia.org/wiki/Markdown "Markdown Wiki"
 [Markdown]: https://daringfireball.net/projects/markdown/syntax
 [GFM]: https://guides.github.com/features/mastering-markdown
-[Jekyll]: https://jekyllrb.com/
+[Jekyll]: https://jekyllrb.com/ "Jekyll's Homepage"
 [LeanCloud]: https://leancloud.cn
 [namesilo]: https://www.namesilo.com/
 [Github Page]: https://help.github.com/articles/what-is-github-pages/
-[Github]: https://github.com/
-[Hexo]: https://hexo.io/
+[Github]: https://github.com/ "Github's Homepage"
+[Hexo]: https://hexo.io/ "Hexo's Homepage"
 [Next]: http://theme-next.iissnan.com/
