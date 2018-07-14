@@ -72,6 +72,17 @@ export PATH=~/bin:$PATH
 
 #### 已 push
 
+#### 更新Submodule
+更新Submodule有两种方式:
+在父项目的目录下直接运行
+
+    git submodule foreach git pull
+
+在Submodule的目录下面更新
+
+>cd pod-library
+git pull
+
 #### 相关连接
 
 https://segmentfault.com/a/1190000003076028#articleHeader2
