@@ -19,7 +19,7 @@ deploy:
   local-dir: public
   target-branch: master
   on:
-    branch: source          
+    branch: source
 
 #cache:
 #  directories:
