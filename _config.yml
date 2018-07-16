@@ -6,6 +6,7 @@
 title: Jiaobuzuji's Pages
 subtitle: 现在就是未来
 description: 工作与生活分不清楚的 ASIC 数字前端程序猿
+keywords: Synopsys,EDA,Engineer,RTL,Verilog,SystemVerilog,Tcl,FPGA,DC,SVN,Git,Vim,DSP,Codec,Serdes,SoC,Hexo,NexT
 author: Jiaobuzuji
 language: zh-CN
 timezone:
@@ -47,7 +48,7 @@ highlight:
   enable: true
   line_number: true
   auto_detect: true
-  tab_replace:
+  tab_replace: true
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
