@@ -1,7 +1,7 @@
 ---
 title: HEXO 零基础搭建个人 Blog
 date: 2018-01-27 22:46:15
-updated: 2018-01-31 22:46:15
+updated: 2018-07-17 23:33:12
 comments: true
 categories:
     - Misc
@@ -70,6 +70,89 @@ https://help.github.com/articles/user-organization-and-project-pages/
 
 ### 搭建
 [Hexo] 中非常多好看的主题，本着少折腾的基本原则，选择大众所爱，且有一个大团队在维护的 [Next][] 主题。开始之前，一定要先好好阅读 [Hexo] 的文档，使用 [Next][] 也要好好先阅读一下使用文档，通读两三遍也算是正常的。然后开工。
+
+#### Ubuntu 上安装 Node.js
+
+##### 直接安装
+###### 安装
+``` bash
+sudo apt-get install nodejs
+sudo apt-get install npm
+```
+###### 升级 npm
+``` bash
+sudo npm install npm -g
+/usr/local/bin/npm -> /usr/local/lib/node_modules/npm/bin/npm-cli.js
+npm@2.14.2 /usr/local/lib/node_modules/npm
+```
+###### 升级 node.js
+``` bash
+npm install –g n
+n latest(升级node.js到最新版)  or $ n stable（升级node.js到最新稳定版）
+```
+n后面也可以跟随版本号比如：`n v0.10.26` 或者 `n 0.10.26`
+
+###### 卸载
+先卸载 npm , 后卸载nodejs
+``` bash
+sudo npm uninstall npm -g
+sudo apt-get remove nodejs
+```
+##### nvm安装
+``` bash
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+```
+安装成功后,需要关闭xshell，重新启动。nvm才会生效。使用 `command -v nvm` 查看 nvm 是否安装成功。
+
+通过 `nvm ls` 查看已安装的版本，通过 `nvm ls-remote` 查看可使用版本
+
+``` bash
+$ nvm ls-remote
+        v0.1.14
+        v0.1.15
+        v0.1.16
+        v0.1.17
+        v0.1.18
+...
+```
+###### 安装nodejs
+通过 `nvm install 7.8.0` 来安装，后面的版本号我们可以任意选择
+
+
+##### npm镜像替换为淘宝镜像
+
+``` bash
+npm get registry 
+```
+> https://registry.npmjs.org/
+
+设成淘宝的
+
+``` bash
+npm config set registry http://registry.npm.taobao.org/
+```
+
+2.换成原来的
+``` bash
+npm config set registry https://registry.npmjs.org/
+```
+
+##### 选装cnpm
+1. 说明：因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。！来自官网：“这是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。”；
+1. 官方网址：http://npm.taobao.org；
+1. 命令安装；注意：安装完后最好查看其版本号 `cnpm -v` 或关闭命令提示符重新打开，安装完直接使用有可能会出现错误；
+``` bash
+npm install cnpm -g --registry=https://registry.npm.taobao.org
+```
+注：cnpm跟npm用法完全一致，只是在执行命令时将npm改为cnpm
+
+##### 全局安装与本地安装
+npm 的包安装分为本地安装（local）、全局安装（global）两种，从敲的命令行来看，差别只是有没有 `-g` 而已，比如我们使用 npm 命令安装常用的 Node.js、web框架模块、express等
+
+``` bash
+$ npm install express          # 本地安装
+$ npm install express -g       # 全局安装
+```
 
 #### 初始化 Blog
 ``` bash
