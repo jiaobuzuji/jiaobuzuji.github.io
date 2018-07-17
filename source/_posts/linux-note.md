@@ -1128,3 +1128,74 @@ sudo add-apt-repository --remove ppa:whatever/ppa
 
 添加或者删除了 ppa 之后，还需要 sudo apt-get update
 
+
+## 用户管理
+1、建用户：
+
+adduser phpq                            //新建phpq用户
+passwd phpq                            //给phpq用户设置密码
+
+2、建工作组
+groupadd test                          //新建test工作组
+
+3、新建用户同时增加工作组
+useradd -g test phpq               //新建phpq用户并增加到test工作组
+
+注：：-g 所属组 -d 家目录 -s 所用的SHELL
+
+4、给已有的用户增加工作组
+
+usermod -G groupname username
+
+或者：gpasswd -a user group
+
+5、临时关闭：在/etc/shadow文件中属于该用户的行的第二个字段（密码）前面加上*就可以了。想恢复该用户，去掉*即可。
+
+或者使用如下命令关闭用户账号：
+
+passwd peter –l
+
+重新释放：
+
+passwd peter –u
+
+6、永久性删除用户账号
+
+userdel peter
+
+groupdel peter
+
+usermod –G peter peter   （强制删除该用户的主目录和主目录下的所有文件和子目录）
+
+7、从组中删除用户
+
+编辑/etc/group 找到GROUP1那一行，删除 A 或者用命令 gpasswd -d A GROUP
+
+8、显示用户信息
+
+id user
+cat /etc/passwd
+
+补充:查看用户和用户组的方法
+
+用户列表文件：/etc/passwd
+用户组列表文件：/etc/group
+
+查看系统中有哪些用户：cut -d : -f 1 /etc/passwd
+查看可以登录系统的用户：cat /etc/passwd | grep -v /sbin/nologin | cut -d : -f 1
+查看用户操作：w命令(需要root权限)
+查看某一用户：w 用户名
+查看登录用户：who
+查看用户登录历史记录：last
+
+## rsync命令
+ rsync命令是一个远程数据同步工具，可通过LAN/WAN快速同步多台主机间的文件。rsync使用所谓的“rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。 rsync是一个功能非常强大的工具，其命令也有很多功能特色选项，我们下面就对它的选项一一进行分析说明。
+语法
+```
+rsync [OPTION]... SRC DEST
+rsync [OPTION]... SRC [USER@]host:DEST
+rsync [OPTION]... [USER@]HOST:SRC DEST
+rsync [OPTION]... [USER@]HOST::SRC DEST
+rsync [OPTION]... SRC [USER@]HOST::DEST
+rsync [OPTION]... rsync://[USER@]HOST[:PORT]/SRC [DEST]
+```
