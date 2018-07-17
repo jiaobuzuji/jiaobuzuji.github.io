@@ -16,7 +16,7 @@ timezone:
 url: http://www.jiaobuzuji.com
 root: /
 # permalink: :year/:month/:day/:title/
-permalink: :year/:title/
+permalink: blogs/:title/
 permalink_defaults:
 
 # Directory
