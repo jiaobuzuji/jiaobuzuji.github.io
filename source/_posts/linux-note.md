@@ -1199,3 +1199,6 @@ rsync [OPTION]... [USER@]HOST::SRC DEST
 rsync [OPTION]... SRC [USER@]HOST::DEST
 rsync [OPTION]... rsync://[USER@]HOST[:PORT]/SRC [DEST]
 ```
+
+## CentOS
+包含了一个 setup 命令，可以配置系统的东西
