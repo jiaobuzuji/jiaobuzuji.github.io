@@ -262,6 +262,13 @@ chmod 600 ~/.ssh/authorized_keys
 
 /etc/ssh/sshd_config 1、找到 #StrictModes yes 改成 StrictModes no （去掉注释后改成 no） 2、找到 #PubkeyAuthentication yes 改成 PubkeyAuthentication yes （去掉注释） 3、找到 #AuthorizedKeysFile .ssh/authorized_keys 改成 AuthorizedKeysFile .ssh/authorized_keys （去掉注释） 4、保存 5、/etc/rc.d/init.d/sshd reload 重新加载
 
+## ~/.ssh/config
+在 ~/.ssh/config 添加配置内容，这样就可以使用 `ssh github` 来快速连接，同时也可以使用 `scp xxx github:~/xxx` 来传输数据，比较方便。
+```
+Host github
+    HostName github.com
+```
+
 ## VNC
 VNC概述
 
