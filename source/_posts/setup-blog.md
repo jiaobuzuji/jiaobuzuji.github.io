@@ -74,25 +74,25 @@ https://help.github.com/articles/user-organization-and-project-pages/
 #### Ubuntu 上安装 Node.js
 
 ##### 直接安装
-###### 安装
+1. 安装
 ``` bash
 sudo apt-get install nodejs
 sudo apt-get install npm
 ```
-###### 升级 npm
+1. 升级 npm
 ``` bash
 sudo npm install npm -g
 /usr/local/bin/npm -> /usr/local/lib/node_modules/npm/bin/npm-cli.js
 npm@2.14.2 /usr/local/lib/node_modules/npm
 ```
-###### 升级 node.js
+1. 升级 node.js
 ``` bash
-npm install –g n
-n latest(升级node.js到最新版)  or $ n stable（升级node.js到最新稳定版）
-```
+sudo npm install –g n
+sudo n latest(升级node.js到最新版)  or $ n stable（升级node.js到最新稳定版）
 n后面也可以跟随版本号比如：`n v0.10.26` 或者 `n 0.10.26`
+```
 
-###### 卸载
+1. 卸载
 先卸载 npm , 后卸载nodejs
 ``` bash
 sudo npm uninstall npm -g
@@ -115,8 +115,7 @@ $ nvm ls-remote
         v0.1.18
 ...
 ```
-###### 安装nodejs
-通过 `nvm install 7.8.0` 来安装，后面的版本号我们可以任意选择
+安装nodejs, 通过 `nvm install 7.8.0` 来安装，后面的版本号我们可以任意选择
 
 
 ##### npm镜像替换为淘宝镜像
@@ -132,12 +131,12 @@ npm get registry
 npm config set registry http://registry.npm.taobao.org/
 ```
 
-2.换成原来的
+换成原来的
 ``` bash
 npm config set registry https://registry.npmjs.org/
 ```
 
-##### 选装cnpm
+##### 选装cnpm (推荐！！)
 1. 说明：因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。！来自官网：“这是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。”；
 1. 官方网址：http://npm.taobao.org；
 1. 命令安装；注意：安装完后最好查看其版本号 `cnpm -v` 或关闭命令提示符重新打开，安装完直接使用有可能会出现错误；
