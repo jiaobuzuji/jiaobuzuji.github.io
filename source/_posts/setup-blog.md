@@ -13,7 +13,7 @@ tags: [hexo,blog,markdown]
 本人不是网页前端设计专业，一切技术对于我来说都是新的，所以有必要将之前折腾的东西记录下。
 
 ### 最初的做法
-一开始折腾 [Github Page][] 的时候是在 2015 年，那里 [Hexo] 刚兴起不久，只有耳闻，却没有涉及，而是选择了一个更加冷门的方法：同样使用 [Markdown][] 书写博客，再由[pandoc][]转成 html ，页面布局直接模(chao)仿(xi)大神的[template](https://github.com/tzengyuxio/pages/blob/gh-pages/pandoc/pm-template.html5)。在此感谢这些鬼东西一直在折磨我，留言以纪念。
+一开始折腾 [Github Page][] 的时候是在 2015 年，那时 [Hexo] 刚兴起不久，只有耳闻，却没有涉及，而是选择了一个更加冷门的方法：同样使用 [Markdown][] 书写博客，再由[pandoc][]转成 html ，页面布局直接模(chao)仿(xi)大神的[template](https://github.com/tzengyuxio/pages/blob/gh-pages/pandoc/pm-template.html5)。在此感谢这些鬼东西一直在折磨我，留言以纪念。
 
 > 一直在模仿，从未有超越
 > ——*某名人言*

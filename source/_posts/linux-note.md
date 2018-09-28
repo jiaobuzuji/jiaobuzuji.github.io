@@ -1209,3 +1209,13 @@ rsync [OPTION]... rsync://[USER@]HOST[:PORT]/SRC [DEST]
 
 ## CentOS
 包含了一个 setup 命令，可以配置系统的东西
+
+
+## 查找大于 100M 的文件
+fdu -sh [dirname|filename]
+当前目录的大小：
+　　du -sh .
+　　当前目录下个文件或目录的大小：
+　　du -sh *
+　　显示前10个占用空间最大的文件或目录：
+　　du -s * | sort -nr | headind -type f -size +100M
