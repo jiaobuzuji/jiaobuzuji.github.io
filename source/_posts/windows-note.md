@@ -13,6 +13,38 @@ tags: [win32,windows]
 ### Tip
 1. windows 下创建 link 的正确方法。`mklink`
 
+### Word
+使用 F9 可以快速更新“交叉引用”。可以选择一批的“引用”，并按“F9”来进行更新。比较快速。
+
+word 使用正则表达式查找替换
+
+本节中的步骤介绍了如何使用正则表达式转置姓名。请记住，始终使用“查找和替换”对话框来运行您的正则表达式。同时请记住，如果表达式没有按预期工作，你始终可以按下 CTRL + Z 来撤销您的更改，然后尝试其他表达式。
+转置姓名
+启动 Word，然后打开一个新的空白文档。 复制此表格，将它粘贴到该文档中。 
+Josh Barnhill
+Doris Hartwig
+Tamara Johnston
+Daniel Shimshoni
+
+在“开始”选项卡上的“编辑”组中，单击“替换”以打开“查找和替换”对话框。
+
+如果您没有看到“使用通配符”复选框，请单击“更多”，然后选中该复选框。如果您没有选中该复选框，Word 会将通配符视作文本。
+在“查找内容”框中键入以下字符。请确保您在两组括号之间包含了空格： (<*>) (<*>)
+在“替换为”框中，键入以下字符。请确保您在逗号和第二个斜杠之间包含了空格： \2, \1
+选择该表格，然后单击“全部替换”。Word 会转置这些姓名并使用逗号分隔它们，如下所示： 
+Barnhill, Josh
+Hartwig, Doris
+Johnston, Tamara
+Shimshoni, Daniel
+
+此时，您可能会想知道：如果您的姓名中有一部分或全部包含中间名首写字母，该怎么做？ 请参阅使用正则表达式中的第一个示例以了解更多信息。
+
+https://blog.csdn.net/robotcator/article/details/31840825
+https://www.cnblogs.com/whchensir/p/5768030.html
+
+---------------------
+
+本文来自 robotcator 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/robotcator/article/details/31840825?utm_source=copy 
 ### Excel
 如何用函数实现求A列乘以B列然后相加的总和,如下，类似1*5+2*6+3*7+4*8，用函数如何实现
 1  5
