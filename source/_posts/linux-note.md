@@ -1153,6 +1153,7 @@ useradd -g test phpq               //新建phpq用户并增加到test工作组
 4、给已有的用户增加工作组
 
 usermod -G groupname username
+usermod -aG groupname username
 
 或者：gpasswd -a user group
 
@@ -1219,3 +1220,11 @@ fdu -sh [dirname|filename]
 　　du -sh *
 　　显示前10个占用空间最大的文件或目录：
 　　du -s * | sort -nr | headind -type f -size +100M
+
+
+## ubuntu
+ubuntu 升级系统
+```
+sudo apt upgrade
+sudo apt dist-upgrade
+```
