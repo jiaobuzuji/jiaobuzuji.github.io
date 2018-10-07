@@ -1212,6 +1212,26 @@ rsync [OPTION]... rsync://[USER@]HOST[:PORT]/SRC [DEST]
 包含了一个 setup 命令，可以配置系统的东西
 
 
+给小黑安装CentOS 7的时候，遇到了很多问题，主要是使用UltraISO刻录的启动盘，在安装的过程中使用找不到磁盘，在网上找了很久，终于搞定了，做此笔记记录一下。
+
+前提
+假设你有CentOS-7-x86_64-DVD-1611.iso 文件和一个大容量U盘（我的是32G）， 
+在其他linux系统中，你的U盘被挂载在/dev/sdb上
+
+步骤
+使用如下命令就可以将CentOS 7的系统刻录到U盘上
+
+```
+dd if=CentOS-7-x86_64-DVD-1611.iso of=/dev/sdb1
+```
+（ps： 切记此处的输出设备一定是整个U盘整体，而非该U盘上的某个分区如/dev/sdb1）
+然后就可以使用该U盘启动，进行系统安装了。
+
+---------------------
+
+本文来自 jack_nichao 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/jack_nichao/article/details/78535220?utm_source=copy 
+
+
 ## 查找大于 100M 的文件
 fdu -sh [dirname|filename]
 当前目录的大小：
