@@ -18,6 +18,7 @@ tags: [git,revision]
 从而导致很卡，而 oh-my-zsh，每次都会去查看一下 git 目录下的状态，进而十分影响
 用户体验
 
+```
 $ git clone https://github.com/git/git
 $ cd git
 $ make
@@ -25,6 +26,7 @@ or
 $ make prefix=/usr all doc info ;# as yourself
 or
 $ make prefix=/usr install install-doc install-html install-info ;# as root
+```
 上面的语句，可以安装 manual。安装完后，就可以使用 man git 来查看最新的 git 了。
 
 ...

@@ -1227,10 +1227,6 @@ dd if=CentOS-7-x86_64-DVD-1611.iso of=/dev/sdb1
 （ps： 切记此处的输出设备一定是整个U盘整体，而非该U盘上的某个分区如/dev/sdb1）
 然后就可以使用该U盘启动，进行系统安装了。
 
----------------------
-
-本文来自 jack_nichao 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/jack_nichao/article/details/78535220?utm_source=copy 
-
 
 ## 查找大于 100M 的文件
 fdu -sh [dirname|filename]
