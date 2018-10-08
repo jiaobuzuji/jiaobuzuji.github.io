@@ -13,6 +13,13 @@ tags: [linux,ubuntu,centos,shell]
 ## 前言
 目前使用到的 Linux 系统主要是 ubuntu 与 centos 系统。
 
+| 系统 |发行版本 |-- |内核版本、位数
+| RedHat |cat /etc/issue |cat /etc/redhat-release |lsb_release -a
+| CentOS |cat /etc/issue |cat /etc/centos-release |cat /proc/version
+| Debian |cat /etc/issue |cat /etc/debian_version |cat /proc/version
+| Ubuntu |cat /etc/issue |cat /etc/lsb_release |cat /proc/version
+| Oracle |cat /etc/issue |cat /etc/oracle-release |lsb_release -a
+
 ## Perl 相关
 
 ## 安装到 local
@@ -1226,6 +1233,32 @@ dd if=CentOS-7-x86_64-DVD-1611.iso of=/dev/sdb1
 ```
 （ps： 切记此处的输出设备一定是整个U盘整体，而非该U盘上的某个分区如/dev/sdb1）
 然后就可以使用该U盘启动，进行系统安装了。
+
+### 问题描述
+
+很久以前，可能是我重装过一次 ibus 拼音输入法或者是装过其它的输入法，之后把它卸载了。总之而言，经过我的乱搞后，成功地使我的电脑出现了一个神奇的问题：每次重启电脑或者账户重新登录，我的 ibus 拼音输入法就会无效，具体表现为桌面图标显示了“中”字，但是任何输入窗口下都只能输入英文，按 Shift 也无法在 ibus 拼音输入法的中英文模式之间切换。 
+这并不代表我不能输入中文，一个可笑的解决办法就是我进入设置——区域和语言，把拼音输入法删除，然后再添加，这样以来就能正常使用 ibus 拼音输入法了。然而下次重启或者重新登录后，对不起，问题依旧，需要再次重复以上操作。
+
+### 解决方案
+
+我为这个问题苦恼不已，在网上查了很久也没找到合适的方法，ibus, ibus-libpinyin 不知重装了多少次，基本每次打开我的 CentOS，我都会先搜索一波重启后拼音输入法无效的问题，折腾一会儿失败了，然后在需要输入中文的时候又迫不得已地打开了设置……
+
+终于在今天，我一如往常地想要努力一把，搜索的具体内容已经变了很多，这次我输入的大概是“CentOS 默认输入法”，我打开一篇“centos7.3安装fcitx输入法设置为默认拼音输入法”。发现了一个我从未遇到过的“im-chooser”，按照教程走下来，将 ibus 设为默认输入法。然后再重新登录之后，我惊喜地发现 ibus 拼音输入法可以正常使用了！重启电脑之后，也可以输入中文！
+
+懂 Linux 的人也许会笑我，连 im-chooser 都不知道，这么简单的问题竟然这么长时间都搞不定。小弟的确很菜，但我还是为自己能够解决掉自己的问题而高兴，下面贴出我参考教程所作的详细步骤：
+
+```
+  yum install  im-chooser
+```
+
+回到当前使用的普通用户，设置 ibus 输入法为默认输入系统：
+
+```
+  imsettings-switch ibus
+```
+然后注销一次用户重新登录 
+命令就仅仅需要以上两步，重新登录以后，ibus 的拼音输入法就可以正常使用了。解决方案也很简单，可以说没有技术含量。 
+希望我以后解决类似问题，能够不再那么费事。
 
 
 ## 查找大于 100M 的文件
