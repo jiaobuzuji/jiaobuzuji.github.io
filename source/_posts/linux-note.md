@@ -1227,3 +1227,20 @@ ubuntu 升级系统
 sudo apt upgrade
 sudo apt dist-upgrade
 ```
+
+设置自动挂载，重启虚拟机系统共享仍在。
+可以在/etc/fstab中添加一项
+BaiduShare /mnt/share vboxsf rw,gid=110,uid=1100,auto 0 0
+
+## VirtualBox
+一、VirtualBox的提供了四种网络接入模式，它们分别是： 
+1、NAT 网络地址转换模式(NAT,Network Address Translation) 
+2、Bridged Adapter 桥接模式 
+3、Internal 内部网络模式 
+4、Host-only Adapter 主机模式 
+
+| |NAT |Bridged |Internal|Host-only|
+|Guest to Host |yes|yes|no|config|
+|Host to Guest |no|yes|no|config|
+|Guest to Guest |no|yes|  |yes|
+
