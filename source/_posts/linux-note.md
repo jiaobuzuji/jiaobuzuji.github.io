@@ -1244,3 +1244,5 @@ BaiduShare /mnt/share vboxsf rw,gid=110,uid=1100,auto 0 0
 |Host to Guest |no|yes|no|config|
 |Guest to Guest |no|yes|  |yes|
 
+## home
+在 linux 下面，有一堆杂七杂八的东西。 .cache .config .dbus .ibus .Xauthorxxx 如果你的电脑出现一些奇怪的现象：输入无法输入，桌面无法显示，图标异常，字体看不见等等问题。可以尝试将这些杂七杂八的东西删掉。
