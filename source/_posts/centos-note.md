@@ -10,10 +10,12 @@ categories:
 tags: [linux,centos]
 ---
 
+包含了一个 setup 命令，可以配置系统的东西
+同时还有 systemd 命令
+还有一组 system 的命令可以对系统进行配置。
+
 ## CentOS Installation
 ### 制作 U 盘启动
-包含了一个 setup 命令，可以配置系统的东西
-
 
 给小黑安装CentOS 7的时候，遇到了很多问题，主要是使用UltraISO刻录的启动盘，在安装的过程中使用找不到磁盘，在网上找了很久，终于搞定了，做此笔记记录一下。
 
@@ -79,4 +81,30 @@ mkfs -t vfat -I /dev/sdb # 格式化 (把 /dev/xxx 改为你对应的 U 盘或�
 CentOS 6.x 版本的，yum 使用了 python2 。所以不可以卸载 python2。同时安装
 pythone3 后，python 命令还是指向 python2 的。此处不宜使用暴力修改（网络上许多人都说，修改 /usr/bin/yum 来实现 python3）。
 
+## chkconfig：
+    chkconfig命令主要用来更新（启动或停止）和查询系统服务的运行级信息。谨记chkconfig不是立即自动禁止或激活一个服务，它只是简单的改变了符号连接。
+语法：
+    chkconfig --list [name]
+    chkconfig --add name
+    chkconfig --del name
+    chkconfig [--level levels] name <on|off|reset>
+    chkconfig [--level levels] name
 
+    chkconfig 没有参数运行时，显示用法。如果加上服务名，那么就检查这个服务是否在当前运行级启动。如果是，返回true，否则返回false。如果在服务名后面指定了on，off或者reset，那么chkconfi 会改变指定服务的启动信息。on和off分别指服务被启动和停止，reset指重置服务的启动信息，无论有问题的初始化脚本指定了什么。on和off开关，系统默认只对运行级3，4，5有效，但是reset可以对所有运行级有效。
+    --level选项可以指定要查看的运行级而不一定是当前运行级。
+    需要说明的是，对于每个运行级，只能有一个启动脚本或者停止脚本。当切换运行级时，init不会重新启动已经启动的服务，也不会再次去停止已经停止的服务。
+
+    chkconfig --list ：显示所有运行级系统服务的运行状态信息（on或off）。如果指定了name，那么只显示指定的服务在不同运行级的状态。
+    chkconfig --add name：增加一项新的服务。chkconfig确保每个运行级有一项启动(S)或者杀死(K)入口。如有缺少，则会从缺省的init脚本自动建立。
+    chkconfig --del name：删除服务，并把相关符号连接从/etc/rc[0-6].d删除。
+    chkconfig [--level levels] name <on|off|reset>：设置某一服务在指定的运行级是被启动，停止还是重置。例如，要在3，4，5运行级停止nfs服务，则命令如下：
+    chkconfig --level 345 nfs off
+运行级文件：
+    每个被chkconfig管理的服务需要在对应的init.d下的脚本加上两行或者更多行的注释。第一行告诉chkconfig缺省启动的运行级以及启动和停止的优先级。如果某服务缺省不在任何运行级启动，那么使用 - 代替运行级。第二行对服务进行描述，可以用\ 跨行注释。
+例如，random.init包含三行：
+# chkconfig: 2345 20 80
+# description: Saves and restores system entropy pool for \
+# higher quality random number generation.
+
+附加介绍一下Linux系统的运行级的概念：
+    Linux中有多种运行级，常见的就是多用户的2，3，4，5 ，很多人知道5是运行X-Windows的级别，而0就是关机了。运行级的改变可以通过init命令来切换。例如，假设你要维护系统进入单用户状态，那么，可以使用init1来切换。在Linux的运行级的切换过程中，系统会自动寻找对应运行级的目录/etc/rc[0-6].d下的K和S开头的文件，按后面的数字顺序，执行这些脚本。对这些脚本的维护，是很繁琐的一件事情，Linux提供了chkconfig命令用来更新和查询不同运行级上的系统服务。
