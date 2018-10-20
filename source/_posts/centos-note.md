@@ -14,6 +14,9 @@ tags: [linux,centos]
 同时还有 systemd 命令
 还有一组 system 的命令可以对系统进行配置。
 
+centos7 使用 systemctl 来代替 ckconfig 与 service 。
+systemctl [start|stop|status|enable|disable|restart....] 具体查看帮助文件
+
 ## CentOS Installation
 ### 制作 U 盘启动
 
