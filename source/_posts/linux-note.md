@@ -1311,3 +1311,23 @@ white        = "\033[1;37m"
 
 ## lsusb lspci
 可以查看对应的接口信息。 `lspci | grep network` 就可以查看网卡的信息了。
+
+## linux创建指定大小的文件
+
+一、生成文件大小和实际占空间大小一样的文件
+
+dd if=/dev/zero of=50M.file bs=1M count=50
+
+dd if=/dev/zero of=20G.file bs=1G count=20
+
+bs=1M表示每一次读写1M数据，count=50表示读写 50次，这样就指定了生成文件的大小为50M。bs参数还可以进一步细分为ibs和obs两种，为读操作与写操作分别指定不同的Buffer大小。
+
+ 
+
+二、生成文件大小固定，但实际不占空间命令
+
+dd if=/dev/zero of=1G.img bs=1M seek=1000 count=0
+
+这里用了一个新的命令seek，表示略过1000个Block不写（这里Block按照bs的定义是1M），count=0表示写入0个Block。用ls(查看文件大小)命令看新生成的文件，大小可以看出是1000M。但是再用du（查看文件占用空间）一看，实际占用硬盘大小只有0M。
+
+ 
