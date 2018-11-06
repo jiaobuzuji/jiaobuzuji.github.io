@@ -1330,4 +1330,30 @@ dd if=/dev/zero of=1G.img bs=1M seek=1000 count=0
 
 这里用了一个新的命令seek，表示略过1000个Block不写（这里Block按照bs的定义是1M），count=0表示写入0个Block。用ls(查看文件大小)命令看新生成的文件，大小可以看出是1000M。但是再用du（查看文件占用空间）一看，实际占用硬盘大小只有0M。
 
- 
+## 修改用户名
+ 以root身份登录（反正就不要登录待改名的用户），然后使用下列命令进行修改
+
+格式：
+
+usermod -l NewUser -d /home/NewUser -m OldUser
+
+usermod -l alao -d /home/alao -m tom
+
+-l 修改用户名
+
+-d 修改登录后使用的路径
+
+-m 修改登录名称的同时将目录名称一同修改
+2
+
+修改组名称：
+
+继上面操作后，继续执行下列命令
+
+格式：
+
+groupmod -n NewUser OldName
+
+groupmod    -n   alao   tom
+
+-n 修改组的名称
