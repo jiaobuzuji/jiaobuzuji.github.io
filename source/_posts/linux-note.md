@@ -1239,10 +1239,10 @@ BaiduShare /mnt/share vboxsf rw,gid=110,uid=1100,auto 0 0
 3、Internal 内部网络模式 
 4、Host-only Adapter 主机模式 
 
-| |NAT |Bridged |Internal|Host-only|
-|Guest to Host |yes|yes|no|config|
-|Host to Guest |no|yes|no|config|
-|Guest to Guest |no|yes|  |yes|
+| Dir            | NAT | Bridged | Internal | Host-only |
+| Guest to Host  | yes | yes     | no       | config    |
+| Host to Guest  | no  | yes     | no       | config    |
+| Guest to Guest | no  | yes     | null     | yes       |
 
 ## home
 在 linux 下面，有一堆杂七杂八的东西。 .cache .config .dbus .ibus .Xauthorxxx 如果你的电脑出现一些奇怪的现象：输入无法输入，桌面无法显示，图标异常，字体看不见等等问题。可以尝试将这些杂七杂八的东西删掉。
