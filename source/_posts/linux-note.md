@@ -13,12 +13,13 @@ tags: [linux,ubuntu,centos,shell]
 ## 前言
 目前使用到的 Linux 系统主要是 ubuntu 与 centos 系统。
 
-| 系统 |发行版本 |-- |内核版本、位数
-| RedHat |cat /etc/issue |cat /etc/redhat-release |lsb_release -a
-| CentOS |cat /etc/issue |cat /etc/centos-release |cat /proc/version
-| Debian |cat /etc/issue |cat /etc/debian_version |cat /proc/version
-| Ubuntu |cat /etc/issue |cat /etc/lsb_release |cat /proc/version
-| Oracle |cat /etc/issue |cat /etc/oracle-release |lsb_release -a
+| 系统   | 发行版本       | command                 | 内核版本、位数
+| :--    | :--            | --                      | -- |
+| RedHat | cat /etc/issue | cat /etc/redhat-release | lsb_release -a
+| CentOS | cat /etc/issue | cat /etc/centos-release | cat /proc/version
+| Debian | cat /etc/issue | cat /etc/debian_version | cat /proc/version
+| Ubuntu | cat /etc/issue | cat /etc/lsb_release    | cat /proc/version
+| Oracle | cat /etc/issue | cat /etc/oracle-release | lsb_release -a
 
 ## Perl 相关
 
@@ -1240,6 +1241,7 @@ BaiduShare /mnt/share vboxsf rw,gid=110,uid=1100,auto 0 0
 4、Host-only Adapter 主机模式 
 
 | Dir            | NAT | Bridged | Internal | Host-only |
+| :--            | :-- | --      | --       | --        |
 | Guest to Host  | yes | yes     | no       | config    |
 | Host to Guest  | no  | yes     | no       | config    |
 | Guest to Guest | no  | yes     | null     | yes       |
