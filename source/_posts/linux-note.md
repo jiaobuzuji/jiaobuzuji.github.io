@@ -1246,6 +1246,14 @@ BaiduShare /mnt/share vboxsf rw,gid=110,uid=1100,auto 0 0
 | Host to Guest  | no  | yes     | no       | config    |
 | Guest to Guest | no  | yes     | null     | yes       |
 
+### 压缩 guest os 占用的大小
+1. 关闭掉 guest os 以及 VBox
+1. 在host os上 运行下列命令
+```
+VBoxManage modifyhd --compact yourImage.vdi
+```
+这样在guest上看到占用的空间就和host上看到的空间就一样了。
+
 ## home
 在 linux 下面，有一堆杂七杂八的东西。 .cache .config .dbus .ibus .Xauthorxxx 如果你的电脑出现一些奇怪的现象：输入无法输入，桌面无法显示，图标异常，字体看不见等等问题。可以尝试将这些杂七杂八的东西删掉。
 
