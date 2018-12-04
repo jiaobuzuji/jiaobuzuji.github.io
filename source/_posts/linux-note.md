@@ -1247,6 +1247,17 @@ BaiduShare /mnt/share vboxsf rw,gid=110,uid=1100,auto 0 0
 | Guest to Guest | no  | yes     | null     | yes       |
 
 ### 压缩 guest os 占用的大小
+如果guest os 是windows:
+1、先在guest os上运行磁盘碎片管理器，将各个磁盘的磁盘碎片减少；
+2、下载sdelete（http://technet.microsoft.com/en-us/sysinternals/bb897443.aspx）;
+3、运行sdelete -c -z ；
+4、关闭guest os 和 VirtualBox
+5、在host os上运行VBoxManage modifyhd --compact yourImage.vdi
+
+如果 guest os 为 linux 时
+1. 进入su
+1. $ dd if=/dev/zero of=test.file (会填满整个虚拟磁盘，对 host 的磁盘影响不大)
+1. $ rm test.file
 1. 关闭掉 guest os 以及 VBox
 1. 在host os上 运行下列命令
 ```
