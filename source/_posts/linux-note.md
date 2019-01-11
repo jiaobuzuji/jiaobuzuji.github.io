@@ -1378,3 +1378,20 @@ groupmod -n NewUser OldName
 groupmod    -n   alao   tom
 
 -n 修改组的名称
+
+## 出现 zombie (僵尸)进程时
+1：top命令 查看进程：
+2：查看具体是哪个进程：
+```
+linux:~ # ps -A -o stat,ppid,pid,cmd |grep -e "^[Zz]"
+Z     3064  5118 [socket-memory-e] <defunct>
+```
+ 可以看出僵尸进程的进程id为3064
+
+3：查看僵尸进程是什么应用：
+linux:~ #lsof  -p 3064
+
+4：kill僵尸进程：
+kill  -9  3064
+
+注：从第3步可以看出僵尸进程是什么应用，请依据实际情况确认此进程是否能够kill掉，及明确kill之后需要重启的应用等后续处理；
