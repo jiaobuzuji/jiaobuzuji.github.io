@@ -96,3 +96,23 @@ DGGx38l6PQ13BoaBW2hSHy5xxk4M8cfIcLTM7fOGfBBY5mRhe5aLoZQCU
 sudo perl -MCPAN -e shell
 install IO::Tee
 ```
+
+# 从Ubuntu 18.04 LTS升级到Ubuntu 18.10版本的方法
+
+1.更新步骤：
+
+打开“软件和更新”应用
+
+点按“更新”标签
+
+找到标题为“通知我新的Ubuntu版本”的部分
+
+将“For long-term support versions”设置为“For any new version”
+
+点击“关闭”
+
+终端中执行sudo update-manager -d -c（或者：sudo update-manager -c）命令
+
+2.另外一种方法就是使用命令行，运行下面命令：
+
+sudo do-release-upgrade -d（或者：sudo do-release-upgrade）

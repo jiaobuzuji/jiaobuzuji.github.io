@@ -13,14 +13,14 @@ tags: [linux,ubuntu,vlc,cross compiling]
 ## 环境
 * OS : Ubuntu 18.04 LTS
 ```bash
-apt -y build-dep vlc
-apt install -y "gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64 mingw-w64-tools"
-apt install -y "lua5.2 liblua5.2-dev libtool automake autoconf autopoint make gettext pkg-config"
-apt install -y "qt4-dev-tools qt5-default git subversion cmake cvs"
-apt install -y "wine64-development-tools libwine-dev zip p7zip nsis bzip2"
-apt install -y "yasm ragel ant openjdk-8-jdk default-jdk protobuf-compiler dos2unix"
-apt install -y "gperf flex bison liborc-0.4-dev"
-ldconfig
+sud apt -y build-dep vlc
+sud apt install -y gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64 mingw-w64-tools gcc-mingw-w64-i686 g++-mingw-w64-i686 mingw-w64-tools
+sud apt install -y lua5.2 liblua5.2-dev libtool automake autoconf autopoint make gettext pkg-config
+sud apt install -y qt4-dev-tools qt5-default qt4-default git subversion cmake cvs
+sud apt install -y wine64-development-tools libwine-dev zip p7zip nsis bzip2 wine-dev
+sud apt install -y yasm ragel ant openjdk-8-jdk default-jdk protobuf-compiler dos2unix
+sud apt install -y gperf flex bison liborc-0.4-dev meson
+sud ldconfig
 ```
 运行[官网教程]中的 Static compilation of plugins，我将其写入一个名为：vlc.sh 的脚本中。
 > You might want to use the following script to enforce static compilation. Run as root, and use at your own risk.
@@ -108,6 +108,24 @@ make
 make package-win-common
 ```
 
+versioninfo.rc错误：
+
+i686-w64-mingw32-windres: versioninfo.rc.in:21: syntax error 
+i686-w64-mingw32-windres: preprocessing failed. 
+Makefile:1224: recipe for target 'versioninfo.lo' failed 
+make[2]: *** [versioninfo.lo] Error 1 
+make[2]: Leaving directory '/home/d/vlc-3.0.0/contrib/win32/gcrypt/src' 
+Makefile:487: recipe for target 'install-recursive' failed 
+make[1]: *** [install-recursive] Error 1 
+make[1]: Leaving directory '/home/d/vlc-3.0.0/contrib/win32/gcrypt' 
+../../contrib/src/gcrypt/rules.mak:72: recipe for target '.gcrypt' failed 
+make: *** [.gcrypt] Error 2 
+
+解决方案：
+修改 contrib/win32/gcrypt/configure.ac 第42行  
+
+修改前：m4_esyscmd([git rev-parse --short HEAD | tr -d '\n\r']))
+修改后：m4_esyscmd([printf %x $(wc -l < debian/changelog)]))
 ## 懂得的东西
 1. configure 失败之后，再次重新 configure 时，最好 `make distclean` 一下。
 1. toolchain 很重要，版本的应对对于编译影响比较大
