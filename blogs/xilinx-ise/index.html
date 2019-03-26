@@ -1,0 +1,1265 @@
+<!DOCTYPE html><html class="theme-next gemini" lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-me.png">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-me.png">
+
+
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言内容可能比较简单与基础。这其实是写给我自己看的，做一些简单的记录，方便以后使用时的查找。  我所知道的不多。——某名人言  简介Xilinx所说是发明FPGA的公司，目前（2015年）其最大的竞争者Altera公司已经被Intel收购了。 ISE这是Xilinx推出的一款综合性的EDA软件工具，集成了设计输入、综合、仿真、布局布线、下载。当然这些可以由第三方提供的软件来完成。什么Synplif">
+<meta name="keywords" content="xilinx,ise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xilinx与ISE">
+<meta property="og:url" content="http://www.jiaobuzuji.com/blogs/xilinx-ise/index.html">
+<meta property="og:site_name" content="Jiaobuzuji's Pages">
+<meta property="og:description" content="前言内容可能比较简单与基础。这其实是写给我自己看的，做一些简单的记录，方便以后使用时的查找。  我所知道的不多。——某名人言  简介Xilinx所说是发明FPGA的公司，目前（2015年）其最大的竞争者Altera公司已经被Intel收购了。 ISE这是Xilinx推出的一款综合性的EDA软件工具，集成了设计输入、综合、仿真、布局布线、下载。当然这些可以由第三方提供的软件来完成。什么Synplif">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2012-11-21T22:46:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Xilinx与ISE">
+<meta name="twitter:description" content="前言内容可能比较简单与基础。这其实是写给我自己看的，做一些简单的记录，方便以后使用时的查找。  我所知道的不多。——某名人言  简介Xilinx所说是发明FPGA的公司，目前（2015年）其最大的竞争者Altera公司已经被Intel收购了。 ISE这是Xilinx推出的一款综合性的EDA软件工具，集成了设计输入、综合、仿真、布局布线、下载。当然这些可以由第三方提供的软件来完成。什么Synplif">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.jiaobuzuji.com/blogs/xilinx-ise/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Xilinx与ISE | Jiaobuzuji's Pages</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jiaobuzuji's Pages</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">现在就是未来</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">21</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">12</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jiaobuzuji.com/blogs/xilinx-ise/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jiaobuzuji">
+      <meta itemprop="description" content="工作与生活分不清楚的 ASIC 数字前端程序猿">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaobuzuji's Pages">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Xilinx与ISE
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2012-11-21 22:46:15" itemprop="dateCreated datePublished" datetime="2012-11-21T22:46:15+00:00">2012-11-21</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ASIC/" itemprop="url" rel="index"><span itemprop="name">ASIC</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ASIC/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blogs/xilinx-ise/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/blogs/xilinx-ise/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>内容可能比较简单与基础。这其实是写给我自己看的，做一些简单的记录，方便以后使用时的查找。</p>
+<blockquote>
+<p>我所知道的不多。<br>——<em>某名人言</em></p>
+</blockquote>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="Xilinx"><a href="#Xilinx" class="headerlink" title="Xilinx"></a>Xilinx</h2><p>所说是发明FPGA的公司，目前（2015年）其最大的竞争者Altera公司已经被Intel收购了。</p>
+<h2 id="ISE"><a href="#ISE" class="headerlink" title="ISE"></a>ISE</h2><p>这是Xilinx推出的一款综合性的EDA软件工具，集成了设计输入、综合、仿真、布局布线、下载。当然这些可以由第三方提供的软件来完成。什么Synplify、Modelsim、Verdi、Matlab等等。这些第三方工具的版本，必须与ISE的版本对应，否则可能就用不了咯。</p>
+<h1 id="积累"><a href="#积累" class="headerlink" title="积累"></a>积累</h1><h2 id="设计输入"><a href="#设计输入" class="headerlink" title="设计输入"></a>设计输入</h2><p>创建cdc文件，Chipscope，添加所需要查看的节点等，选取采样深度<br>编写ucf约束文件，分配管脚、约束时钟。也可以采用界面化的设置，不过也挺复杂的样子。</p>
+<p>可HDL输入、IP核输入、原理图输入等。<br>在Verilog语言中，Xilinx还自己弄了许多“原语”，其格式与Verilog的例化十分相似，但不同的是，它！不属于例化，在hierarchy中是看不到的，这些原语，有点类似于C语言里面的内联函数，可能它只是把一代代码嵌入到对应的Verilog中吧。</p>
+<h2 id="IP核的添加"><a href="#IP核的添加" class="headerlink" title="IP核的添加"></a>IP核的添加</h2><p>调用IP核的时候，ISE会生成包含所有ip核配置信息的“.xco”文件，同时此文件似乎还记录所需文件的路径。工程里面只需要添加“.xco”文件，就包含了所有的文件了，虽然工程里面还是没有看到这些文件，但已经定义了。</p>
+<h2 id="仿真"><a href="#仿真" class="headerlink" title="仿真"></a>仿真</h2><p>仿真之前，如果安装的modelsim不是Xilinx版本的（即不是modelsimXE），那仿真之前一定要先编译仿真库文件，先指定好库文件的位置（指定为：x:\modeltech_x.xe\xilinx_lib）。</p>
+<p>Modelsim SE版在发行时是不带任何FPGA厂家的仿真库的，因此用户必须手动编译这些库。由此面临的一个问题就是怎样建立各FPGA器件的仿真库，目前各FPGA厂家都支持用户编译库，所以实现比较简单。仿真的时候，会生成一个modelsim.ini文件，里面包含了库文件的一些路径以及相关的配置。关于工程下modelsim.ini的生成，它是从modelsim安装路径下的modelsim.ini拷贝一份，并添加库文件路径得到的。所以呢，适当修改modelsim安装路径下的modelsim.ini是可以实现“一劳永逸”的。</p>
+<p>Modelsim库编译的时候，如果存入的库文件路径为默认时，会存放在：E:\Xilinx\13.2\ISE_DS\ISE\mti_se（mti为modelsim；se为版本）、E:\Xilinx\13.2\ISE_DS\ISE\verilog\mti_se、E:\Xilinx\13.2\ISE_DS\ISE\vhdl\mti_se等多个地方，<br>而如果是手动指定一个路径的话，好像会全部存放到一个指定的文件夹里面。</p>
+<p>建议采用手动指定一个库文件路径，因为不同的modelsim版本的库文件，似乎是不通用的。一般的库文件路径是：D:\modeltech_10.1a\simlib_xilinx13_2</p>
+<p>注：编译仿真库的时候，有一点要记住，每一个工程都会记住自己的库路径，当你的工作被移动（或者复制到）其他的电脑上面去里，记得修改好库文件的路径，否则会报错。</p>
+<h2 id="编译设置"><a href="#编译设置" class="headerlink" title="编译设置"></a>编译设置</h2><h3 id="查看各个模块占用的资源"><a href="#查看各个模块占用的资源" class="headerlink" title="查看各个模块占用的资源"></a>查看各个模块占用的资源</h3><p>对映射（Map）进行设置，可把每个模块的占用的资料逻辑出来，只需要将“detail”选项打开即可。编译过Map之后，就可以在summary中查看各个模块的Logic、DSP、RAM、LUTRAM等等内容了。</p>
+<p>注：如果summary的Module Level Utiliztion的报告没有出来，那么可以通过手动Reset Report List解决。</p>
+<h3 id="深入分析"><a href="#深入分析" class="headerlink" title="深入分析"></a>深入分析</h3><p>在Post-Place &amp; Route Static Timing的配置中，将对应的扩展打开，可进时序进行深入的分析！</p>
+<h3 id="下载固化至FPGA的启动速度"><a href="#下载固化至FPGA的启动速度" class="headerlink" title="下载固化至FPGA的启动速度"></a>下载固化至FPGA的启动速度</h3><p>Xilinx的ISE中的bit生成，里面有一项“配置速率”的配置，可以将其速率调高，这样固化之后启动就会快许多。</p>
+<h2 id="编译简介"><a href="#编译简介" class="headerlink" title="编译简介"></a>编译简介</h2><p>ISE中设计实现分为3步，分别是：Translate、MAP和Place &amp; Route。<br>Translate：读取综合生成EDIF和NGC格式的网表文件，生成Xilinx的NGD格式的文件。NGD文件是用逻辑元件表示的网表，包括触发器、逻辑门和RAM等逻辑元件。<br>MAP：输入文件是Translate生成的NGD格式的网表文件，输出为NCD（Native Circuit Description）格式的文件。MAP的功能是将NGD文件中的逻辑元件映射成Xilinx FPGA中的元件，比如Logic Cell、I/O cells或者Block RAM等。<br>Place &amp; Route：接收MAP生成的NCD文件，将各个元件放置到FPGA中适当的位置，并通过布线器连接各个元件，完成在FPGA中的设计实现。Place &amp; Route输出NCD文件，用于生成下载文件。</p>
+<p>编译结束后，其中“时序”、“资源”是报告中最重要的两项。</p>
+<h2 id="ChipScope"><a href="#ChipScope" class="headerlink" title="ChipScope"></a>ChipScope</h2><p>用于ChipScope的时候，有时查看一些管脚的时候，但管脚又找不到时，有以下方法可以解决：一般只修改成“soft”：即保持平铺地设计，但又不会破坏要查看的信号。</p>
+<p>ChipScope是Xilinx开发的针对FPGA的在线片内信号分析工具，使用ChipScope可以通过JTAG实时在线观察FPGA的内部信号。<br>ChipScope使用集成逻辑分析仪ILA（Intergrated Logic Analyzer）采样FPGA的内部信号，将采样值存储在FPGA多余的Block RAM中，然后通过JTAG观察采样信号。<br>打开了ChipScope之后，还需要将工程的CDC导入到ChipScope里面去，才可以看到对应的管脚量</p>
+<p>关于管脚的总线问题，当建立CDC时，查看的信号是属于输出管脚时，系统只能通过OBUF进行查看，且在建立之后，无法在ChipScope里面自动归类总线。只能手动建立总线。而其它的内部信号量，则可以自动建立起总线。</p>
+<p>波形图中的T、X、O，为三根不同的游标。T为触发点的不动标（游动不了）。同时可以配置zoom进行对XO中间区域的放大。！</p>
+<p>修改触发的条件，==等于，&lt;&gt;不等于。<br>还可选取触发的条件，包括电平触发及上下沿触发等。功能强大。</p>
+<p>对CDC调试捕捉到的波形，进行导出到Matlab进行数据处理。CDC能捕捉到的时间间隔可以调到十分短，还可以存储大量的数据，有时是无法肉眼进行观察得出结果，有时需要Matlab进行处理。</p>
+<h2 id="管脚分配与时钟约束"><a href="#管脚分配与时钟约束" class="headerlink" title="管脚分配与时钟约束"></a>管脚分配与时钟约束</h2><p>Xilinx的约束一般采用ucf文件进行，称为约束文件。可以包含管脚分配（即管脚的约束）、时钟约束、面积约束等操作，有自己的一套语法。当然也可以采用PlanAhead进行界面化的约束，不过相对操作比较复杂，所以一般没有采用这种方法。但界面更加直观。</p>
+<h3 id="时钟报告"><a href="#时钟报告" class="headerlink" title="时钟报告"></a>时钟报告</h3><p>ISE的时钟报告文件为后缀名“.twr”。map的报告后缀名：“.mrp”</p>
+<h2 id="嵌入式软核MicroBlaze"><a href="#嵌入式软核MicroBlaze" class="headerlink" title="嵌入式软核MicroBlaze"></a>嵌入式软核MicroBlaze</h2><p>MicroBlaze采用功能强大的32位流水线RISC结构，包含32个32位通用寄存器和一个可选的32位移位寄存器，时钟可达150MHz（一般情况下，就只能跑65MHz左右）。在Virtex-2 Pro以及更高系列的平台上，其运行速度可达120DMIP（DhrystoneMIPS），占用资源不到100个Slice。MicroBlaze是软处理器，在高端的芯片系列（Virtex系列）中，还嵌入了PowerPC硬核。</p>
+<h2 id="ISE的下板调试"><a href="#ISE的下板调试" class="headerlink" title="ISE的下板调试"></a>ISE的下板调试</h2><p>Xilinx的下载文件有两种主要的类型：后缀名为Bit的文件，该类文件可直接下载到FPGA；后缀名为MCS的文件，该类文件可下载到PROM中，后PROM中的内容会配置FPGA。<br>Xilinx的bit文件，似乎也可以通过iMPACT下载到PROM。不过还没有尝试过。</p>
+<p>在选择bit文件时，如果工程包含了MicroBlaze软核时，则需要在SDK_Export文件夹下的硬件平台文件夹，找到已经包含了elf（软件程序）的download.bit文件。这样固化程序，就会将MicroBlaze中的软件也固化进去了。</p>
+<h2 id="Tcl语言"><a href="#Tcl语言" class="headerlink" title="Tcl语言"></a>Tcl语言</h2><p>编写tcl脚本，然后先使用xtclsh，再运行命令行source xxx.tcl。（PS：xxx.tcl为你的tcl脚本文件名）<br>或者直接</p>
+<p>或者直接在cmd，在C:\Xilinx\14.1\ISE_DS\ISE\bin\nt\xtcl.sh（或者添加path的环境变量）</p>
+<p>采用xfile add 添加文件时，添加.v、.ucf、.cdc、以及IP核的.xco文件。</p>
+<h2 id="FPGA芯片"><a href="#FPGA芯片" class="headerlink" title="FPGA芯片"></a>FPGA芯片</h2><h3 id="RAM"><a href="#RAM" class="headerlink" title="RAM"></a>RAM</h3><p>芯片包含有两种RAM，一种是分布式离散的，XC6SLX100T大概有976kb（XC6SLX150T有1355kb）；另一种是块RAM（18k为一块，一块18k的RAM可以由两块9k的RAM组成），大概有268块（即共4824kb）</p>
+<p>COE就如QuartusII软件中的MIF文件，在Xilinx的RAM IP核配置可进行选择是否添加COE文件，来对RAM进行初始化。</p>
+<p>FIFO的使用，有基于Block的FIFO，也有基于distribute的FIFO，Block FIFO基于固定占用52个Slice，而distribute FIFO会根据深度及位宽占用不同数量的Slice，</p>
+<h3 id="BUFG"><a href="#BUFG" class="headerlink" title="BUFG"></a>BUFG</h3><p>经常听到别人说“时钟buffer”，所以Xilinx的FPGA也使用BUF作用时钟树的分配。全局时钟缓冲器BUFG是走全局时钟网络。配置PLL时，对输出时钟使用BUFG，这样时钟会稳定一些，保证各个模块之间的时钟偏差最小。FPGA的BUFG资源是比较有限的，对于多时钟系统，有时BUFG会很紧张。</p>
+<p>在Xilinx器件中，提供全局时钟布线资源和数字时钟管理（DCM，Digital Clock Managers）模块。DCM可以实现时钟锁定功能、频率合成功能、分频和倍频功能</p>
+<h3 id="SERDES"><a href="#SERDES" class="headerlink" title="SERDES"></a>SERDES</h3><h1 id="片内微处理器软核MicroBlaze"><a href="#片内微处理器软核MicroBlaze" class="headerlink" title="片内微处理器软核MicroBlaze"></a>片内微处理器软核MicroBlaze</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>MicroBlaze软核内部采用RISC架构和哈佛结构的32位指令和数据总结，内部有32个通用寄存器R0~R3、2个特殊寄存器程序指针（PC）和处理器状态寄存器（MSR）、1个ALU单元、1个移位单元和两级中断响应单元等基本模块，还可具有3/5级流水线、桶形移位器、内存管理/内存保护单元、浮点单元（FPU）、调整缓存、异常处理和调试逻辑等可根据性能需求和逻辑区域成本任意裁剪的高级特性。<br>MicroBlaze可以作为子模块，在FPGA工程实现嵌入式。也可单独作为顶层模块进行运行。</p>
+<p>在ISE中，双击可为MicroBlaze生成一个顶层文件，此时MicroBlaze为允当一个子模块的功能。</p>
+<h2 id="MicroBlaze的总结接口"><a href="#MicroBlaze的总结接口" class="headerlink" title="MicroBlaze的总结接口"></a>MicroBlaze的总结接口</h2><p>MicroBlaze的总线是其优于其他同类CPU软核的重要部分，每种总线都有鲜明的特点和明确的外设。只有合理使用不同的总线来访问不同的外设，且正确地协调这些总线的工作，才能最大程序地发挥MicroBlaze的优势。<br>CoreConnect是由IBM开发的片上总线链，它使多个芯片核相互连接成为一个完整的新芯片成为可能。Xilinx以IBM CoreConnect为嵌入式处理器的设计基础，提供了丰富的接口资源。常用总线标准有：</p>
+<h2 id="EDK开发"><a href="#EDK开发" class="headerlink" title="EDK开发"></a>EDK开发</h2><p>EDK软件主要包括XPS（Xilinx Platform Studio）和SDK（Software Develop Kit）这两个软件，前者用于构建嵌入式硬件平台，后者专门用于开发应用软件，各有侧重。<br>通常ISE FPGA开发软件在后台运行，XPS工具调用ISE软件提供的功能。XPS主要用来嵌入式处理器硬件系统的开发（微处理器、外围设备和这些组件之间的连接问题，以及它们各自的属性设置）。软件开发在SDK中完成。硬件平台的功能验证可以通过硬件描述语言HDL仿真器完成。XPS提供了行为级、结构级以及定时精确级三种类型的仿真。验证过程结构由XPS自动产生，其中包括了仿真的HDL文件。设计者只需要输入时钟时序、重配置信息、以及一些应用代码即可。完成设计后，在XPS中将FPGA比特流和可执行文件可链接格式文件下载，就可以进行目标器件的配置。步骤：</p>
+<ol>
+<li>创建硬件平台：利用XPS的板级开发包向导（BSB Wizard）快速构建设计的硬件平台，是EDK设计的第一步。</li>
+<li>添加IP core以及用户定制外设：在XPS中添加所需的IP core，</li>
+<li>生成仿真文件并测试硬件系统：生成硬件系统的仿真文件，可选择行为级、结构级以及时序级仿真，利用Modelsim等工具测试系统，特别是用户自定义的外设；</li>
+<li>生成硬件比特流：生成硬件和比特流文件，这个步骤类似于传统FPGA设计的综合、布局布线、生成编程文件这3个操作；</li>
+<li>开发软件系统：针对软件需要编写硬件代码，确定软件的操作系统、库、外设驱动等属性，针对每个软件应用工程、设置编译器、优化级别、使用的连接文件等信息。之后编译生成“.elf”帮工的可执行代码。（软件比特流）</li>
+<li>合并软、硬件比特流，生成最终的二进制比特文件。</li>
+<li>采用JTAG下载</li>
+<li>在线调试：可利用XMD工具或ChipScope工具调试。</li>
+</ol>
+<h1 id="有些不懂"><a href="#有些不懂" class="headerlink" title="有些不懂"></a>有些不懂</h1><ol>
+<li>GPIO的位宽不对应问题<ul>
+<li>从BSB新建的LEDS，假如当时配置的位宽为4bit，但生成mhs时，对外的LEDS_IRI_O却是默认的8bit（range），此时会在生成网表处报错，应该手动将其位宽修改如上图的4bit。</li>
+</ul>
+</li>
+<li>下载程序时，一直失败。答：清除工程（Clean Project），然后重新编译一次，再次下载即可</li>
+<li>关于综合操作，现在许多人都认为，Xilinx开发环境ISE的综合能力已经十分不错了，而且只有Xilinx才对自己的芯片最了解嘛，所以许多人皆采用Xilinx自带的XST综合工具进行综合操作。<br>采用XST工具对输入设计的综合，可以根据需要进行一些针对性比较强的配置。（相关配置还没有研究）</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Jiaobuzuji</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.jiaobuzuji.com/blogs/xilinx-ise/" title="Xilinx与ISE">http://www.jiaobuzuji.com/blogs/xilinx-ise/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/xilinx/" rel="tag"># xilinx</a>
+          
+            <a href="/tags/ise/" rel="tag"># ise</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blogs/HOG/" rel="prev" title="人体检测算法 HOG">
+                人体检测算法 HOG <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jiaobuzuji</p>
+              <p class="site-description motion-element" itemprop="description">工作与生活分不清楚的 ASIC 数字前端程序猿</p>
+          </div>
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/jiaobuzuji" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:jiaobuzuji@163.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank" rel="external nofollow">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number"></span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Xilinx"><span class="nav-number">1.</span> <span class="nav-text">Xilinx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ISE"><span class="nav-number">2.</span> <span class="nav-text">ISE</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#积累"><span class="nav-number"></span> <span class="nav-text">积累</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计输入"><span class="nav-number">1.</span> <span class="nav-text">设计输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IP核的添加"><span class="nav-number">2.</span> <span class="nav-text">IP核的添加</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仿真"><span class="nav-number">3.</span> <span class="nav-text">仿真</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译设置"><span class="nav-number">4.</span> <span class="nav-text">编译设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看各个模块占用的资源"><span class="nav-number">4.1.</span> <span class="nav-text">查看各个模块占用的资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入分析"><span class="nav-number">4.2.</span> <span class="nav-text">深入分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载固化至FPGA的启动速度"><span class="nav-number">4.3.</span> <span class="nav-text">下载固化至FPGA的启动速度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译简介"><span class="nav-number">5.</span> <span class="nav-text">编译简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ChipScope"><span class="nav-number">6.</span> <span class="nav-text">ChipScope</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管脚分配与时钟约束"><span class="nav-number">7.</span> <span class="nav-text">管脚分配与时钟约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#时钟报告"><span class="nav-number">7.1.</span> <span class="nav-text">时钟报告</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌入式软核MicroBlaze"><span class="nav-number">8.</span> <span class="nav-text">嵌入式软核MicroBlaze</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ISE的下板调试"><span class="nav-number">9.</span> <span class="nav-text">ISE的下板调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tcl语言"><span class="nav-number">10.</span> <span class="nav-text">Tcl语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FPGA芯片"><span class="nav-number">11.</span> <span class="nav-text">FPGA芯片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RAM"><span class="nav-number">11.1.</span> <span class="nav-text">RAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BUFG"><span class="nav-number">11.2.</span> <span class="nav-text">BUFG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SERDES"><span class="nav-number">11.3.</span> <span class="nav-text">SERDES</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#片内微处理器软核MicroBlaze"><span class="nav-number"></span> <span class="nav-text">片内微处理器软核MicroBlaze</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介-1"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MicroBlaze的总结接口"><span class="nav-number">2.</span> <span class="nav-text">MicroBlaze的总结接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EDK开发"><span class="nav-number">3.</span> <span class="nav-text">EDK开发</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#有些不懂"><span class="nav-number"></span> <span class="nav-text">有些不懂</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">© 2018 — <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jiaobuzuji</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 — <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+  
+
+
+  
+
+  
+
+
+
+  
+  
+
+
+
+
+  
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '512IeUJDPN8hiFYdzq4jgX9p-gzGzoHsz',
+        appKey: '1evObueKdv7R2orsDBktoTew',
+        placeholder: 'Please leave your email address, so I can contact you ASAP.',
+        avatar:'retro',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });;// Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });;(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();</script></body></html>

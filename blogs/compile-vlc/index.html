@@ -1,0 +1,1274 @@
+<!DOCTYPE html><html class="theme-next gemini" lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-me.png">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-me.png">
+
+
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="VLC : 3.0.6准备 OS : Ubuntu 18.10 amd64 desktop minimal ，meson 要求比较新的版本 Software &amp;amp; Update 更换一下源，同时勾选 “source xxxxx” https://forum.videolan.org/viewtopic.php?t=143536  系统自带的 mingw 是 7.3 ，还是有 bug ，所以我">
+<meta name="keywords" content="linux,ubuntu,vlc,cross compiling">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 编译 Win32 的 VLC">
+<meta property="og:url" content="http://www.jiaobuzuji.com/blogs/compile-vlc/index.html">
+<meta property="og:site_name" content="Jiaobuzuji's Pages">
+<meta property="og:description" content="VLC : 3.0.6准备 OS : Ubuntu 18.10 amd64 desktop minimal ，meson 要求比较新的版本 Software &amp;amp; Update 更换一下源，同时勾选 “source xxxxx” https://forum.videolan.org/viewtopic.php?t=143536  系统自带的 mingw 是 7.3 ，还是有 bug ，所以我">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-13T14:30:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 编译 Win32 的 VLC">
+<meta name="twitter:description" content="VLC : 3.0.6准备 OS : Ubuntu 18.10 amd64 desktop minimal ，meson 要求比较新的版本 Software &amp;amp; Update 更换一下源，同时勾选 “source xxxxx” https://forum.videolan.org/viewtopic.php?t=143536  系统自带的 mingw 是 7.3 ，还是有 bug ，所以我">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.jiaobuzuji.com/blogs/compile-vlc/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Linux 编译 Win32 的 VLC | Jiaobuzuji's Pages</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jiaobuzuji's Pages</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">现在就是未来</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">21</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">12</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jiaobuzuji.com/blogs/compile-vlc/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jiaobuzuji">
+      <meta itemprop="description" content="工作与生活分不清楚的 ASIC 数字前端程序猿">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaobuzuji's Pages">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Linux 编译 Win32 的 VLC
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-13 14:30:06 / 修改时间：14:30:10" itemprop="dateCreated datePublished" datetime="2018-07-13T14:30:06+00:00">2018-07-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Tools/vlc/" itemprop="url" rel="index"><span itemprop="name">vlc</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blogs/compile-vlc/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/blogs/compile-vlc/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="VLC-3-0-6"><a href="#VLC-3-0-6" class="headerlink" title="VLC : 3.0.6"></a>VLC : 3.0.6</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ul>
+<li>OS : Ubuntu 18.10 amd64 desktop minimal ，meson 要求比较新的版本</li>
+<li>Software &amp; Update 更换一下源，同时勾选 “source xxxxx”</li>
+<li><a href="https://forum.videolan.org/viewtopic.php?t=143536" target="_blank" rel="noopener">https://forum.videolan.org/viewtopic.php?t=143536</a>  系统自带的 mingw 是 7.3 ，还是有 bug ，所以我们只能手动安装个 mingw 8</li>
+<li><a href="https://packages.debian.org/" target="_blank" rel="noopener">https://packages.debian.org/</a> 下载 mingw 8</li>
+</ul>
+<figure class="highlight lsl"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">binutils-mingw-w64-i686_2<span class="number">.31</span><span class="number">.1</span><span class="number">-11</span>+<span class="number">8.3</span>_amd64.deb</span><br><span class="line">binutils-mingw-w64-x86<span class="number">-64</span>_2<span class="number">.31</span><span class="number">.1</span><span class="number">-11</span>+<span class="number">8.3</span>_amd64.deb</span><br><span class="line">g++-mingw-w64-i686_8<span class="number">.2</span><span class="number">.0</span><span class="number">-21</span>+<span class="number">21.1</span>_amd64.deb</span><br><span class="line">g++-mingw-w64-x86<span class="number">-64</span>_8<span class="number">.2</span><span class="number">.0</span><span class="number">-21</span>+<span class="number">21.1</span>_amd64.deb</span><br><span class="line">gcc-mingw-w64-base_8<span class="number">.2</span><span class="number">.0</span><span class="number">-21</span>+<span class="number">21.1</span>_amd64.deb</span><br><span class="line">gcc-mingw-w64-i686_8<span class="number">.2</span><span class="number">.0</span><span class="number">-21</span>+<span class="number">21.1</span>_amd64.deb</span><br><span class="line">gcc-mingw-w64-x86<span class="number">-64</span>_8<span class="number">.2</span><span class="number">.0</span><span class="number">-21</span>+<span class="number">21.1</span>_amd64.deb</span><br><span class="line">mingw-w64-common_6<span class="number">.0</span><span class="number">.0</span><span class="number">-3</span>_all.deb</span><br><span class="line">mingw-w64-tools_6<span class="number">.0</span><span class="number">.0</span><span class="number">-3</span>_amd64.deb</span><br><span class="line">mingw-w64-x86<span class="number">-64</span>-dev_6<span class="number">.0</span><span class="number">.0</span><span class="number">-3</span>_all.deb</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">sudo apt -y update</span><br><span class="line">sudo apt -y dist-upgrade</span><br><span class="line">sudo apt -y build-dep vlc --fix-missing</span><br><span class="line">sudo apt install -y build-essential</span><br><span class="line"></span><br><span class="line">sudo apt install -y --fix-missing \</span><br><span class="line">  lua5.2 liblua5.2-dev libtool automake autoconf autopoint make gettext pkg-config \</span><br><span class="line">  qt5-default git subversion cmake cvs \</span><br><span class="line">  wine64-development-tools libwine-dev zip p7zip nsis bzip2 \</span><br><span class="line">  yasm ragel ant openjdk-8-jdk default-jdk protobuf-compiler dos2unix \</span><br><span class="line">  gperf flex bison liborc-0.4-dev \</span><br><span class="line">  libltdl-dev meson nasm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到 java8</span></span><br><span class="line">sudo update-alternatives --config java</span><br><span class="line">sudo update-alternatives --config javac</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载对应版本的 VCL 源代码</span></span><br><span class="line">curl -R -O ftp://ftp.videolan.org/pub/vlc/3.0.6/vlc-3.0.6.tar.xz &amp;&amp; tar -Jxf vlc-3.0.6.tar.xz</span><br><span class="line">mkdir -p <span class="string">"vlc-3.0.6/share/hrtfs/"</span>   <span class="comment"># 或者直接到下载最新的源代码，将 hrtfs 文件夹拷贝进去。防止 make package-win-common 时出错</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="编译脚本代码"><a href="#编译脚本代码" class="headerlink" title="编译脚本代码"></a>编译脚本代码</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> vlc-3.0.6</span><br><span class="line">HOST_TRIPLET=x86_64-w64-mingw32</span><br><span class="line"></span><br><span class="line">mkdir -p contrib/win64 &amp;&amp; <span class="built_in">cd</span> contrib/win64</span><br><span class="line">make mostlyclean</span><br><span class="line">../bootstrap --host=<span class="variable">${HOST_TRIPLET}</span></span><br><span class="line">make fetch-all &amp;&amp; make -j4</span><br><span class="line"><span class="built_in">cd</span> -</span><br><span class="line"></span><br><span class="line">PKG_CONFIG_LIBDIR=<span class="string">"`pwd`/contrib/<span class="variable">${HOST_TRIPLET}</span>/lib/pkgconfig"</span></span><br><span class="line">mkdir -p win64 &amp;&amp; <span class="built_in">cd</span> win64</span><br><span class="line">make uninstall</span><br><span class="line">make distclean</span><br><span class="line"><span class="built_in">cd</span> - &amp;&amp; ./bootstrap &amp;&amp; <span class="built_in">cd</span> -</span><br><span class="line">../configure --host=<span class="variable">${HOST_TRIPLET}</span> --build=x86_64-pc-linux-gnu \</span><br><span class="line">  --<span class="built_in">disable</span>-chromecast \</span><br><span class="line">&amp;&amp; make -j4 &amp;&amp; make package-win-common -j4</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="versioninfo-rc-错误："><a href="#versioninfo-rc-错误：" class="headerlink" title="versioninfo.rc 错误："></a>versioninfo.rc 错误：</h3><figure class="highlight vim"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">i686-w64-mingw32-windre<span class="variable">s:</span> versioninfo.rc.in:<span class="number">21</span>: <span class="keyword">syntax</span> error</span><br><span class="line">i686-w64-mingw32-windre<span class="variable">s:</span> preprocessing failed.</span><br><span class="line">Makefile:<span class="number">1224</span>: recipe <span class="keyword">for</span> target <span class="string">'versioninfo.lo'</span> failed</span><br><span class="line"><span class="keyword">make</span>[<span class="number">2</span>]: *** [versioninfo.<span class="keyword">lo</span>] Error <span class="number">1</span></span><br><span class="line"><span class="keyword">make</span>[<span class="number">2</span>]: Leaving directory <span class="string">'/home/d/vlc-3.0.0/contrib/win32/gcrypt/src'</span></span><br><span class="line">Makefile:<span class="number">487</span>: recipe <span class="keyword">for</span> target <span class="string">'install-recursive'</span> failed</span><br><span class="line"><span class="keyword">make</span>[<span class="number">1</span>]: *** [install-recursive] Error <span class="number">1</span></span><br><span class="line"><span class="keyword">make</span>[<span class="number">1</span>]: Leaving directory <span class="string">'/home/d/vlc-3.0.0/contrib/win32/gcrypt'</span></span><br><span class="line">../../contrib/src/gcrypt/rules.<span class="keyword">mak</span>:<span class="number">72</span>: recipe <span class="keyword">for</span> target <span class="string">'.gcrypt'</span> failed</span><br><span class="line"><span class="keyword">make</span>: *** [.gcrypt] Error <span class="number">2</span></span><br></pre></td></tr></tbody></table></figure>
+<p>解决方案： 修改 contrib/win32/gcrypt/configure.ac 第42行</p>
+<p>修改前：m4_esyscmd([git rev-parse –short HEAD | tr -d ‘\n\r’]))<br>修改后：m4_esyscmd([printf %x $(wc -l &lt; debian/changelog)]))</p>
+<h3 id="缺少-libssp-0-dll"><a href="#缺少-libssp-0-dll" class="headerlink" title="缺少 libssp-0.dll"></a>缺少 libssp-0.dll</h3><p>随便上网找个 windows 的 dll 。将其放入编译出来的vlc-3.0.6 文件夹中。</p>
+<h2 id="VLC-3-0-3-失败告终"><a href="#VLC-3-0-3-失败告终" class="headerlink" title="VLC : 3.0.3 (失败告终)"></a>VLC : 3.0.3 (失败告终)</h2><ul>
+<li>HOST_TRIPLET : x86_64-w64-mingw32</li>
+</ul>
+<ul>
+<li>运行<a href="https://wiki.videolan.org/Win32Compile/" title="VLC Win32Compile" target="_blank" rel="noopener">官网教程</a>中的 Static compilation of plugins，我将其写入一个名为：vlc.sh 的脚本中。-<blockquote>
+<p>You might want to use the following script to enforce static compilation. Run as root, and use at your own risk.</p>
+</blockquote>
+</li>
+</ul>
+<p><a href="https://wiki.videolan.org/Win32Compile/" title="VLC Win32Compile" target="_blank" rel="noopener">官网教程</a>提醒版本要对应，ubuntu1804 使用的的版本为 5.0.3，应该还是可以的。</p>
+<blockquote>
+<p><strong>NB</strong>: you need mingw-w64 version 5.0.1 to compile it.</p>
+</blockquote>
+<h3 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h3><p>尝试过使用 vlc-contrib-x86_64-w64-mingw32-20171209.tar.bz2 进行编译，会提示一堆的错误（2018-07-12）。</p>
+<p><a href="https://wiki.videolan.org/Win32Compile/" title="VLC Win32Compile" target="_blank" rel="noopener">官网教程</a>提醒，所以只能手动 build 第三方的库了。</p>
+<blockquote>
+<p>At the time of writing (late 2016), the prebuilt libraries work with VLC 2.2.x <strong>only</strong>. To compile the VLC 3.0.x development branch, <strong>DO NOT USE</strong> the prebuilt libraries.</p>
+</blockquote>
+<p>自己 build 的库，似乎比较少，可能是因为这样子，才导致后面出现了一堆错误。</p>
+<h3 id="VDPAU-出错"><a href="#VDPAU-出错" class="headerlink" title="VDPAU 出错"></a>VDPAU 出错</h3><p><a href="https://trac.videolan.org/vlc/ticket/18609" target="_blank" rel="noopener">IMHO x11/VDPAU shouldn’t be checked to begin with when compiling for win32/win64</a><br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove -y libvdpau-dev</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="提示schroedinger出错"><a href="#提示schroedinger出错" class="headerlink" title="提示schroedinger出错"></a>提示<code>schroedinger</code>出错</h3><p>download <a href="https://packages.ubuntu.com/xenial/libschroedinger-dev" target="_blank" rel="noopener">schroedinger_1.0.11.orig.tar.gz</a><br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar -zxf schroedinger_1.0.11.orig.tar.gz</span><br><span class="line"><span class="built_in">cd</span> schroedinger_1.0.11</span><br><span class="line">./configure --prefix=/usr</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="make-时提示看不到-idna-h-文件"><a href="#make-时提示看不到-idna-h-文件" class="headerlink" title="make 时提示看不到 idna.h 文件"></a>make 时提示看不到 idna.h 文件</h3><p><strong><em>无解</em></strong>，坐吃等死。</p>
+<h2 id="VLC-2-2-8"><a href="#VLC-2-2-8" class="headerlink" title="VLC : 2.2.8"></a>VLC : 2.2.8</h2><ul>
+<li>HOST_TRIPLET : i686-w64-mingw32</li>
+<li><strong><code>apt install -y "qt4-default"</code></strong>:</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> vlc</span><br><span class="line">mkdir -p contrib/win32 &amp;&amp; <span class="built_in">cd</span> contrib/win32</span><br><span class="line">curl -R -O ftp://ftp.videolan.org/pub/videolan/contrib/i686-w64-mingw32/vlc-contrib-i686-w64-mingw32-20160218.tar.bz2</span><br><span class="line">mv vlc-contrib-i686-w64-mingw32-20160218.tar.bz2 vlc-contrib-i686-w64-mingw32-latest.tar.bz2</span><br><span class="line">make clean</span><br><span class="line">make distclean</span><br><span class="line">../bootstrap --host=<span class="variable">${HOST_TRIPLET}</span></span><br><span class="line">make prebuilt</span><br><span class="line">rm -f ../i686-w64-mingw32/bin/moc ../i686-w64-mingw32/bin/uic ../i686-w64-mingw32/bin/rcc</span><br><span class="line"><span class="built_in">cd</span> -</span><br><span class="line">./bootstrap</span><br><span class="line">mkdir -p win32 &amp;&amp; <span class="built_in">cd</span> win32</span><br><span class="line">make uninstall</span><br><span class="line">make clean</span><br><span class="line">make distclean</span><br><span class="line">PKG_CONFIG_LIBDIR=<span class="variable">$HOME</span>/tmp/vlc/vlc/contrib/<span class="variable">${HOST_TRIPLET}</span>/lib/pkgconfig \</span><br><span class="line">../extras/package/win32/configure.sh --host=<span class="variable">${HOST_TRIPLET}</span> --build=x86_64-pc-linux-gnu \</span><br><span class="line">--<span class="built_in">disable</span>-mkv</span><br><span class="line">make</span><br><span class="line">make package-win-common</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="懂得的东西"><a href="#懂得的东西" class="headerlink" title="懂得的东西"></a>懂得的东西</h2><ol>
+<li>configure 失败之后，再次重新 configure 时，最好 <code>make distclean</code> 一下。</li>
+<li>toolchain 很重要，版本的应对对于编译影响比较大</li>
+<li>Cross Compiling 用的 LIB 一般是与系统不同的，虽然很可能是同名字，但架构不一样，库也不一样。</li>
+<li>Cross Compiling 在 configure 时，必须通过 <code>PKG_CONFIG_LIBDIR</code> 指定目标架构的库文件。</li>
+</ol>
+<h2 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h2><ul>
+<li><a href="https://wiki.videolan.org/Win32Compile/" target="_blank" rel="noopener">https://wiki.videolan.org/Win32Compile/</a></li>
+<li><a href="https://wiki.videolan.org/VLC_configure_help" target="_blank" rel="noopener">https://wiki.videolan.org/VLC_configure_help</a></li>
+<li><a href="https://trac.videolan.org/vlc/ticket/18609" target="_blank" rel="noopener">https://trac.videolan.org/vlc/ticket/18609</a></li>
+<li><a href="https://wiki.videolan.org/Contrib_Status" target="_blank" rel="noopener">https://wiki.videolan.org/Contrib_Status</a></li>
+<li><a href="ftp://ftp.videolan.org/pub/videolan" target="_blank" rel="noopener">ftp://ftp.videolan.org/pub/videolan</a></li>
+<li><a href="https://packages.ubuntu.com/" target="_blank" rel="noopener">https://packages.ubuntu.com/</a></li>
+<li><a href="https://packages.debian.org/" target="_blank" rel="noopener">https://packages.debian.org/</a></li>
+<li><a href="https://higoge.github.io/2015/07/17/sm02/" target="_blank" rel="noopener">https://higoge.github.io/2015/07/17/sm02/</a></li>
+<li><a href="https://forum.videolan.org/viewtopic.php?t=143536" target="_blank" rel="noopener">https://forum.videolan.org/viewtopic.php?t=143536</a></li>
+<li><a href="https://github.com/videolan/vlc" target="_blank" rel="noopener">https://github.com/videolan/vlc</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Jiaobuzuji</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.jiaobuzuji.com/blogs/compile-vlc/" title="Linux 编译 Win32 的 VLC">http://www.jiaobuzuji.com/blogs/compile-vlc/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+          
+            <a href="/tags/vlc/" rel="tag"># vlc</a>
+          
+            <a href="/tags/cross-compiling/" rel="tag"># cross compiling</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/what-is-life/" rel="next" title="what-is-life">
+                <i class="fa fa-chevron-left"></i> what-is-life
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blogs/asic-formality/" rel="prev" title="Formality 工具">
+                Formality 工具 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jiaobuzuji</p>
+              <p class="site-description motion-element" itemprop="description">工作与生活分不清楚的 ASIC 数字前端程序猿</p>
+          </div>
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/jiaobuzuji" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:jiaobuzuji@163.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank" rel="external nofollow">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VLC-3-0-6"><span class="nav-number">1.</span> <span class="nav-text">VLC : 3.0.6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">1.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译脚本代码"><span class="nav-number">1.2.</span> <span class="nav-text">编译脚本代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#versioninfo-rc-错误："><span class="nav-number">1.3.</span> <span class="nav-text">versioninfo.rc 错误：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少-libssp-0-dll"><span class="nav-number">1.4.</span> <span class="nav-text">缺少 libssp-0.dll</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VLC-3-0-3-失败告终"><span class="nav-number">2.</span> <span class="nav-text">VLC : 3.0.3 (失败告终)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第三方库"><span class="nav-number">2.1.</span> <span class="nav-text">第三方库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VDPAU-出错"><span class="nav-number">2.2.</span> <span class="nav-text">VDPAU 出错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提示schroedinger出错"><span class="nav-number">2.3.</span> <span class="nav-text">提示schroedinger出错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#make-时提示看不到-idna-h-文件"><span class="nav-number">2.4.</span> <span class="nav-text">make 时提示看不到 idna.h 文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VLC-2-2-8"><span class="nav-number">3.</span> <span class="nav-text">VLC : 2.2.8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#懂得的东西"><span class="nav-number">4.</span> <span class="nav-text">懂得的东西</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关连接"><span class="nav-number">5.</span> <span class="nav-text">相关连接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">© 2018 — <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jiaobuzuji</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 — <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+  
+
+
+  
+
+  
+
+
+
+  
+  
+
+
+
+
+  
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '512IeUJDPN8hiFYdzq4jgX9p-gzGzoHsz',
+        appKey: '1evObueKdv7R2orsDBktoTew',
+        placeholder: 'Please leave your email address, so I can contact you ASAP.',
+        avatar:'retro',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });;// Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });;(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();</script></body></html>

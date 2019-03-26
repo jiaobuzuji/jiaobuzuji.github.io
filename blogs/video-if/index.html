@@ -1,0 +1,1255 @@
+<!DOCTYPE html><html class="theme-next gemini" lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-me.png">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-me.png">
+
+
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="接口基本概念VGA XGA UXGA SVGA HDMICCIR 与 ITU-R国际无线电咨询委员会(International Radio Consultative Committee)，CCIR是国际无线电咨询委员会的简称。成立于1927年，主要职责是研究无线电通信和技术业务问题，并对这类问题通过建议书。从1993年3月1日起，与国际频率登记委员会（IFRB）合并，成为现今国际电信联盟（ITU">
+<meta name="keywords" content="bt656,bt1120,HDMI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音视频接口标准（二）">
+<meta property="og:url" content="http://www.jiaobuzuji.com/blogs/video-if/index.html">
+<meta property="og:site_name" content="Jiaobuzuji's Pages">
+<meta property="og:description" content="接口基本概念VGA XGA UXGA SVGA HDMICCIR 与 ITU-R国际无线电咨询委员会(International Radio Consultative Committee)，CCIR是国际无线电咨询委员会的简称。成立于1927年，主要职责是研究无线电通信和技术业务问题，并对这类问题通过建议书。从1993年3月1日起，与国际频率登记委员会（IFRB）合并，成为现今国际电信联盟（ITU">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/00738gZoly1fnwpoww2h4j30lg07fjrd.jpg">
+<meta property="og:updated_time" content="2014-12-18T22:46:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="音视频接口标准（二）">
+<meta name="twitter:description" content="接口基本概念VGA XGA UXGA SVGA HDMICCIR 与 ITU-R国际无线电咨询委员会(International Radio Consultative Committee)，CCIR是国际无线电咨询委员会的简称。成立于1927年，主要职责是研究无线电通信和技术业务问题，并对这类问题通过建议书。从1993年3月1日起，与国际频率登记委员会（IFRB）合并，成为现今国际电信联盟（ITU">
+<meta name="twitter:image" content="http://wx4.sinaimg.cn/large/00738gZoly1fnwpoww2h4j30lg07fjrd.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.jiaobuzuji.com/blogs/video-if/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>音视频接口标准（二） | Jiaobuzuji's Pages</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jiaobuzuji's Pages</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">现在就是未来</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">21</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">12</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jiaobuzuji.com/blogs/video-if/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jiaobuzuji">
+      <meta itemprop="description" content="工作与生活分不清楚的 ASIC 数字前端程序猿">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaobuzuji's Pages">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">音视频接口标准（二）
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2014-12-18 22:46:15" itemprop="dateCreated datePublished" datetime="2014-12-18T22:46:15+00:00">2014-12-18</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数字图像/" itemprop="url" rel="index"><span itemprop="name">数字图像</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blogs/video-if/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/blogs/video-if/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="接口基本概念"><a href="#接口基本概念" class="headerlink" title="接口基本概念"></a>接口基本概念</h1><h2 id="VGA-XGA-UXGA-SVGA-HDMI"><a href="#VGA-XGA-UXGA-SVGA-HDMI" class="headerlink" title="VGA XGA UXGA SVGA HDMI"></a>VGA XGA UXGA SVGA HDMI</h2><h1 id="CCIR-与-ITU-R"><a href="#CCIR-与-ITU-R" class="headerlink" title="CCIR 与 ITU-R"></a>CCIR 与 ITU-R</h1><p>国际无线电咨询委员会(International Radio Consultative Committee)，CCIR是国际无线电咨询委员会的简称。成立于1927年，主要职责是研究无线电通信和技术业务问题，并对这类问题通过建议书。从1993年3月1日起，与国际频率登记委员会（IFRB）合并，成为现今国际电信联盟（ITU）无线电通信部门，是国际电信联盟（ITU）的常设机构之一，简称ITU-R。</p>
+<p>在CCIR与IFRB合并之前，CCIR已经就电视演播室数字编码提出了CCIR601号与CCIR656号建议，并深入市场。与IFRB合并之后，CCIR易名，成ITU-R。相应的建议书也就变成ITU-R BT601与ITU-R BT601。因为CCIR601（与CCIR656）都是已经广泛应用，所以你说CCIR601别人也会知道是指ITU-R BT601的</p>
+<p>常用于芯片间的视频接口标准，有BT656、BT601，支持高清接口有BT1120。ITU-R BT656及BT601， 其实都只是推荐标准，所以厂商可以根据自身需要修改接口的时序（当然芯片厂商没事也不会去修改这些接口时序的）</p>
+<h2 id="ITU-R-BT-601"><a href="#ITU-R-BT-601" class="headerlink" title="ITU-R BT.601"></a>ITU-R BT.601</h2><p>BT601是比较早提出来的，用于SDTV。标准规定了：数字编码形式、每一数字有效行的样本数量、采样频率、码字的用法、采样结构等。但并没有详细地对pin、时序、处理时钟这些传输进行详细规定，只是建议支持并行接口、串行接口。所以这导致了芯片厂商的BT601接口经常模糊不清或者厂商间接口不兼容问题（这是一个坑，厂商有时不指出是BT601，直接自己取名字。如OmniVision的Sensor芯片，弄出个HSYNC mode。）</p>
+<p>支持标准4:3和宽屏16:9显示宽高比，主要是为演播室数字电视编码参数（现在可不是，现在多用于芯片间的接口）。具体的内容，看看标准就可以知道。</p>
+<p>BT601没有规定接口时序，但以我多年（<em>小于一年</em>）研究BT601和看过多款（<em>小于三款</em>）芯片接口的经验，我可以总结出目前市场上BT601的大致接口（<em>至于你信不信，反正我是信了</em>）。</p>
+<ul>
+<li>vsync_field, hsync, data 三类pin。</li>
+<li>hsync是一直有规律地出现，并不会因为处于场消隐而不出现。</li>
+<li>有hsync offset的东西，hsync并不与active data严格对齐。</li>
+</ul>
+<p><img src="http://wx4.sinaimg.cn/large/00738gZoly1fnwpoww2h4j30lg07fjrd.jpg" alt="我总结的BT601"></p>
+<p>注：此处的vsync在消隐时为高电平，href与hsync是同一管脚。（这图是参考OmniVision的DVP画的）</p>
+<p>有些视频数据有分前后场，此时就有field信号，field与vsync是共用同一管脚。</p>
+<h2 id="ITU-R-BT-656"><a href="#ITU-R-BT-656" class="headerlink" title="ITU-R BT.656"></a>ITU-R BT.656</h2><p>BT656其实是BT601接口的一个补充，使用BT601中yuv422（OmniVision也使用BT656传输RawData）、比特串行传输的建议。BT656建议书的描述使用未压缩PAL或NTSC系统（目前也支持许多不同的分辨率，建议书只是以PAL、NTSC为例子）。在BT601建议书中，包含了模拟部分和数字部分，BT656是针对其数字部分的建议。BT656标准将串行接口细化，采用内嵌同步码的同步方式。BT656是最常用的接口，后来为支持高清，提出了BT1120。</p>
+<h3 id="数字描述"><a href="#数字描述" class="headerlink" title="数字描述"></a>数字描述</h3><p>BT656及BT601的数字信号格式使用了8或10比特编码字的二进制信息，数字字的内容用十六进制形式的10比特表示法描述。</p>
+<ul>
+<li>10比特：1001000101比特模式表示为91.4h；（BT656-5则表示为245h）</li>
+<li>8比特：10010001比特模式表示为91h；</li>
+</ul>
+<p>BT656-4推荐书的描述8比特字占据了10比特字中左边<strong>最重要</strong>的比特（也就是最高8位）。即从比特9至比特2。其中比特9是最为重要的比特。</p>
+<h3 id="数字格式"><a href="#数字格式" class="headerlink" title="数字格式"></a>数字格式</h3><p>八个最重要比特全设为1或全设为0的数据字被保留用于数据辨别，因此可用的256个8比特字中仅有254个，或可用的1024个10比特字中的1016个可用于表述信号值。视频数据使用YUV422中的UYVY格式（即 Cb,Y,CRY ），其中UYV是共站亮度和色差抽样，而紧接着的Y字对应下一个亮度抽样。一个UYVY即为一个word，传输速率为27Mword/s。要知道，YUV422的UV是每两个像素传输一次，Y是每个像素都传输。</p>
+<h3 id="视频计时基准码（SAV，EAV）"><a href="#视频计时基准码（SAV，EAV）" class="headerlink" title="视频计时基准码（SAV，EAV）"></a>视频计时基准码（SAV，EAV）</h3><p>现存在两个计时基准信号，一个位于各视频数据块的发端（活跃视频的起点，SAV），另一个则位于各视频数据块的末端（活跃视频的终点，EAV）。</p>
+<pre><code>... U Y V Y U Y V Y FF 00 00 XY 80 10 80 10 ... 80 10 80 10 FF 00 00 XY U Y V Y U Y V Y ...
+</code></pre><p>每个计时基准信号包括一个四字序列，格式为：FF 00 00 XY。（数值用十六进制计数法表示。）前三个字是固定的前导码。第四个字包括的信息定义场2的标识，场消隐的状态和行消隐的状态。</p>
+<p>| 数据比特编号    | 第一个字   | 第二个字  | 第三个字  | 第四个字（XY）   |<br>|:——:+:—–:+:—-:+:—-:+:—–:|<br>| 9(MSB) | 1 | 0 | 0 | 1  |<br>| 8      | 1 | 0 | 0 | F  |<br>| 7      | 1 | 0 | 0 | V  |<br>| 6      | 1 | 0 | 0 | H  |<br>| 5      | 1 | 0 | 0 | P3 |<br>| 4      | 1 | 0 | 0 | P2 |<br>| 3      | 1 | 0 | 0 | P1 |<br>| 2      | 1 | 0 | 0 | P0 |<br>| 1      | 1 | 0 | 0 | 0  |<br>| 0(LSB) | 1 | 0 | 0 | 0  |</p>
+<p>F=0 场 0<br>F=1 场 1</p>
+<p>V=0 非消隐期间<br>V=1 消隐期间</p>
+<p>H=0 SAV<br>H=1 EAV</p>
+<p>上图是10bit接口的数值，与现有的8比特接口匹配时。最低两位没有定义。同理，当是12bit接口时，计时基准信号XY占据12bit中最高8bit。</p>
+<p>在接收机端，P3，P2，P1，P0是1位误码纠错和2位误码检错的功能（采用自动纠错码，即海明检验码），P的一些状态取决于比特F、V和H的状态。</p>
+<pre><code>P0=F^V^H
+P1=F^V
+P2=F^H
+P3=V^H
+</code></pre><p>关于纠错检错的推理，留给你们自己推算（或者查阅相关资料）吧。</p>
+<p>注：发现OV9712芯片可以对BT656的计时基准码进行配置，具体怎么配置，作用是什么，就没有研究清楚</p>
+<h3 id="辅助数据"><a href="#辅助数据" class="headerlink" title="辅助数据"></a>辅助数据</h3><p>辅助信号应遵循ITU-R BT.1364建议书的规定。（没搞懂）</p>
+<h3 id="数字消隐"><a href="#数字消隐" class="headerlink" title="数字消隐"></a>数字消隐</h3><p>数字消隐间隔期间出现的，并未用作计时基准码或辅助数据的数据字使用80.0h、10.0h、80.0h、10.0h（八位数据时，即为80h、10h、80h、10h，刚好对应y#16，cb,cr#128）等序列填充，分别与C~b~,Y,C~R~,信号的消隐电平相对应，恰当地置于复用数据中。,</p>
+<p>OmniVison输出的数字消隐，可使用80h、10h、80h、10h来填充，也可使用空白来填充。</p>
+<h2 id="其他一些常见标准"><a href="#其他一些常见标准" class="headerlink" title="其他一些常见标准"></a>其他一些常见标准</h2><ul>
+<li>BT709 这是一个与BT601类似的标准，但其针对的是HDTV。（时代在进步，标准也要跟上嘛）</li>
+<li>bt1120 这是与BT656类似的标准，也包含了SAV、EAV的计时基准。是BT709的接口细化，支持HDTV</li>
+<li>BT1700（行编号）</li>
+<li>BT1364（承载分组数据）</li>
+</ul>
+<h1 id="疑点重重"><a href="#疑点重重" class="headerlink" title="疑点重重"></a>疑点重重</h1><ul>
+<li>BT656所说的传输速率27Mword/s。一个word又是指“UYVY”。这个传输速率是指并行传输的吗？如果是串行传输，那么Pixel Clock岂不是要54MHz，而发送时的Clock岂不是要108MHz了？？</li>
+<li>海思中指出：支持BT656、BT601、DC timings。同时又说支持SMPTE293M/ITU-R BT1358（480p/576p）、SMPTE296M timing（720p）</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Jiaobuzuji</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.jiaobuzuji.com/blogs/video-if/" title="音视频接口标准（二）">http://www.jiaobuzuji.com/blogs/video-if/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/bt656/" rel="tag"># bt656</a>
+          
+            <a href="/tags/bt1120/" rel="tag"># bt1120</a>
+          
+            <a href="/tags/HDMI/" rel="tag"># HDMI</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/HOG/" rel="next" title="人体检测算法 HOG">
+                <i class="fa fa-chevron-left"></i> 人体检测算法 HOG
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blogs/audio-if/" rel="prev" title="音视频接口标准（一）">
+                音视频接口标准（一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jiaobuzuji</p>
+              <p class="site-description motion-element" itemprop="description">工作与生活分不清楚的 ASIC 数字前端程序猿</p>
+          </div>
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/jiaobuzuji" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:jiaobuzuji@163.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank" rel="external nofollow">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#接口基本概念"><span class="nav-number">1.</span> <span class="nav-text">接口基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VGA-XGA-UXGA-SVGA-HDMI"><span class="nav-number">1.1.</span> <span class="nav-text">VGA XGA UXGA SVGA HDMI</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CCIR-与-ITU-R"><span class="nav-number">2.</span> <span class="nav-text">CCIR 与 ITU-R</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ITU-R-BT-601"><span class="nav-number">2.1.</span> <span class="nav-text">ITU-R BT.601</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ITU-R-BT-656"><span class="nav-number">2.2.</span> <span class="nav-text">ITU-R BT.656</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数字描述"><span class="nav-number">2.2.1.</span> <span class="nav-text">数字描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字格式"><span class="nav-number">2.2.2.</span> <span class="nav-text">数字格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频计时基准码（SAV，EAV）"><span class="nav-number">2.2.3.</span> <span class="nav-text">视频计时基准码（SAV，EAV）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助数据"><span class="nav-number">2.2.4.</span> <span class="nav-text">辅助数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字消隐"><span class="nav-number">2.2.5.</span> <span class="nav-text">数字消隐</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他一些常见标准"><span class="nav-number">2.3.</span> <span class="nav-text">其他一些常见标准</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#疑点重重"><span class="nav-number">3.</span> <span class="nav-text">疑点重重</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">© 2018 — <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jiaobuzuji</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 — <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+  
+
+
+  
+
+  
+
+
+
+  
+  
+
+
+
+
+  
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '512IeUJDPN8hiFYdzq4jgX9p-gzGzoHsz',
+        appKey: '1evObueKdv7R2orsDBktoTew',
+        placeholder: 'Please leave your email address, so I can contact you ASAP.',
+        avatar:'retro',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });;// Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });;(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();</script></body></html>
