@@ -15,6 +15,20 @@ tags: [linux,ubuntu,vlc,cross compiling]
 * OS : Ubuntu 18.10 amd64 desktop minimal ，meson 要求比较新的版本
 * Software & Update 更换一下源，同时勾选 “source xxxxx”
 * https://forum.videolan.org/viewtopic.php?t=143536  系统自带的 mingw 是 7.3 ，还是有 bug ，所以我们只能手动安装个 mingw 8
+* https://packages.debian.org/ 下载 mingw 8
+
+```
+binutils-mingw-w64-i686_2.31.1-11+8.3_amd64.deb
+binutils-mingw-w64-x86-64_2.31.1-11+8.3_amd64.deb
+g++-mingw-w64-i686_8.2.0-21+21.1_amd64.deb
+g++-mingw-w64-x86-64_8.2.0-21+21.1_amd64.deb
+gcc-mingw-w64-base_8.2.0-21+21.1_amd64.deb
+gcc-mingw-w64-i686_8.2.0-21+21.1_amd64.deb
+gcc-mingw-w64-x86-64_8.2.0-21+21.1_amd64.deb
+mingw-w64-common_6.0.0-3_all.deb
+mingw-w64-tools_6.0.0-3_amd64.deb
+mingw-w64-x86-64-dev_6.0.0-3_all.deb
+```
 
 ```bash
 sudo apt -y update
@@ -64,19 +78,19 @@ cd - && ./bootstrap && cd -
 ### versioninfo.rc 错误：
 
 ```
-i686-w64-mingw32-windres: versioninfo.rc.in:21: syntax error 
-i686-w64-mingw32-windres: preprocessing failed. 
-Makefile:1224: recipe for target 'versioninfo.lo' failed 
-make[2]: *** [versioninfo.lo] Error 1 
-make[2]: Leaving directory '/home/d/vlc-3.0.0/contrib/win32/gcrypt/src' 
-Makefile:487: recipe for target 'install-recursive' failed 
-make[1]: *** [install-recursive] Error 1 
-make[1]: Leaving directory '/home/d/vlc-3.0.0/contrib/win32/gcrypt' 
-../../contrib/src/gcrypt/rules.mak:72: recipe for target '.gcrypt' failed 
-make: *** [.gcrypt] Error 2 
+i686-w64-mingw32-windres: versioninfo.rc.in:21: syntax error
+i686-w64-mingw32-windres: preprocessing failed.
+Makefile:1224: recipe for target 'versioninfo.lo' failed
+make[2]: *** [versioninfo.lo] Error 1
+make[2]: Leaving directory '/home/d/vlc-3.0.0/contrib/win32/gcrypt/src'
+Makefile:487: recipe for target 'install-recursive' failed
+make[1]: *** [install-recursive] Error 1
+make[1]: Leaving directory '/home/d/vlc-3.0.0/contrib/win32/gcrypt'
+../../contrib/src/gcrypt/rules.mak:72: recipe for target '.gcrypt' failed
+make: *** [.gcrypt] Error 2
 ```
 
-解决方案： 修改 contrib/win32/gcrypt/configure.ac 第42行  
+解决方案： 修改 contrib/win32/gcrypt/configure.ac 第42行
 
 修改前：m4_esyscmd([git rev-parse --short HEAD | tr -d '\n\r']))
 修改后：m4_esyscmd([printf %x $(wc -l < debian/changelog)]))
@@ -162,6 +176,7 @@ make package-win-common
 * https://wiki.videolan.org/Contrib_Status
 * ftp://ftp.videolan.org/pub/videolan
 * https://packages.ubuntu.com/
+* https://packages.debian.org/
 * https://higoge.github.io/2015/07/17/sm02/
 * https://forum.videolan.org/viewtopic.php?t=143536
 * https://github.com/videolan/vlc
