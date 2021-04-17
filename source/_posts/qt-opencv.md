@@ -1,5 +1,5 @@
 ---
-title: qt+opencv
+title: qt-opencv
 mathjax: true
 comments: true
 date: 2021-04-17 15:57:21
