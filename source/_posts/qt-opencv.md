@@ -42,7 +42,7 @@ cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_E
 make -j4
 sudo make install #安装
 ```
-安装完成后，在/usr/local/include放opencv头文件按，/usr/local/lib放库文件。
+安装完成后，在/usr/local/include放opencv头文件按，/usr/local/lib放库文件。(/usr/local/lib64)
 
 ### 配置, 添加库路径
 ```
@@ -51,7 +51,7 @@ sudo touch opencv.conf
 sudo echo "xxx/lib" > opencv.conf
 sudo ldconfig
 ```
-xxx/lib 为 opencv 动态库的安装目录，默认为：/usr/local/lib
+xxx/lib 为 opencv 动态库的安装目录，默认为：/usr/local/lib(/usr/local/lib64)
 
 ### 测试opencv
 
@@ -84,20 +84,19 @@ CONFIG -= qt
 
 SOURCES += main.cpp
 
-INCLUDEPATH += /usr/local/include \
-                /usr/local/include/opencv \
-                /usr/local/include/opencv2
+# INCLUDEPATH += /usr/local/include \
+#                 /usr/local/include/opencv \
+#                 /usr/local/include/opencv2
+# LIBS += /usr/local/lib/lib*
 
-LIBS += /usr/local/lib/lib*
+INCLUDEPATH += /usr/local/include/opencv2
+LIBS += /usr/local/lib64/lib*
 ```
 
 源文件：
 ```
 #include <iostream>
-#include "opencv2/core.hpp"
-#include "opencv2/highgui.hpp"
-#include "opencv2/videoio.hpp"
-#include "opencv2/imgproc.hpp"
+#include "opencv.hpp"
 
 using namespace std;
 using namespace cv;
