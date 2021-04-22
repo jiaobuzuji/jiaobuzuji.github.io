@@ -1265,6 +1265,12 @@ VBoxManage modifyhd --compact yourImage.vdi
 ```
 这样在guest上看到占用的空间就和host上看到的空间就一样了。
 
+### vbox 无限嵌套
+开启之后，就可以在虚拟的64bit w10系统中再安装虚拟机安装64bit系统。
+```
+VBoxManage modifyvm "w10" --nested-hw-virt on
+```
+
 ## home
 在 linux 下面，有一堆杂七杂八的东西。 .cache .config .dbus .ibus .Xauthorxxx 如果你的电脑出现一些奇怪的现象：输入无法输入，桌面无法显示，图标异常，字体看不见等等问题。可以尝试将这些杂七杂八的东西删掉。
 
