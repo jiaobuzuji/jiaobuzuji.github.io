@@ -115,3 +115,20 @@ tasklist|findstr "???"
 ### Visual Studio
 首先，在视图→其他窗口→属性管理器，打开属性管理器窗口。
 然后就可以添加 opencv.props 文件了。
+
+
+### en XP，安装中文支持
+进入control panel(控制面板),切换到经典模式，启动Regional and Language Options(区域与语言选项)
+
+首先要安装东亚语言支持。转到Languages选项卡，把Install files for East Asian languages这项选上，按Apply按钮。这时系统可能会要求你插入Windows XP操作系统的安装光盘以复制一些文件。完成了这步，你的电脑就能正确显示所有符合Unicode标准的中文了，但是对GB、GBK码的简体中文和Big5码的繁体中文还是显示乱码。
+
+选择“Regional Options”，在“Standards and formats”的下拉菜单中选择chinese(PRC)
+
+然后转到Advanced选项卡，如果你使用中国大陆的简体中文，就在Language for non-Unicode programs的下拉选择框中选择Chinese(PRC)，然后按底下的Apply按钮。完成了这步，你的电脑里应该就能正确显示GB、GBK码的中文了。而如果你使用台湾或香港的Big5繁体中文，就要在Language for non-Unicode programs的下拉选择框中选择Chinese(Taiwan)或Chinese(Hong Kong)。
+接下来： Default user account setting
+
+使Windows XP能输入中文
+
+到Languages选项卡上点击Details按钮：
+点Add按钮,把Add Input Language设成Chinese(PRC)，在Keyboard layout/IME的下拉选择框里选择一种你想使用的输入法，比如我们这里选择了中文简体全拼。点OK按钮，在Text Services and Input Languages窗口就可见到输入法已经加入了.
+如果你使用五笔，在作了第一步后，安装五笔输入法就行，输入法中就会出现你安装的输入法。
