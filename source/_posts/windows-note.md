@@ -132,3 +132,11 @@ tasklist|findstr "???"
 到Languages选项卡上点击Details按钮：
 点Add按钮,把Add Input Language设成Chinese(PRC)，在Keyboard layout/IME的下拉选择框里选择一种你想使用的输入法，比如我们这里选择了中文简体全拼。点OK按钮，在Text Services and Input Languages窗口就可见到输入法已经加入了.
 如果你使用五笔，在作了第一步后，安装五笔输入法就行，输入法中就会出现你安装的输入法。
+
+### win10 2020 版本的，访问共享文件夹
+你不能访问此共享文件夹，因为你组织的安全策略阻止未经身份验证的来宾访问
+1. 计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters 将AllowInsecureGuestAuth设置为1
+2. 计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LanmanWorkstation，将AllowInsecureGuestAuth设置为1
+
+### win10 挤眼绿
+将win10 的主题改成黑色，启用夜色模式，然后将就用吧，就不要折腾什么挤眼绿。即使改了 regedit ，Office365的背景还是白色的。放弃！！
