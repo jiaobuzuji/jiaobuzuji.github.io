@@ -1401,3 +1401,8 @@ linux:~ #lsof  -p 3064
 kill  -9  3064
 
 注：从第3步可以看出僵尸进程是什么应用，请依据实际情况确认此进程是否能够kill掉，及明确kill之后需要重启的应用等后续处理；
+
+## svn
+svnadmin create /home/svnroot/repos
+svnserve -d -r /home/svnroot/repos
+编辑 /home/svnroot/repos/conf/svnserve.conf，
