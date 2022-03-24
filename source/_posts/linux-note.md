@@ -1406,3 +1406,8 @@ kill  -9  3064
 svnadmin create /home/svnroot/repos
 svnserve -d -r /home/svnroot/repos
 编辑 /home/svnroot/repos/conf/svnserve.conf，
+svn import /home/haha file:///home/svnroot/repos -m "init svn"
+
+查看端口使用情况
+netstat -antp | grep svnserve
+
