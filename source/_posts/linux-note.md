@@ -1471,3 +1471,7 @@ svn:global-ignores：svn全局忽略属性
 ```
 svn commit -m "add svn:global-ignores"
 ```
+
+## vinagre 远程桌面
+ edit bookmarks in vinagre
+'~/.local/share/vinagre/vinagre-bookmarks.xml'
