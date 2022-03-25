@@ -1442,3 +1442,32 @@ $Date$ 和 $Author$ 字样都会被自动替换成修改时间和提交者用户
 这时候就设置完了。
 此时，所有新加的php文件，如果含有"$Id$"字符都会被替换。
 
+### svnignore 全局ignore
+在项目的根目录创建一个 .svnignore 文件，将需要忽略的文件添加至 .svnignore 中，也可以使用正则表达式，文件格式类似 .gitignore
+```
+.settings
+.settings/*
+target
+target/*
+.classpath
+.project
+*.iml
+.idea
+```
+
+1、在根目录执行如下命令，此时忽略配置还未生效：
+
+```
+svn propset svn:global-ignores -F .svnignore .
+```
+
+
+propset：svn属性设置
+svn:global-ignores：svn全局忽略属性
+-F：表示从 .svnignore 文件中读取匹配规则
+. ：表示当前目录
+
+2、执行如下命令，将忽略配置提交至服务器。只有提交后服务器才能感知忽略配置。
+```
+svn commit -m "add svn:global-ignores"
+```
