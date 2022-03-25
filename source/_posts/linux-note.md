@@ -1411,3 +1411,34 @@ svn import /home/haha file:///home/svnroot/repos -m "init svn"
 查看端口使用情况
 netstat -antp | grep svnserve
 
+### 自动属性
+ svn 有一个自动属性的功能，即给给该文件添加一些属性，比如 svn : keywords ，添加该文件的关 键字，这样在该文件内容里就会识别该关键字，而把关键字的地方替换成 svn 服务器上的相应属 性。
+
+目前支持5个关键字：Date（修改时间）、Revision（版本）、Author（提交者）、HeadURL（库路径）、Id（前面4个的组合）
+首先要告诉svn你这个文件需要替换关键字:
+```
+$ svn propset svn:keywords "Date Author" weather.txt
+property 'svn:keywords' set on 'weather.txt'
+$
+```
+上面命令设置了文件weather.txt的关键字属性。只要该文件中出现
+$Date$ 和 $Author$ 字样都会被自动替换成修改时间和提交者用户名。
+
+### 运行配置区  自动属性
+如果你觉得上面的操作太麻烦，希望所有的文件(某类型)都自动进行替换，而不是对每个文件都运行如上命令，那么你可以通过设置运行配置区来实现。
+  运行配置区分用户配置区和系统配置区。用户配置区只对用户的工作目录起作用，系统配置区对所有的svn库起作用，如果设置了系统配置区就不用每个人在自己的用户配置区中进行配置了。
+  用户配置区的设置目录在home个人主目录(类unix系统) ~/.subversion 下，有三个文件：config、servers、README.TXT
+一般配置config文件就可以了。
+  系统配置区在服务器端的/etc/subversion 下，一般都需要手工创建这个目录，然后从个人配置区里面拷贝三个文件过来。
+  
+   配置如下：
+打开config文件：vi config
+找到#enable-auto-props = yes 这一行，去掉前面的注释符“#”号；
+然后在文件最后([auto-props]小节)添加一行：
+```
+*.php = svn:keywords=Id  （这一行的意思是对所有php后缀文件设置Id关键字，你也可以设成其他关键字）
+```
+然后保存退出。
+这时候就设置完了。
+此时，所有新加的php文件，如果含有"$Id$"字符都会被替换。
+
