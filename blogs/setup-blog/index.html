@@ -1,0 +1,1369 @@
+<!DOCTYPE html><html class="theme-next gemini" lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-me.png">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-me.png">
+
+
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言本人不是网页前端设计专业，一切技术对于我来说都是新的，所以有必要将之前折腾的东西记录下。 最初的做法一开始折腾 Github Page 的时候是在 2015 年，那时 Hexo 刚兴起不久，只有耳闻，却没有涉及，而是选择了一个更加冷门的方法：同样使用 Markdown 书写博客，再由pandoc转成 html ，页面布局直接模(chao)仿(xi)大神的template。在此感谢这些鬼东西一直">
+<meta name="keywords" content="markdown,hexo,blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HEXO 零基础搭建个人 Blog">
+<meta property="og:url" content="http://www.jiaobuzuji.com/blogs/setup-blog/index.html">
+<meta property="og:site_name" content="Jiaobuzuji's Pages">
+<meta property="og:description" content="前言本人不是网页前端设计专业，一切技术对于我来说都是新的，所以有必要将之前折腾的东西记录下。 最初的做法一开始折腾 Github Page 的时候是在 2015 年，那时 Hexo 刚兴起不久，只有耳闻，却没有涉及，而是选择了一个更加冷门的方法：同样使用 Markdown 书写博客，再由pandoc转成 html ，页面布局直接模(chao)仿(xi)大神的template。在此感谢这些鬼东西一直">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-17T23:33:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HEXO 零基础搭建个人 Blog">
+<meta name="twitter:description" content="前言本人不是网页前端设计专业，一切技术对于我来说都是新的，所以有必要将之前折腾的东西记录下。 最初的做法一开始折腾 Github Page 的时候是在 2015 年，那时 Hexo 刚兴起不久，只有耳闻，却没有涉及，而是选择了一个更加冷门的方法：同样使用 Markdown 书写博客，再由pandoc转成 html ，页面布局直接模(chao)仿(xi)大神的template。在此感谢这些鬼东西一直">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.jiaobuzuji.com/blogs/setup-blog/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>HEXO 零基础搭建个人 Blog | Jiaobuzuji's Pages</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jiaobuzuji's Pages</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">现在就是未来</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">21</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">12</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jiaobuzuji.com/blogs/setup-blog/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jiaobuzuji">
+      <meta itemprop="description" content="工作与生活分不清楚的 ASIC 数字前端程序猿">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaobuzuji's Pages">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">HEXO 零基础搭建个人 Blog
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-27 22:46:15" itemprop="dateCreated datePublished" datetime="2018-01-27T22:46:15+00:00">2018-01-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-07-17 23:33:12" itemprop="dateModified" datetime="2018-07-17T23:33:12+00:00">2018-07-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blogs/setup-blog/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/blogs/setup-blog/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本人不是网页前端设计专业，一切技术对于我来说都是新的，所以有必要将之前折腾的东西记录下。</p>
+<h3 id="最初的做法"><a href="#最初的做法" class="headerlink" title="最初的做法"></a>最初的做法</h3><p>一开始折腾 <a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="noopener">Github Page</a> 的时候是在 2015 年，那时 <a href="https://hexo.io/" title="Hexo's Homepage" target="_blank" rel="noopener">Hexo</a> 刚兴起不久，只有耳闻，却没有涉及，而是选择了一个更加冷门的方法：同样使用 <a href="https://daringfireball.net/projects/markdown/syntax" target="_blank" rel="noopener">Markdown</a> 书写博客，再由<a href="http://pandoc.org/" target="_blank" rel="noopener">pandoc</a>转成 html ，页面布局直接模(chao)仿(xi)大神的<a href="https://github.com/tzengyuxio/pages/blob/gh-pages/pandoc/pm-template.html5" target="_blank" rel="noopener">template</a>。在此感谢这些鬼东西一直在折磨我，留言以纪念。</p>
+<blockquote>
+<p>一直在模仿，从未有超越<br>——<em>某名人言</em></p>
+</blockquote>
+<h4 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h4><ul>
+<li><a href="http://pages.tzengyuxio.me/pandoc/" target="_blank" rel="noopener">http://pages.tzengyuxio.me/pandoc/</a></li>
+<li><a href="http://pandoc.org/" target="_blank" rel="noopener">http://pandoc.org/</a></li>
+</ul>
+<h3 id="关于本博客"><a href="#关于本博客" class="headerlink" title="关于本博客"></a>关于本博客</h3><p>而今，<a href="https://hexo.io/" title="Hexo's Homepage" target="_blank" rel="noopener">Hexo</a> 已经十分成熟，在国人的群策群力之下，<a href="https://hexo.io/" title="Hexo's Homepage" target="_blank" rel="noopener">Hexo</a> 已经开始赶超 <a href="https://jekyllrb.com/" title="Jekyll's Homepage" target="_blank" rel="noopener">Jekyll</a> 。作为中国人，当然得支持国货啦（重点是中文！中文！！中文！！）</p>
+<ol>
+<li>以 <a href="https://hexo.io/" title="Hexo's Homepage" target="_blank" rel="noopener">Hexo</a> 为 Blog framework</li>
+<li>以 <a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">Next</a> 为主题</li>
+<li>部署在 <a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="noopener">Github Page</a> 上</li>
+<li>在 <a href="https://www.namesilo.com/" target="_blank" rel="noopener">namesilo</a> 购买个人域名，支持支付宝。</li>
+<li>使用 Valine 作为评论区，需要注册 <a href="https://leancloud.cn" target="_blank" rel="noopener">LeanCloud</a></li>
+<li>使用微博作为图床</li>
+</ol>
+<hr>
+<h2 id="免费搭建个人博客"><a href="#免费搭建个人博客" class="headerlink" title="免费搭建个人博客"></a>免费搭建个人博客</h2><p>重点当然在于免费啦～<br><strong>NOTE</strong> : 大部分域名都是需要购买的，也有一些是可以免费注册的，但可能不遵守 ICANN 。</p>
+<h3 id="注册与基本安装"><a href="#注册与基本安装" class="headerlink" title="注册与基本安装"></a>注册与基本安装</h3><ol>
+<li><a href="https://github.com/" title="Github's Homepage" target="_blank" rel="noopener">Github</a> 或者 Coding</li>
+<li>七牛 或者 微博</li>
+<li>如果想弄个人域名，则可能还需要注册 万网，GoDaddy, 或者 <a href="https://www.namesilo.com/" target="_blank" rel="noopener">namesilo</a> 等域名商，还可注册 DNSpod</li>
+</ol>
+<ol>
+<li>创建 <a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="noopener">Github Page</a></li>
+<li>安装 Nodejs, <a href="https://hexo.io/" title="Hexo's Homepage" target="_blank" rel="noopener">Hexo</a>，<a href="https://desktop.github.com/" target="_blank" rel="noopener">Github Desktop</a> 或者 git</li>
+<li>认真阅读一下 <a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">Next</a> 的帮助文件，然后使用 npm 安装好插件<ul>
+<li>利用 <code>--save</code> 可以将插件保存在 package.json 中，如： <code>npm install --save hexo-generator-sitemap</code></li>
+</ul>
+</li>
+<li>域名加密 https，可能还需要了解 <a href="https://letsencrypt.org/" target="_blank" rel="noopener">let’s encrypt</a></li>
+<li><del>安装 gem，travis。gem 是 ruby 下的东西，所以要安装 ruby。Ubuntu 下可以使用下面命令行安装</del><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get instal -y ruby ruby-dev</span><br><span class="line">$ sudo gem install travis</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<p><strong>NOTE 1</strong> : 建议尽量安装新版本的<br><strong>NOTE 2</strong> : 官网的教程一般最详细有效的，但合理的借助他人的总结，也有助于快速入门</p>
+<h3 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h3><p>规划是指合理安排文件的位置，这里就简单说明一下我的规划。<a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="noopener">Github Page</a> 里面规定，<code>username.github.io</code> 这个 repos 必须以 master 这个 branch 作为 <a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="noopener">Github Page</a>。为了保证 Page 与源码同一个 repo，所以我新建了一个叫 <code>source</code> 的 branch ，然后让 <a href="https://hexo.io/" title="Hexo's Homepage" target="_blank" rel="noopener">Hexo</a> 自动部署在这个 repo 的 master 上面。当然你也可以 ‘Page’ 与 ‘source’ 放在两个不同的 repo 中，你钟意咯。</p>
+<p><strong><a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="noopener">Github Page</a> 可以不止一个！！</strong><a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="noopener">Github Page</a> 有两种： <em>User/Organization Pages and Project Pages</em> ，User Page（username.github.io）只能一个，但 Project Page（普通的 repo）可以多个，Project Page 可以利用 CNAME 来创建个人域名中的 subdomain。</p>
+<p><strong>NOTE</strong> : <a href="https://www.namesilo.com/" target="_blank" rel="noopener">namesilo</a> 可以创建 50 个 subdomain</p>
+<h4 id="相关连接-1"><a href="#相关连接-1" class="headerlink" title="相关连接"></a>相关连接</h4><p><a href="https://help.github.com/articles/user-organization-and-project-pages/" target="_blank" rel="noopener">https://help.github.com/articles/user-organization-and-project-pages/</a></p>
+<h3 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h3><p><a href="https://hexo.io/" title="Hexo's Homepage" target="_blank" rel="noopener">Hexo</a> 中非常多好看的主题，本着少折腾的基本原则，选择大众所爱，且有一个大团队在维护的 <a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">Next</a> 主题。开始之前，一定要先好好阅读 <a href="https://hexo.io/" title="Hexo's Homepage" target="_blank" rel="noopener">Hexo</a> 的文档，使用 <a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">Next</a> 也要好好先阅读一下使用文档，通读两三遍也算是正常的。然后开工。</p>
+<h4 id="Ubuntu-上安装-Node-js"><a href="#Ubuntu-上安装-Node-js" class="headerlink" title="Ubuntu 上安装 Node.js"></a>Ubuntu 上安装 Node.js</h4><h5 id="直接安装"><a href="#直接安装" class="headerlink" title="直接安装"></a>直接安装</h5><ol>
+<li><p>安装</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt-get install npm</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>升级 npm</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install npm -g</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/npm -&gt; /usr/<span class="built_in">local</span>/lib/node_modules/npm/bin/npm-cli.js</span><br><span class="line">npm@2.14.2 /usr/<span class="built_in">local</span>/lib/node_modules/npm</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>升级 node.js</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install –g n</span><br><span class="line">sudo n latest(升级node.js到最新版)  or $ n stable（升级node.js到最新稳定版）</span><br><span class="line">n后面也可以跟随版本号比如：`n v0.10.26` 或者 `n 0.10.26`</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>卸载<br>先卸载 npm , 后卸载nodejs</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm uninstall npm -g</span><br><span class="line">sudo apt-get remove nodejs</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<h5 id="nvm安装"><a href="#nvm安装" class="headerlink" title="nvm安装"></a>nvm安装</h5><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash</span><br></pre></td></tr></tbody></table></figure>
+<p>安装成功后,需要关闭xshell，重新启动。nvm才会生效。使用 <code>command -v nvm</code> 查看 nvm 是否安装成功。</p>
+<p>通过 <code>nvm ls</code> 查看已安装的版本，通过 <code>nvm ls-remote</code> 查看可使用版本</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ nvm ls-remote</span><br><span class="line">        v0.1.14</span><br><span class="line">        v0.1.15</span><br><span class="line">        v0.1.16</span><br><span class="line">        v0.1.17</span><br><span class="line">        v0.1.18</span><br><span class="line">...</span><br></pre></td></tr></tbody></table></figure>
+<p>安装nodejs, 通过 <code>nvm install 7.8.0</code> 来安装，后面的版本号我们可以任意选择</p>
+<h5 id="npm镜像替换为淘宝镜像"><a href="#npm镜像替换为淘宝镜像" class="headerlink" title="npm镜像替换为淘宝镜像"></a>npm镜像替换为淘宝镜像</h5><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm get registry</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p><a href="https://registry.npmjs.org/" target="_blank" rel="noopener">https://registry.npmjs.org/</a></p>
+</blockquote>
+<p>设成淘宝的</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry http://registry.npm.taobao.org/</span><br></pre></td></tr></tbody></table></figure>
+<p>换成原来的<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmjs.org/</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h5 id="选装cnpm-推荐！！"><a href="#选装cnpm-推荐！！" class="headerlink" title="选装cnpm (推荐！！)"></a>选装cnpm (推荐！！)</h5><ol>
+<li>说明：因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。！来自官网：“这是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。”；</li>
+<li>官方网址：<a href="http://npm.taobao.org；" target="_blank" rel="noopener">http://npm.taobao.org；</a></li>
+<li>命令安装；注意：安装完后最好查看其版本号 <code>cnpm -v</code> 或关闭命令提示符重新打开，安装完直接使用有可能会出现错误；<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install cnpm -g --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<p>注：cnpm跟npm用法完全一致，只是在执行命令时将npm改为cnpm</p>
+<h5 id="全局安装与本地安装"><a href="#全局安装与本地安装" class="headerlink" title="全局安装与本地安装"></a>全局安装与本地安装</h5><p>npm 的包安装分为本地安装（local）、全局安装（global）两种，从敲的命令行来看，差别只是有没有 <code>-g</code> 而已，比如我们使用 npm 命令安装常用的 Node.js、web框架模块、express等</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install express          <span class="comment"># 本地安装</span></span><br><span class="line">$ npm install express -g       <span class="comment"># 全局安装</span></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="初始化-Blog"><a href="#初始化-Blog" class="headerlink" title="初始化 Blog"></a>初始化 Blog</h4><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init myblog</span><br><span class="line">$ <span class="built_in">cd</span> myblog</span><br><span class="line">$ npm install</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next/ themes/next</span><br><span class="line">$ sed -i <span class="string">"s~landscape~next~"</span> _config.yml <span class="comment"># 修改主题为 next</span></span><br><span class="line">$ hexo g -f <span class="comment"># force generate</span></span><br><span class="line">$ hexo s -o <span class="comment"># server and open browser</span></span><br></pre></td></tr></tbody></table></figure>
+<p>然后就可以在浏览器进行预览了。Hexo 的插件有很多，请自行安装。</p>
+<h4 id="自定义主题"><a href="#自定义主题" class="headerlink" title="自定义主题"></a>自定义主题</h4><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mdkir -p <span class="built_in">source</span>/_data</span><br><span class="line">$ cp themes/next/_config.yml <span class="built_in">source</span>/_data/next.yml</span><br></pre></td></tr></tbody></table></figure>
+<p>通过修改 next.yml 就可以简单地自定义 <a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">Next</a> 主题了。添加 keyword, 修改 scheme 等等。<strong>这些对于你来说，太简单了。</strong></p>
+<h4 id="创建-Tags-与-Categories"><a href="#创建-Tags-与-Categories" class="headerlink" title="创建 Tags 与 Categories"></a>创建 Tags 与 Categories</h4><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page tags</span><br><span class="line">$ hexo new page categories</span><br></pre></td></tr></tbody></table></figure>
+<p>在 /source/tags/index.md 中，修改一下，添加 type，如下所示：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Tags</span><br><span class="line">date: xxxxxxxx</span><br><span class="line">type: "tags"</span><br><span class="line">---</span><br></pre></td></tr></tbody></table></figure>
+<p>同理，在 /source/categories/index.md 中，修改一下，添加 type，如下所示：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Categories</span><br><span class="line">date: xxxxxxxx</span><br><span class="line">type: "categories"</span><br><span class="line">---</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="图床"><a href="#图床" class="headerlink" title="图床"></a>图床</h4><ol>
+<li><a href="https://github.com/" title="Github's Homepage" target="_blank" rel="noopener">Github</a> 本身就可以作为图床，但由于 <a href="https://github.com/" title="Github's Homepage" target="_blank" rel="noopener">Github</a> 主要是项目管理，资源比较珍贵，所以我们有理由找其他来代替。</li>
+<li>七牛作为图床，也是非常好的，但会限制流量，限制空间，然而对于我这种小 Blog，足矣，所以是一个不错的选择。</li>
+<li>微博免费提供了图片的外链功能，可作为图床，且不限制流量，不限制空间，是图床的绝佳选择。<ul>
+<li>未来有可能不能外链</li>
+<li>外链的 URL 没有规律，到时换图床会比较麻烦</li>
+</ul>
+</li>
+</ol>
+<p>将图片上传到微博相册，然后鼠标右键就可以复制出 URL 了。有许多插件可以批量上传到微博，同时快速复制 URL。其实微博本身就提供了批量上传图片功能。有了 URL ，就可以肆意用了～</p>
+<h4 id="评论区"><a href="#评论区" class="headerlink" title="评论区"></a>评论区</h4><ol>
+<li>disqus : (已经被 GFW 封杀，不谢)</li>
+<li>gitment : 使用 <a href="https://github.com/" title="Github's Homepage" target="_blank" rel="noopener">Github</a> 的 issue 来作为评论区。邮件提醒，支持 <a href="https://guides.github.com/features/mastering-markdown" target="_blank" rel="noopener">GFM</a>。</li>
+<li>gitalk : 有团队在维护，且更加炫，与 gitment 同理。</li>
+<li>Valine : 无后台运行，以 <a href="https://leancloud.cn" target="_blank" rel="noopener">LeanCloud</a> 云服务，但邮件提醒比较麻烦</li>
+<li>hexo-gitter :</li>
+</ol>
+<p>但是因为是使用 <a href="https://github.com/" title="Github's Homepage" target="_blank" rel="noopener">Github</a> 的资源，而且每一个 pages 都要手动去初始化，不是很方便，还有一个重要的原因，就是 issue 是不能由博主删除，同时利用 <a href="https://daringfireball.net/projects/markdown/syntax" target="_blank" rel="noopener">Markdown</a> 连接的图片，会自动上传到 <a href="https://github.com/" title="Github's Homepage" target="_blank" rel="noopener">Github</a> 上面去。最后选择无后台的 valine</p>
+<h4 id="写文"><a href="#写文" class="headerlink" title="写文"></a>写文</h4><p>刀已擦亮，博已建成。开写：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="相关连接-2"><a href="#相关连接-2" class="headerlink" title="相关连接"></a>相关连接</h4><ul>
+<li><a href="https://xuanwo.org/2015/03/26/hexo-intor/" target="_blank" rel="noopener">https://xuanwo.org/2015/03/26/hexo-intor/</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26625249</a></li>
+<li><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="noopener">http://ibruce.info/2013/11/22/hexo-your-blog/</a></li>
+</ul>
+<h3 id="自动部署"><a href="#自动部署" class="headerlink" title="自动部署"></a>自动部署</h3><p>使用 <code>hexo d</code> 可以实现部署，但每次 <code>git push</code> 后，必须在次手动部署一下，实在是比较麻烦，此时可以利用 <a href="https://github.com/" title="Github's Homepage" target="_blank" rel="noopener">Github</a> 与 Travis-CI 来实现 push 时自动部署功能。</p>
+<p>在使用 <a href="https://github.com/" title="Github's Homepage" target="_blank" rel="noopener">Github</a> 生成 token 时，有两个地方要注意：</p>
+<ol>
+<li>生成时， token 只会出现一次，下次打开时，就不可见了。所以要及时保存可以用掉</li>
+<li>要使用 token 来部署网站，所以此 token 必须拥有一些权限。例如：repo，gist。这两个选项得勾上。</li>
+<li><del>使用 travis 命令行对 token 进行加密</del></li>
+</ol>
+<p>其实现在 Travis-CI 已经可以 env 的设置了，而且还自动帮你加密了，可以不用自己加密了。所以可以不用安装 ruby, gem, travis</p>
+<h4 id="相关连接-3"><a href="#相关连接-3" class="headerlink" title="相关连接"></a>相关连接</h4><ul>
+<li><a href="http://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/" target="_blank" rel="noopener">http://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/</a></li>
+<li><a href="http://lotabout.me/2016/Hexo-Auto-Deploy-to-Github/" target="_blank" rel="noopener">http://lotabout.me/2016/Hexo-Auto-Deploy-to-Github/</a></li>
+</ul>
+<h3 id="SEO"><a href="#SEO" class="headerlink" title="SEO"></a>SEO</h3><p><a href="https://github.com/" title="Github's Homepage" target="_blank" rel="noopener">Github</a> 禁止百度的 Spider，所以百度无法自动检索到我们建的博客。<a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">Next</a> 主题中已经集成了百度的自制提交，直接使用就是了。然后就是 Bing，Google，提交 sitemap。更多的 SEO 方法，我就不折腾了。</p>
+<p><a href="https://www.bing.com/webmaster" target="_blank" rel="noopener">https://www.bing.com/webmaster</a><br><a href="https://ziyuan.baidu.com" target="_blank" rel="noopener">https://ziyuan.baidu.com</a><br><a href="https://www.google.com/webmasters" target="_blank" rel="noopener">https://www.google.com/webmasters</a></p>
+<h4 id="相关连接-4"><a href="#相关连接-4" class="headerlink" title="相关连接"></a>相关连接</h4><ul>
+<li><a href="https://www.jianshu.com/p/7e1166eb412a" target="_blank" rel="noopener">https://www.jianshu.com/p/7e1166eb412a</a></li>
+</ul>
+<h2 id="Meta"><a href="#Meta" class="headerlink" title="Meta"></a>Meta</h2><h3 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h3><ol>
+<li><code>hexo clean</code> 可以简写为 <code>hexo cl</code></li>
+<li><code>hexo s</code> 之后，hexo 会监视文件更改，只要博文一保存，就可以刷新浏览器看效果。使用 <code>hexo s -s</code></li>
+<li><del>windows 下，markdow-preview.vim 得先安装好 python3，并添加环境变量。</del></li>
+<li>使用 npm 更新 package.json 中的版本<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm update -S</span><br><span class="line">npm update –D</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<h3 id="曾想仗剑走天涯"><a href="#曾想仗剑走天涯" class="headerlink" title="曾想仗剑走天涯"></a>曾想仗剑走天涯</h3><blockquote>
+<p>曾想仗剑走天涯<br>后来工作忙没去</p>
+</blockquote>
+<p>狂妄地以为自己可以制作心中的 <a href="https://hexo.io/" title="Hexo's Homepage" target="_blank" rel="noopener">Hexo</a> 主题，所以受一些东西折磨：</p>
+<ol>
+<li>swig, ejs，都是 JavaScript 模板，可以快速生成 js 代码。还去 <a href="http://www.w3school.com.cn/" target="_blank" rel="noopener">w3school</a> 瞎逛自学了有一阵。</li>
+<li>scss 与 css</li>
+<li>cdn, avatar, FontAwesome</li>
+<li>各种 Brower 之间的不兼容</li>
+<li>使用 gulp 对 html 的优化</li>
+</ol>
+<h3 id="相关连接-5"><a href="#相关连接-5" class="headerlink" title="相关连接"></a>相关连接</h3><ul>
+<li><a href="http://www.w3school.com.cn/" target="_blank" rel="noopener">http://www.w3school.com.cn/</a></li>
+<li><a href="http://node-swig.github.io/swig-templates/docs/#variables" target="_blank" rel="noopener">http://node-swig.github.io/swig-templates/docs/#variables</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Jiaobuzuji</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.jiaobuzuji.com/blogs/setup-blog/" title="HEXO 零基础搭建个人 Blog">http://www.jiaobuzuji.com/blogs/setup-blog/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/markdown/" rel="tag"># markdown</a>
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+            <a href="/tags/blog/" rel="tag"># blog</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/ubuntu-note/" rel="next" title="ubuntu-note">
+                <i class="fa fa-chevron-left"></i> ubuntu-note
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blogs/markdown-syntax/" rel="prev" title="Markdon 语法">
+                Markdon 语法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jiaobuzuji</p>
+              <p class="site-description motion-element" itemprop="description">工作与生活分不清楚的 ASIC 数字前端程序猿</p>
+          </div>
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/jiaobuzuji" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:jiaobuzuji@163.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank" rel="external nofollow">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最初的做法"><span class="nav-number">1.1.</span> <span class="nav-text">最初的做法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相关连接"><span class="nav-number">1.1.1.</span> <span class="nav-text">相关连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于本博客"><span class="nav-number">1.2.</span> <span class="nav-text">关于本博客</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#免费搭建个人博客"><span class="nav-number">2.</span> <span class="nav-text">免费搭建个人博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册与基本安装"><span class="nav-number">2.1.</span> <span class="nav-text">注册与基本安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规划"><span class="nav-number">2.2.</span> <span class="nav-text">规划</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相关连接-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">相关连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建"><span class="nav-number">2.3.</span> <span class="nav-text">搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ubuntu-上安装-Node-js"><span class="nav-number">2.3.1.</span> <span class="nav-text">Ubuntu 上安装 Node.js</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#直接安装"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">直接安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#nvm安装"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">nvm安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#npm镜像替换为淘宝镜像"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">npm镜像替换为淘宝镜像</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#选装cnpm-推荐！！"><span class="nav-number">2.3.1.4.</span> <span class="nav-text">选装cnpm (推荐！！)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#全局安装与本地安装"><span class="nav-number">2.3.1.5.</span> <span class="nav-text">全局安装与本地安装</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化-Blog"><span class="nav-number">2.3.2.</span> <span class="nav-text">初始化 Blog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义主题"><span class="nav-number">2.3.3.</span> <span class="nav-text">自定义主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-Tags-与-Categories"><span class="nav-number">2.3.4.</span> <span class="nav-text">创建 Tags 与 Categories</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图床"><span class="nav-number">2.3.5.</span> <span class="nav-text">图床</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评论区"><span class="nav-number">2.3.6.</span> <span class="nav-text">评论区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写文"><span class="nav-number">2.3.7.</span> <span class="nav-text">写文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关连接-2"><span class="nav-number">2.3.8.</span> <span class="nav-text">相关连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动部署"><span class="nav-number">2.4.</span> <span class="nav-text">自动部署</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相关连接-3"><span class="nav-number">2.4.1.</span> <span class="nav-text">相关连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SEO"><span class="nav-number">2.5.</span> <span class="nav-text">SEO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相关连接-4"><span class="nav-number">2.5.1.</span> <span class="nav-text">相关连接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Meta"><span class="nav-number">3.</span> <span class="nav-text">Meta</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tip"><span class="nav-number">3.1.</span> <span class="nav-text">Tip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#曾想仗剑走天涯"><span class="nav-number">3.2.</span> <span class="nav-text">曾想仗剑走天涯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关连接-5"><span class="nav-number">3.3.</span> <span class="nav-text">相关连接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">© 2018 — <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jiaobuzuji</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 — <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+  
+
+
+  
+
+  
+
+
+
+  
+  
+
+
+
+
+  
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '512IeUJDPN8hiFYdzq4jgX9p-gzGzoHsz',
+        appKey: '1evObueKdv7R2orsDBktoTew',
+        placeholder: 'Please leave your email address, so I can contact you ASAP.',
+        avatar:'retro',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });;// Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });;(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();</script></body></html>

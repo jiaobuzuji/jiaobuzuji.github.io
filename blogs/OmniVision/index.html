@@ -1,0 +1,1289 @@
+<!DOCTYPE html><html class="theme-next gemini" lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-me.png">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-me.png">
+
+
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="OmniVisionOmniVision公司（简称OV），美商半导体公司，中文名豪威科技，成立于1995，专业开发高度集成 CMOS 影像技术。公司的创始人是经验丰富的工业专家，该公司主要创始人多半出身于摩托罗拉。2000前后，OmniVision的CMOS Sensor占据最大市场份额，然而时过境迁，现在是索尼的CMOS成为手机CMOS市场份额第一的厂商。如今的OV，难逃被收购的命运，目前已经被">
+<meta name="keywords" content="OmniVision,OV,sensor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OmniVision Sensor 芯片">
+<meta property="og:url" content="http://www.jiaobuzuji.com/blogs/OmniVision/index.html">
+<meta property="og:site_name" content="Jiaobuzuji's Pages">
+<meta property="og:description" content="OmniVisionOmniVision公司（简称OV），美商半导体公司，中文名豪威科技，成立于1995，专业开发高度集成 CMOS 影像技术。公司的创始人是经验丰富的工业专家，该公司主要创始人多半出身于摩托罗拉。2000前后，OmniVision的CMOS Sensor占据最大市场份额，然而时过境迁，现在是索尼的CMOS成为手机CMOS市场份额第一的厂商。如今的OV，难逃被收购的命运，目前已经被">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://wx1.sinaimg.cn/large/00738gZoly1fnv6fbm1vsj30mq0eet9q.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/00738gZoly1fnwpoydg8yj30hc0ebabi.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/00738gZoly1fnwpoxh4k9j30ni09jjrw.jpg">
+<meta property="og:updated_time" content="2015-05-28T22:46:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OmniVision Sensor 芯片">
+<meta name="twitter:description" content="OmniVisionOmniVision公司（简称OV），美商半导体公司，中文名豪威科技，成立于1995，专业开发高度集成 CMOS 影像技术。公司的创始人是经验丰富的工业专家，该公司主要创始人多半出身于摩托罗拉。2000前后，OmniVision的CMOS Sensor占据最大市场份额，然而时过境迁，现在是索尼的CMOS成为手机CMOS市场份额第一的厂商。如今的OV，难逃被收购的命运，目前已经被">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/large/00738gZoly1fnv6fbm1vsj30mq0eet9q.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.jiaobuzuji.com/blogs/OmniVision/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>OmniVision Sensor 芯片 | Jiaobuzuji's Pages</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jiaobuzuji's Pages</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">现在就是未来</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">21</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">12</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.jiaobuzuji.com/blogs/OmniVision/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jiaobuzuji">
+      <meta itemprop="description" content="工作与生活分不清楚的 ASIC 数字前端程序猿">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaobuzuji's Pages">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">OmniVision Sensor 芯片
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-05-28 22:46:15" itemprop="dateCreated datePublished" datetime="2015-05-28T22:46:15+00:00">2015-05-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数字图像/" itemprop="url" rel="index"><span itemprop="name">数字图像</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blogs/OmniVision/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/blogs/OmniVision/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="OmniVision"><a href="#OmniVision" class="headerlink" title="OmniVision"></a>OmniVision</h1><p>OmniVision公司（简称OV），美商半导体公司，中文名豪威科技，成立于1995，专业开发高度集成 CMOS 影像技术。公司的创始人是经验丰富的工业专家，该公司主要创始人多半出身于摩托罗拉。2000前后，OmniVision的CMOS Sensor占据最大市场份额，然而时过境迁，现在是索尼的CMOS成为手机CMOS市场份额第一的厂商。如今的OV，难逃被收购的命运，目前已经被天朝财大气粗的公司收购了。</p>
+<p>这段时间一直在研究OV9715 Sensor的配置。手头只有<a href="http://wenku.baidu.com/link?url=tKIHEE9K36GyX1_30pE7cLsVNOAbWWr3_jM8Z1bPZL2jEMdHn7d1xSPDdVjaF4tQAC3_tQquEMJ4eDLp4kvauLXKEC4Xymiz2i4e8T2ZDv7" target="_blank" rel="noopener">DataSheet</a>一份，而且是2009年！之后发现OV公司对技术的保密还是十分严谨，写的<a href="http://wenku.baidu.com/link?url=tKIHEE9K36GyX1_30pE7cLsVNOAbWWr3_jM8Z1bPZL2jEMdHn7d1xSPDdVjaF4tQAC3_tQquEMJ4eDLp4kvauLXKEC4Xymiz2i4e8T2ZDv7" target="_blank" rel="noopener">DS</a>也十分保守，N多register都“Reserved”却又是关键。如果你不是从正规渠道获取OV的产品，你是根本无法得到技术支持，网络上流出来的OV芯片配置，也都注释甚少。所以现在才明白，像这类技术公司，卖的不止芯片，还有支持。各种NDA，各种Reserved。</p>
+<p>注；闭源的东西，如果你没钱，那东西就有许多坑。</p>
+<h1 id="OV9715-or-OV9712"><a href="#OV9715-or-OV9712" class="headerlink" title="OV9715 or OV9712"></a>OV9715 or OV9712</h1><h2 id="Sensor架构"><a href="#Sensor架构" class="headerlink" title="Sensor架构"></a>Sensor架构</h2><p>OV9715与OV9712是同一系列的芯片，架构、寄存器地址也都基本一致。要对芯片配置，还是有必要清楚其芯片的架构，知道reg作用于架构中哪一个部分，也就可以比较清晰地知道会reg会产生哪些作用。</p>
+<p><img src="http://wx1.sinaimg.cn/large/00738gZoly1fnv6fbm1vsj30mq0eet9q.jpg" alt="OV9715、OV9712 架构图"></p>
+<p>架构主要被分为四大部分。每个模块各司其职</p>
+<ul>
+<li>image sensor core</li>
+<li>image sensor processor</li>
+<li>image output interface</li>
+<li>controller</li>
+</ul>
+<hr>
+<h3 id="image-sensor-core"><a href="#image-sensor-core" class="headerlink" title="image sensor core"></a>image sensor core</h3><p>这是一个模数混合的部分。包括了Sensor、模拟gain、ADC、BLC、AEC、AGC、Colorbar、数字gain等等。多是挺多的，只是不是我研究方向。我目前只研究里面的分辨率、Colorbar。</p>
+<p><img src="http://wx2.sinaimg.cn/large/00738gZoly1fnwpoydg8yj30hc0ebabi.jpg" alt="Sensor Array"></p>
+<h4 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h4><p>芯片第一个模块Sensor Array，<a href="http://wenku.baidu.com/link?url=tKIHEE9K36GyX1_30pE7cLsVNOAbWWr3_jM8Z1bPZL2jEMdHn7d1xSPDdVjaF4tQAC3_tQquEMJ4eDLp4kvauLXKEC4Xymiz2i4e8T2ZDv7" target="_blank" rel="noopener">DS</a>中reg说明如果有指明作用于Sensor，一般就都是指作用此模块。这个模块使用的是SYSCLK。最大可支持1280x800的分辨率，此模块的输出分辨率是可以进行修改的。</p>
+<ul>
+<li>通过<code>reg 0x12</code>中的HT2、VT2，实现H V的降采样（DownSample）。当然是以一半来采样的啦~ 也就是说：<ul>
+<li>配置HT2，则经DSP后最终最大输出 640x800</li>
+<li>配置VT2，则经DSP后最终最大输出 1280x400</li>
+<li>配置HT2、VT2，则经DSP后最终最大输出 640x400</li>
+<li>不配置的话，就……  <code>:)</code></li>
+</ul>
+</li>
+<li>通过<code>reg 0x17~0x1a 0x32 0x03</code>，可以配置Sensor Array的起点与输出pixel长度，这就实现了图像的第一次crop。</li>
+</ul>
+<p>我的理解是，crop出来的图像分辨率，不可以超出DownSample之后分辨率。据流传出来的OV配置，配置Sensor输出给DSP的分辨率都要比最终输出略大一点。</p>
+<h4 id="Color-Bar"><a href="#Color-Bar" class="headerlink" title="Color Bar"></a>Color Bar</h4><ul>
+<li><code>reg 0x12</code>可以配置 color bar with pixel overlay.</li>
+<li><code>reg 0x97</code>可以配置 color bar without pixel overlay. 配置了<code>reg 0x97</code>，那么<code>reg 0x12</code>就无效了。</li>
+<li>ColarBar其实是TestPattern其中一种，<code>reg 0xca</code>还可以对TestPattern配置。据我实际下板，配置TestPattern mode，出来的是很奇怪的细白竖条。选择“No test pattern”反而可以正常出ColorBar</li>
+</ul>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>研究了整个<a href="http://wenku.baidu.com/link?url=tKIHEE9K36GyX1_30pE7cLsVNOAbWWr3_jM8Z1bPZL2jEMdHn7d1xSPDdVjaF4tQAC3_tQquEMJ4eDLp4kvauLXKEC4Xymiz2i4e8T2ZDv7" target="_blank" rel="noopener">DS</a>的reg配置（许多Reserved不算），确认了OV9715只输出raw RGB。</p>
+<hr>
+<h3 id="image-sensor-processor"><a href="#image-sensor-processor" class="headerlink" title="image sensor processor"></a>image sensor processor</h3><p>这部分是不是可以简称为isp，与<a href="http://wenku.baidu.com/link?url=tKIHEE9K36GyX1_30pE7cLsVNOAbWWr3_jM8Z1bPZL2jEMdHn7d1xSPDdVjaF4tQAC3_tQquEMJ4eDLp4kvauLXKEC4Xymiz2i4e8T2ZDv7" target="_blank" rel="noopener">DS</a>中的ISP是否同一个意思，我暂时没有去考究。这部分也包含挺多模块，LENC、WBC、YAVG、sub-sample。这一堆也无暇折腾，我所要的，不过分辨率，PCLK，Frame Rate。这些坑，就让我一一道来吧。</p>
+<ul>
+<li>DSP Resolution。这是最终输出的分辨率，你要1280x800，就请准确配置<code>reg 0x57~0x59</code></li>
+<li>PCLK。首先要知道<strong>tp=1/SYSCLK</strong>，然后<a href="http://wenku.baidu.com/link?url=tKIHEE9K36GyX1_30pE7cLsVNOAbWWr3_jM8Z1bPZL2jEMdHn7d1xSPDdVjaF4tQAC3_tQquEMJ4eDLp4kvauLXKEC4Xymiz2i4e8T2ZDv7" target="_blank" rel="noopener">DS</a>中又指出可配置为<strong>PCLK=SYSCLK</strong>，<strong>PCLK=SYSCLK/2</strong>。通过DSP的<code>reg 0x3b</code>DownSample就可以将PCLK配置为SYSCLK的一半。DownSample的作用就是只取一半的pixels呗。<ul>
+<li>这里有个常见的640x400的常见配置，Sensor Horizontal size配置为1296，DSP使用DownSample并DSP Horizontal size就只配置640。好处就是获取Horizontal最大视野。</li>
+</ul>
+</li>
+<li>fps。与诸多reg有关。就放置到DVP那边解释吧。</li>
+</ul>
+<hr>
+<h3 id="image-output-interface"><a href="#image-output-interface" class="headerlink" title="image output interface"></a>image output interface</h3><p>上图，不解释</p>
+<p><img src="http://wx3.sinaimg.cn/large/00738gZoly1fnwpoxh4k9j30ni09jjrw.jpg" alt="DVP Timing"></p>
+<p>这部分与fps关系密切，<a href="http://wenku.baidu.com/link?url=tKIHEE9K36GyX1_30pE7cLsVNOAbWWr3_jM8Z1bPZL2jEMdHn7d1xSPDdVjaF4tQAC3_tQquEMJ4eDLp4kvauLXKEC4Xymiz2i4e8T2ZDv7" target="_blank" rel="noopener">DS</a>只是隐晦地说那些(1) (2) …可以由reg进行配置，留下巨坑让你跳。其实我还没从这坑爬出来呢。</p>
+<ul>
+<li>(1)，也就是frame的时长。由(2) (3) (4) (5)共同组成。<code>reg 0x3d 0x3e</code>配置line / frame，即(1)中有多少个(4)。</li>
+<li>(2)，这个种类很多，要分情况配置。<a href="http://wenku.baidu.com/link?url=tKIHEE9K36GyX1_30pE7cLsVNOAbWWr3_jM8Z1bPZL2jEMdHn7d1xSPDdVjaF4tQAC3_tQquEMJ4eDLp4kvauLXKEC4Xymiz2i4e8T2ZDv7" target="_blank" rel="noopener">DS</a>的figure 6-2列出了3种<ul>
+<li>vsync_old （略）</li>
+<li>vsync_new 可以由<code>reg 0xc8</code>配置</li>
+<li>vsync3 可以由SOF，也可由vsync_widthx64。<code>reg 0xc9 0xca</code>可以配置vsync_width确定；SOF呢？由<code>reg 0x4b 0x4c</code>配置的吧，reg的单位与<code>reg 0x3d 0x3e</code>一样，line为单位</li>
+</ul>
+</li>
+<li>(3)，好像不用配置</li>
+<li>(4)，<code>reg 0x2a 0x2b</code>配置，单位为 tp。这个是可以确定的</li>
+<li>(5)，<code>reg 0xcd~0xcf</code>，这个也是vsync3的24bit可编程延时。(5)也叫 eof2v_dly h2v_dly。</li>
+<li>(6)，这个是DSP Horizontal size。<code>reg 0x57 0x59</code>，单位为PCLK。</li>
+<li>(7)，=(4)-(6)。</li>
+<li>(8)、(9)这关键的两个东西，我目前还没搞清楚。在<a href="http://wenku.baidu.com/link?url=tKIHEE9K36GyX1_30pE7cLsVNOAbWWr3_jM8Z1bPZL2jEMdHn7d1xSPDdVjaF4tQAC3_tQquEMJ4eDLp4kvauLXKEC4Xymiz2i4e8T2ZDv7" target="_blank" rel="noopener">DS</a>中看到<code>reg 0x30 0x31</code>，但实际测试，修改这两个寄存器对(8) (9)不起作用。（坐等高人）</li>
+</ul>
+<p>这些(1) (2)等要正确配置，否则就导致VSYNC信号一直高电平（或低电平）。我推算出来的fps计算式子：fps=sysclk/(<code>reg 0x3d 0x3e</code> * <code>reg 0x2a 0x2b</code>)。而且OV9712的最大输出是 1280x800@30fps（640x400@60fps），所以在配置fps要合理。</p>
+<p>OV9712的HREF mode，即默认的mode，也是最常见的Sensor的输出时序。</p>
+<p>OV9712的HSYNC mode，可以算是BT601建议的输出时序，在Vertical Blank中，也是有HSYNC信号输出。SOF之后第一个active line的延时（即(3)）是要知道嘀，以line为单位会比较符合BT601的标准，也更好控制些。(8)、(9)也是必须知道，方可正确取出active pixel。BT601建议的场信号，OV9712似乎并没有实现。</p>
+<hr>
+<h3 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h3><p>OV在IIC上折腾出SCCB总线，可2 wires，可3 wires。3 wires是为实现相同device ID，却能挂载多个Slave，或许还有其他目的，懒得知道~你只要记住，SCCB这货是兼容IIC，足矣~ 必须知道的：SCCB是reg addr与data都是8bit操作的。Device ID=0x60，OV9715与OV9712都使用相同的ID。</p>
+<p>注：OV的power down模式，与MT9系统Sensor的Standby，控制方式刚好相反。OV的PWDN拉高即为power down；MT的Standby_n拉低即为power down。</p>
+<h2 id="与众不同"><a href="#与众不同" class="headerlink" title="与众不同"></a>与众不同</h2><ul>
+<li>vsync的极性，default是场消隐时为高电平；</li>
+<li>BT656并没有按照建议书传输yuv422，而是直接传输RawData。RawData值有可达到“0xFF”，“0x00”，这些与BT656中的视频计时基准码会冲突。当然，一般情况下还是可以正常工作的。</li>
+</ul>
+<h2 id="Reg配置参考"><a href="#Reg配置参考" class="headerlink" title="Reg配置参考"></a>Reg配置参考</h2><p>OV9715与OV9712的寄存器基本一致，网络上流传出来的芯片配置也主要是针对的OV9712，但对于OV9715还是有比较大的参考作用。</p>
+<p>下面是我整合之后的reg配置</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Core setting  不要问我，我什么都不知道</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x1e</span>, <span class="number">0x07</span>);</span><br><span class="line">iic_write_data(OV, <span class="number">0x5f</span>, <span class="number">0x18</span>);</span><br><span class="line">iic_write_data(OV, <span class="number">0x69</span>, <span class="number">0x04</span>);</span><br><span class="line">iic_write_data(OV, <span class="number">0x65</span>, <span class="number">0x2a</span>);</span><br><span class="line">iic_write_data(OV, <span class="number">0x68</span>, <span class="number">0x0a</span>);</span><br><span class="line">iic_write_data(OV, <span class="number">0x39</span>, <span class="number">0x28</span>);</span><br><span class="line">iic_write_data(OV, <span class="number">0x4d</span>, <span class="number">0x90</span>);</span><br><span class="line">iic_write_data(OV, <span class="number">0xc1</span>, <span class="number">0x80</span>);</span><br><span class="line"><span class="comment">// iic_write_data(OV, 0x0c, 0x30);</span></span><br><span class="line"><span class="comment">// iic_write_data(OV, 0x6d, 0x02);</span></span><br><span class="line"><span class="comment">// iic_write_data(OV, 0x4d, 0x90);</span></span><br><span class="line"><span class="comment">// iic_write_data(OV, 0xc1, 0x80);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//DSP</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x96</span>, <span class="number">0xf1</span>); <span class="comment">// AEC AWB ...</span></span><br><span class="line"><span class="comment">// iic_write_data(OV, 0xbc, 0x68);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*  Resolution and Format  */</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x12</span>, <span class="number">0x00</span>); <span class="comment">// VT2[6] HT2[0] Sensor Down sample</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x3b</span>, <span class="number">0x01</span>); <span class="comment">// DSP Down sample，配置为1，使 PCLK=SYSCLK/2</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x97</span>, <span class="number">0x80</span>); <span class="comment">// 自己看DS</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x17</span>, <span class="number">0x25</span>); <span class="comment">// HStart MSB = 37*8+7  = 303，跳过黑边</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x18</span>, <span class="number">0xA2</span>); <span class="comment">// HSize MSB  = 0xA2*8+ 0 = 1296</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x32</span>, <span class="number">0x07</span>); <span class="comment">// HStart[2:0]LSB, HSize[5:3]LSB</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x19</span>, <span class="number">0x01</span>); <span class="comment">// VStart MSB = 1*4+ 2  = 6</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x1a</span>, <span class="number">0x78</span>); <span class="comment">// VSize MSB  = 120*4+2 = 482</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x03</span>, <span class="number">0x0a</span>); <span class="comment">// VStart[1:0]LSB, VSize[3:2]LSB</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x98</span>, <span class="number">0x00</span>); <span class="comment">// offset of pre_win out</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x99</span>, <span class="number">0x00</span>);</span><br><span class="line">iic_write_data(OV, <span class="number">0x9a</span>, <span class="number">0x00</span>);</span><br><span class="line">iic_write_data(OV, <span class="number">0x57</span>, <span class="number">0x00</span>); <span class="comment">/*DSP output HSize[4:2] VSize[1:0] LSB */</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x58</span>, <span class="number">0x78</span>); <span class="comment">/*DSP output VSize MSB = 120*4+0 = 480 */</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x59</span>, <span class="number">0x50</span>); <span class="comment">/*DSP output HSize MSB = 80*8+0 = 640 */</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x4c</span>, <span class="number">0x0b</span>); <span class="comment">// hi 640x400:0x99a     1280x800:0x1336</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x4b</span>, <span class="number">0x70</span>); <span class="comment">// low 经过示波器观察，是配置SOF、EOF</span></span><br><span class="line">iic_write_data(OV,<span class="number">0xbd</span>, <span class="number">0x50</span>); <span class="comment">// 0x50*8=640</span></span><br><span class="line">iic_write_data(OV,<span class="number">0xbe</span>, <span class="number">0x78</span>); <span class="comment">// 0x78*4=480</span></span><br><span class="line"><span class="comment">// iic_write_data(OV,0x2c, 0x60); // I don't know.</span></span><br><span class="line"><span class="comment">// iic_write_data(OV,0x23, 0x10);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*  Clock  */</span></span><br><span class="line">iic_write_data(OV,<span class="number">0x5c</span>, <span class="number">0x73</span>);  <span class="comment">// CLK1 = XCLK/PLL_pre_divider; PLL_pre_divider:REG5C[6:5]; CLK2 = CLK1*(32-REG5C[4:0])</span></span><br><span class="line">iic_write_data(OV,<span class="number">0x5d</span>, <span class="number">0x00</span>);  <span class="comment">// CLK3 = CLK2/(REG5D[3:2]+1)</span></span><br><span class="line">iic_write_data(OV,<span class="number">0x11</span>, <span class="number">0x00</span>);  <span class="comment">// SYSCLK = CLK3/((REG11[5:0]+1)*2)</span></span><br><span class="line"></span><br><span class="line">iic_write_data(OV,<span class="number">0x3e</span>, <span class="number">0x03</span>);  <span class="comment">// Line / Frame hi 此处是指有多少个(0x2a、0x2b)</span></span><br><span class="line">iic_write_data(OV,<span class="number">0x3d</span>, <span class="number">0x7f</span>);  <span class="comment">// Line / Frame low 是fps的一个配置量</span></span><br><span class="line">iic_write_data(OV,<span class="number">0x2b</span>, <span class="number">0x06</span>);  <span class="comment">// Tp of Hsync hi 1688</span></span><br><span class="line">iic_write_data(OV,<span class="number">0x2a</span>, <span class="number">0x98</span>);  <span class="comment">// Tp of Hsync low 我理解为包含行消隐的line长度</span></span><br><span class="line"><span class="comment">// iic_write_data(OV,0xd0, 0x06);  // line length hi 疑点</span></span><br><span class="line"><span class="comment">// iic_write_data(OV,0xd1, 0x98);  // Line length low</span></span><br><span class="line"></span><br><span class="line">iic_write_data(OV,<span class="number">0x2d</span>, <span class="number">0x00</span>);  <span class="comment">//Dummy line LSB DS中说是作用于Night Mode</span></span><br><span class="line">iic_write_data(OV,<span class="number">0x2e</span>, <span class="number">0x00</span>);  <span class="comment">//Dummy line MSB</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// DVP</span></span><br><span class="line">iic_write_data(OV,<span class="number">0xc2</span>, <span class="number">0x81</span>);  <span class="comment">// vsync3  vsync_width</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//General</span></span><br><span class="line">iic_write_data(OV,<span class="number">0x13</span>, <span class="number">0x85</span>);</span><br><span class="line">iic_write_data(OV,<span class="number">0x14</span>, <span class="number">0x40</span>); <span class="comment">// analog gain</span></span><br><span class="line">iic_write_data(OV, <span class="number">0x04</span>, <span class="number">0x48</span>);<span class="comment">// Vertical flip</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="疑点重重"><a href="#疑点重重" class="headerlink" title="疑点重重"></a>疑点重重</h2><ol>
+<li>HSYNC mode 中(8) (9)由哪个reg配置的？</li>
+<li><code>reg 0x30 0x31</code>与HSYNC mode有关系麽？与(8) (9)什么关系？</li>
+<li><code>reg 0xd0 0xd1</code>与<code>reg 0x2b 0x2a</code>之间是什么关系？</li>
+<li><code>reg 0xca</code>Test Pattern中的目的与作用是什么？</li>
+</ol>
+<p>欢迎各位跟我讨论，更加欢迎帮我分析疑点。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Jiaobuzuji</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.jiaobuzuji.com/blogs/OmniVision/" title="OmniVision Sensor 芯片">http://www.jiaobuzuji.com/blogs/OmniVision/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OmniVision/" rel="tag"># OmniVision</a>
+          
+            <a href="/tags/OV/" rel="tag"># OV</a>
+          
+            <a href="/tags/sensor/" rel="tag"># sensor</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/audio-if/" rel="next" title="音视频接口标准（一）">
+                <i class="fa fa-chevron-left"></i> 音视频接口标准（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blogs/digital-image/" rel="prev" title="图像处理基础知识点">
+                图像处理基础知识点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jiaobuzuji</p>
+              <p class="site-description motion-element" itemprop="description">工作与生活分不清楚的 ASIC 数字前端程序猿</p>
+          </div>
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/jiaobuzuji" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:jiaobuzuji@163.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank" rel="external nofollow">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OmniVision"><span class="nav-number">1.</span> <span class="nav-text">OmniVision</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OV9715-or-OV9712"><span class="nav-number">2.</span> <span class="nav-text">OV9715 or OV9712</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sensor架构"><span class="nav-number">2.1.</span> <span class="nav-text">Sensor架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#image-sensor-core"><span class="nav-number">2.1.1.</span> <span class="nav-text">image sensor core</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Resolution"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">Resolution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Color-Bar"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">Color Bar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#image-sensor-processor"><span class="nav-number">2.1.2.</span> <span class="nav-text">image sensor processor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#image-output-interface"><span class="nav-number">2.1.3.</span> <span class="nav-text">image output interface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#controller"><span class="nav-number">2.1.4.</span> <span class="nav-text">controller</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与众不同"><span class="nav-number">2.2.</span> <span class="nav-text">与众不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reg配置参考"><span class="nav-number">2.3.</span> <span class="nav-text">Reg配置参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑点重重"><span class="nav-number">2.4.</span> <span class="nav-text">疑点重重</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">© 2018 — <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jiaobuzuji</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 — <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+  
+
+
+  
+
+  
+
+
+
+  
+  
+
+
+
+
+  
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" src="/bundle.js"></script><script type="text/javascript">var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '512IeUJDPN8hiFYdzq4jgX9p-gzGzoHsz',
+        appKey: '1evObueKdv7R2orsDBktoTew',
+        placeholder: 'Please leave your email address, so I can contact you ASAP.',
+        avatar:'retro',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });;// Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });;(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();</script></body></html>
