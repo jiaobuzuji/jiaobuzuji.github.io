@@ -1475,3 +1475,18 @@ svn commit -m "add svn:global-ignores"
 ## vinagre 远程桌面
  edit bookmarks in vinagre
 '~/.local/share/vinagre/vinagre-bookmarks.xml'
+
+## rabbitvcs 0.17.1 version
+### diff_tool merge_tool
+vi /usr/share/rabbitvcs/configspec.ini
+```
+[external]
+diff_tool = string(default="/usr/bin/meld")
+merge_tool = string(default="/usr/bin/meld --auto-merge %mine %base %theirs --output %merged")
+```
+or
+```
+[external]
+diff_tool = string(default="/usr/bin/bcompare")
+merge_tool = string(default="/usr/bin/bcompare %mine %theirs %base %merged")
+```
