@@ -1490,3 +1490,7 @@ or
 diff_tool = string(default="/usr/bin/bcompare")
 merge_tool = string(default="/usr/bin/bcompare %mine %theirs %base %merged")
 ```
+
+## crontab
+一个定时执行的命令。
+crontab min time data month year command
