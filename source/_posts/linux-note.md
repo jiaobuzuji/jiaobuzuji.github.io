@@ -1494,3 +1494,17 @@ merge_tool = string(default="/usr/bin/bcompare %mine %theirs %base %merged")
 ## crontab
 一个定时执行的命令。
 crontab min time data month year command
+
+## 标准输出与错误输出。2 > &1
+首先 command > file 2 > file 的意思是将命令所产生的标准输出信息，和错误的输出信息送到 file 中。 command > file 2 > file 这样的写法， stdout 和 stderr 值都直接送到 file 中，file会被打开两次，这样 stdout 和 stderr 会互相覆盖，这样写相当使用了 FD1 和 FD2 两个同时去抢点 file 的管道。
+而 command > file 2>&1 这条命令就将 stdout直接送向 file， stderr 继承了 FD1 管道后，再被送到 file，此时file只是被打开了一次，也只使用了一个管道FD1，它包括了 stdout 和 stderr 的内容。
+```
+echo 'test' > /dev/null 2>&1
+```
+> 代表重定向到哪儿
+/dev/null 代表空设备文件
+2> 表示 stderr 标准错误
+& 表示等同于的意思，2>&1, 表示2的输出重定向等同于1
+1 表示 stdout 标准输出，系统默认值是1，所以“>/dev/null”等同于"1>/dev/null"
+
+
