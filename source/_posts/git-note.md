@@ -156,3 +156,35 @@ git describe --tags `git rev-list --tags --max-count=1`
 
 以SourceTree为例，点击 仓库 -> 仓库配置 -> 远程仓库 即可管理此项目中配置的所有远程仓库， 而且这个界面最下方还可以点击编辑配置文件，同样可以完成方法三。
 
+## conflict
+### 命令行
+There are three ways to resolve a merge conflict in Git:
+
+1. Accept the local version. To accept all changes on a file from the local version, run:
+
+`git checkout --ours <file name>`
+
+Alternatively, to accept the local version for all conflicting files, use:
+
+`git merge --strategy-option ours`
+
+2. Accept the remote version. To update the changes on a file from the remote branch, run:
+
+`git checkout --theirs <file name>`
+
+Accept the remote version for all conflicting files with:
+
+`git merge --strategy-option theirs`
+
+3. Review changes individually. The final option is to review each change separately. This option is also the best path to take, especially when working with multiple files and people. To make this job more manageable, use special tools to help review individual conflicts .
+
+Ultimately, the choice of what parts of the code stay and which do not depends on the developer's decision for the current project.
+
+### diff tools
+Setting Up a Default Diff Tool in Git
+
+To set up the default diff tool for git mergetool:
+
+1. Run the following line in your terminal:
+
+git mergetool --tool-help
