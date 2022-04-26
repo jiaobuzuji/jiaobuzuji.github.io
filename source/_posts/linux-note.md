@@ -1516,3 +1516,9 @@ echo 'test' > /dev/null 2>&1
 1 表示 stdout 标准输出，系统默认值是1，所以“>/dev/null”等同于"1>/dev/null"
 
 
+## split 与 cat
+split 命令可用于切割大文件, 而 cat 可以合并大文件。 具体用法可以查看 man
+```
+split -a 4 -b 4096 -d haha.tar.xv # 此时会得到一堆的 x???? 的文件
+cat x********** > wow.tar.xz
+```
