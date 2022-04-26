@@ -1472,6 +1472,14 @@ svn:global-ignores：svn全局忽略属性
 svn commit -m "add svn:global-ignores"
 ```
 
+### svn 完全 clean up workspace
+```
+svn clean up .
+svn revert -R .
+svn st | grep '^?' | awk '{printf $2}' | xargs rm -rf
+```
+
+
 ## vinagre 远程桌面
  edit bookmarks in vinagre
 '~/.local/share/vinagre/vinagre-bookmarks.xml'
