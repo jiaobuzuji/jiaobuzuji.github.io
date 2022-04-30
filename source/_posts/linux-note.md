@@ -1520,5 +1520,5 @@ echo 'test' > /dev/null 2>&1
 split 命令可用于切割大文件, 而 cat 可以合并大文件。 具体用法可以查看 man
 ```
 split -a 4 -b 4096 -d haha.tar.xv # 此时会得到一堆的 x???? 的文件
-cat x********** > wow.tar.xz
+cat x* > wow.tar.xz
 ```
