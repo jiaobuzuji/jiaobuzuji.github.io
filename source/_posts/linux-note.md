@@ -1522,3 +1522,86 @@ split 命令可用于切割大文件, 而 cat 可以合并大文件。 具体用
 split -a 4 -b 4096 -d haha.tar.xv # 此时会得到一堆的 x???? 的文件
 cat x* > wow.tar.xz
 ```
+
+## linux 修改 mac
+1.临时性的修改：
+
+①依次输入以下命令：
+```
+     /sbin/ifconfig eth0 down
+     /sbin/ifconfig eth0 hw ether 00:0C:29:36:97:20
+     /sbin/ifconfig eth0 up
+    service network restart     
+```
+
+2.永久性的修改：
+
+方法①：
+
+并把类似于1中的②脚本保存在/etc/rc.local中：这一步是起作用的关键步骤
+脚本如下：
+
+```
+     /sbin/ifconfig eth0 down
+     /sbin/ifconfig eth0 hw ether 00:0C:29:36:97:20
+     /sbin/ifconfig eth0 up
+     service network restart 
+```
+
+方法②：
+
+```
+vi /etc/sysconfig/network-scripts/ifcfg-eth0
+```
+
+添加
+
+```
+MACADDR=00:0C:29:36:97:20
+```
+
+     
+
+注释掉原来的HWADDR
+
+```
+:wq 
+```
+
+保存退出。
+
+方法③：
+
+直接编辑 /etc/network/interfaces 文件，在 iface eth0 inet static 后面添加一行：
+
+```
+pre-up ifconfig eth0 hw ether xx:xx:xx:xx:xx:xx（要改成的MAC） 
+```
+
+编辑interfaces文件
+
+```
+sudo nano /etc/network/interfaces 
+```
+
+如下所示：
+
+```
+    face eth0 inet static
+    pre-up ifconfig eth0 hw ether xx:xx:xx:xx:xx:xx（要改成的MAC）
+    address 192.168.1.10
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+```
+
+重启网卡
+
+```
+sudo /etc/init.d/networking restart
+```
+
+注：MAC地址由udev在系统启动时探测网卡并加载，可在以下两个文件中反映出来
+/sys/class/net/eth0/address
+/etc/udev/rules.d/70-persistent-net.rules —-修改无效，根据硬件自动生成的文件
+
+不过，用ifconfig修改了mac后， /sys/class/net/eth0/address 的值随即跟着变了；但 /etc/udev/rules.d/70-persistent-net.rules 却没有变，只有在udev探测到硬件发生变化时才会修改这个文件。
