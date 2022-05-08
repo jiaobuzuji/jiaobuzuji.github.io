@@ -1605,3 +1605,13 @@ sudo /etc/init.d/networking restart
 /etc/udev/rules.d/70-persistent-net.rules —-修改无效，根据硬件自动生成的文件
 
 不过，用ifconfig修改了mac后， /sys/class/net/eth0/address 的值随即跟着变了；但 /etc/udev/rules.d/70-persistent-net.rules 却没有变，只有在udev探测到硬件发生变化时才会修改这个文件。
+
+
+## nohup
+nohup 英文全称 no hang up（不挂起），用于在系统后台不挂断地运行命令，退出终端不会影响程序的运行。
+语法格式
+ nohup Command [ Arg … ] [　& ]
+参数说明：
+Command：要执行的命令。
+Arg：一些参数，可以指定输出文件。
+&：让命令在后台执行，终端退出后命令仍旧执行。
