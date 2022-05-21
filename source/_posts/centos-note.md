@@ -82,6 +82,39 @@ mkfs -t vfat -I /dev/sdb # 格式化 (把 /dev/xxx 改为你对应的 U 盘或�
 然后注销一次用户重新登录 
 命令就仅仅需要以上两步，重新登录以后，ibus 的拼音输入法就可以正常使用了。解决方案也很简单，可以说没有技术含量。 
 
+###配置Fcitx为默认输入法
+方法一：（推荐此法！）
+
+1. 新建配置文件 vim /etc/X11/xinit/xinput.d/fcitx.conf ，内容为：
+
+XIM=fcitx
+XIM_PROGRAM=/usr/local/bin/fcitx 确保此文件存在
+XIM_ARGS=”-D” 此处为大写D
+
+SHORT_DESC="Fcitx"
+GTK_IM_MODULE=xim
+QT_IM_MODULE =xim
+
+2. 然后在/etc/alternatives/目录下，将符号链接xinputrc删除，重新建一个：
+
+mv /etc/alternatives/xinputrc /etc/alternatives/xinputrc.bak
+rm –rf /etc/alternatives/xinputrc
+ln -s /etc/X11/xinit/xinput.d/fcitx.conf /etc/alternatives/xinputrc
+
+注：如果你使用的桌面是英文环境的，还需要在使用用户的用户目录下.bashrc配置文件里添加如下内容：
+export LANG=”zh_CN.UTF-8″
+export LC_CTYPE=”zh_CN.UTF-8″
+export XIM=fcitx
+export XIM_PROGRAM=fcitx
+export GTK_IM_MODULE=xim
+export XMODIFIERS=”@im=fcitx”
+
+在系统，首选项输入法中将fcitx设置为默认输入法，注销重新登录
+
+注意：如果你的输入法安装了，但是又不能按ctrl+space杂办，是因为你还缺少啦一个库文件
+yum install gtk2-immodule-xim
+安装好就可以使用啦
+
 ## troubleshoot
 CentOS 6.x 版本的，yum 使用了 python2 。所以不可以卸载 python2。同时安装
 pythone3 后，python 命令还是指向 python2 的。此处不宜使用暴力修改（网络上许多人都说，修改 /usr/bin/yum 来实现 python3）。
