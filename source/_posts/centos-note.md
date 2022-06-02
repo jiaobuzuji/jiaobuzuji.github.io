@@ -172,7 +172,6 @@ pythone3 后，python 命令还是指向 python2 的。此处不宜使用暴力�
 ## 基本配置
 timedatectl set-ntp true
 fdisk /dev/sda
-chroot
 
 ip addr
 ip link
@@ -183,3 +182,7 @@ wpa_supplicant -c wifi.conf -i wlp5s0
 dhcpcd
 
 
+## U盘 Recover 系统
+将安装 Linux 的 U盘插入电脑，重启电脑选择U盘启动
+选择安装界面的 `Troubleshooting` 选项。然后进入 `Rescue a Rocky Linux system`。此时就会运行U盘上的系统。同时将硬盘上的系统挂载在 /mnt/sysroot 目录下
+使用 `chroot /mnt/sysroot` 就可以以 root 身份进入硬盘上的系统
