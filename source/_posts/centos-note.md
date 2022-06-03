@@ -96,7 +96,7 @@ mkfs -t vfat -I /dev/sdb # 格式化 (把 /dev/xxx 改为你对应的 U 盘或�
 
 回到当前使用的普通用户，设置 ibus 输入法为默认输入系统：
 ```
-  sudo yum install  im-chooser
+  sudo yum install  im-chooser imsettings-xim
   imsettings-switch ibus
 ```
 
@@ -133,7 +133,7 @@ export XMODIFIERS=”@im=fcitx”
 在系统，首选项输入法中将fcitx设置为默认输入法，注销重新登录
 
 注意：如果你的输入法安装了，但是又不能按ctrl+space杂办，是因为你还缺少啦一个库文件
-yum install gtk2-immodule-xim
+yum install gtk3-immodule-xim
 安装好就可以使用啦
 
 ## troubleshoot
