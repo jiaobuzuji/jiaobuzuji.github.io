@@ -57,6 +57,7 @@ dd if=CentOS-7-x86_64-DVD-1611.iso of=/dev/sdb
 touch removeiso.txt
 dd if=removeiso.txt of=/dev/sdb
 ```
+之后再使用 fdisk 进行分区，mkfs.exfat格式化
 
 
 ### Minimal wifi 联网
