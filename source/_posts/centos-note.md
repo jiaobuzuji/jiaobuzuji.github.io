@@ -43,6 +43,22 @@ watch -n 5 pkill -USR1 ^dd$
 （ps： 切记此处的输出设备一定是整个U盘整体，而非该U盘上的某个分区如/dev/sdb1）
 然后就可以使用该U盘启动，进行系统安装了。
 
+### 不小心将 U 盘弄成了 ISO9660 的光盘格式
+由于 ISO9660 光盘格式是只读的。所以无法写U盘。此时使用 fdisk 无论怎么分区，格式化，都没有办法被 windows 读取与使用 U 盘。
+使用 udisksctl info --block-device /dev/sdc 可以看到 IdType 为 iso9660
+#### 为什么会整成 ISO9660 呢？
+因为 ISO 文件本身就是这种 ISO9660 格式。dd 命令只是 Byte to Byte 地拷贝过去。因为我们是使用了 `/dev/sdb` 这样一整个 U 盘，所以U盘格式都变了。
+```
+dd if=CentOS-7-x86_64-DVD-1611.iso of=/dev/sdb
+```
+#### 怎样修复呢？
+解铃还须系铃人！！
+```
+touch removeiso.txt
+dd if=removeiso.txt of=/dev/sdb
+```
+
+
 ### Minimal wifi 联网
 安装好 Minimal 的系统后，默认只安装了 NetworkManager，而并没有安装 NetworkManager-wifi（可能是因为考虑到充当Server，不需要wifi吧）。所以是无法使用 wifi 设备的。
 正确的安装方式：
